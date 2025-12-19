@@ -134,21 +134,18 @@
             filter: drop-shadow(0 0 10px rgba(143, 188, 143, 0.6));
         }
 
-        /* --- TARJETA DE ÁLBUM (VERSIÓN MINIMALISTA) --- */
+        /* --- TARJETA DE ÁLBUM (VERSIÓN MINIMALISTA + FLASH) --- */
         .album-card {
             width: 100%;
-            height: 80px; /* Altura ajustada */
+            height: 80px; 
             border-radius: 8px;
             position: relative;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
-            
-            /* Fondo técnico oscuro */
             background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(35, 45, 35, 0.9) 100%);
             border: 1px solid rgba(143, 188, 143, 0.2);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            
             display: flex;
             align-items: center;
             padding: 0 25px;
@@ -162,7 +159,7 @@
             box-shadow: 0 8px 25px rgba(143, 188, 143, 0.15);
         }
 
-        /* Nuevo Icono de FOTO/PAISAJE */
+        /* Icono de CÁMARA CON FLASH */
         .album-art-icon {
             width: 36px;
             height: 36px;
@@ -171,21 +168,19 @@
             flex-shrink: 0;
         }
 
-        /* Info Simplificada */
         .album-info {
             flex-grow: 1;
             display: flex;
-            align-items: center; /* Centrado vertical */
+            align-items: center; 
         }
 
         .album-title { 
             color: white; 
-            font-size: 1.2rem; /* Año más grande */
+            font-size: 1.2rem; 
             font-weight: 800; 
             letter-spacing: 2px; 
         }
         
-        /* Flecha de salida */
         .album-arrow { 
             width: 20px; 
             height: 20px; 
@@ -258,7 +253,7 @@
                 <a href="https://lightroom.adobe.com/shares/89d4eeba1eff4383a4100b3039945b52" target="_blank" class="album-card" title="Ver Galería 2025">
                     
                     <svg class="album-art-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                        <path d="M12 8.8c-1.77 0-3.2 1.43-3.2 3.2s1.43 3.2 3.2 3.2 3.2-1.43 3.2-3.2-1.43-3.2-3.2-3.2zm0 4.8c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6 1.6.72 1.6 1.6-.72 1.6-1.6 1.6zM21.9 7.53l-1.9-2.95c-.25-.38-.66-.6-1.11-.58H15c-.48 0-.92-.29-1.12-.73l-.6-1.34C12.99 1.29 12.52 1 12 1h-4c-.52 0-.99.29-1.28.73l-.6 1.34C5.92 3.71 5.48 4 5 4H1.11c-.45-.02-.86.2-1.11.58L.1 7.53c-.18.28-.15.65.07.89C.41 8.68.74 8.8 1.1 8.8H2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-10h.9c.36 0 .69-.12.93-.38.22-.24.25-.61.07-.89zM12 17c-2.76 0-5-2.24-5-5 0-1.48.65-2.81 1.71-3.74C9.25 9.11 10.56 9 12 9s2.75.11 3.29.74C16.35 10.67 17 12.02 17 13.5c0 2.76-2.24 5-5 5z"/>
                     </svg>
                     
                     <div class="album-info">
