@@ -1,22 +1,11 @@
-name: Centinela de Seguridad Jotappe.io
-
-on:
-  schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
-
-jobs:
-  security-patrol:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Verificar Estado del Sitio
+- name: Verificar Estado del Sitio
         id: check_status
         run: |
-          # El flag -L permite seguir la redirección 307 hasta el código 200 final
+          # Añadimos -L para que siga el rastro hasta el destino final
           STATUS=$(curl -o /dev/null -s -L -w "%{http_code}\n" https://jotappe.com)
           echo "STATUS_CODE=$STATUS" >> $GITHUB_ENV
           
-          # Ahora verificamos si el código final es 200 tras seguir los saltos
+          # Ahora comparamos contra el código final
           if [ "$STATUS" -ne 200 ]; then
             echo "ALERT=TRUE" >> $GITHUB_ENV
           else
@@ -26,35 +15,6 @@ jobs:
       - name: Verificar Certificado SSL
         id: check_ssl
         run: |
-          # Optimizamos la captura para extraer solo la fecha de vencimiento
+          # Limpiamos la salida para que en Telegram solo veas la fecha
           EXPIRY=$(echo | openssl s_client -servername jotappe.com -connect jotappe.com:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
           echo "SSL_EXPIRY=$EXPIRY" >> $GITHUB_ENV
-
-      - name: Enviar Alerta Roja a Telegram
-        if: env.ALERT == 'TRUE'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            🚨 ALERTA DE SEGURIDAD JOTAPPE.IO 🚨
-            
-            ⚠️ INCIDENCIA CRÍTICA DETECTADA
-            --------------------------------
-            ❌ Estado Web: CAÍDO (Código ${{ env.STATUS_CODE }})
-            🛡️ SSL Check (Vence): ${{ env.SSL_EXPIRY }}
-            
-            Protocolo: Revisar Vercel inmediatamente.
-
-      - name: Reporte de Rutina (Si todo está OK)
-        if: env.ALERT == 'FALSE'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ✅ REPORTE CENTINELA JOTAPPE.COM
-            
-            El sitio opera con normalidad.
-            Estado: 100% Operativo (Código 200)
-            Blindaje SSL: Activo hasta ${{ env.SSL_EXPIRY }}
