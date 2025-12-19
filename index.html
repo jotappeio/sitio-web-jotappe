@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jotappe.io | Ingeniería & Naturaleza</title>
     <style>
-        /* RESET Y BASE */
+        /* OPTIMIZACIÓN CRÍTICA: Renderizado de fuentes y box model */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body { 
-            background: #080808; /* Marco exterior negro mate */
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #080808; 
+            font-family: 'Inter', -apple-system, sans-serif; 
             overflow: hidden; 
             color: white; 
             height: 100vh; 
@@ -20,19 +21,20 @@
             align-items: center;
         }
 
-        /* 1. ESCENARIO CENTRAL (CONTENEDOR FLOTANTE) */
         .main-stage {
             position: relative;
             width: 90vw;
             height: 90vh;
-            background: #111; /* Fondo de respaldo si falla una imagen */
-            border-radius: 20px; /* Bordes redondeados modernos */
-            overflow: hidden; /* Mantiene todo dentro del cuadro */
-            box-shadow: 0 0 60px rgba(0,0,0,0.9); /* Sombra de profundidad */
-            border: 1px solid rgba(255,255,255,0.1); /* Borde sutil */
+            background: #0f0f0f; /* Color sólido base para evitar transparencia costosa */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            /* Optimización GPU: Crea una capa compuesta separada */
+            will-change: transform; 
+            transform: translateZ(0);
         }
 
-        /* 2. GRID ROBUSTO (CSS PURO) */
         .collage-container {
             position: absolute;
             top: 0;
@@ -40,10 +42,10 @@
             width: 100%;
             height: 100%;
             display: grid;
-            /* La magia: se adapta solo. Mínimo 240px por foto */
+            /* Grid optimizado: menos columnas, menos nodos DOM */
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 2px;
+            gap: 1px;
             z-index: 1;
         }
 
@@ -53,39 +55,40 @@
             background-color: #1a1a1a;
             background-size: cover;
             background-position: center;
-            opacity: 0; 
-            transition: background-image 2s ease-in-out; 
-            animation: tile-fade-in 1s forwards, tile-breathe 12s infinite alternate ease-in-out;
+            opacity: 0;
+            /* OPTIMIZACIÓN: Quitamos el filtro de brillo animado continuo (muy costoso en RAM/CPU) */
+            transition: opacity 1s ease-in, background-image 1s ease-in-out;
+            animation: tile-fade-in 0.8s forwards;
         }
 
-        /* 3. CAPA SUPERIOR (TEXTO Y MARCA) */
         .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10; 
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
-            padding: 20px;
+            /* Degradado estático (barato en memoria) en vez de blur masivo */
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+            pointer-events: none; /* Mejora rendimiento scroll/mouse */
         }
 
-        /* MARCO DE MARCA */
+        /* ÚNICO elemento con efecto costoso (Vidrio) */
         .brand-box {
-            border: 1px solid rgba(143, 188, 143, 0.3); 
-            background: rgba(0, 0, 0, 0.3); 
-            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(143, 188, 143, 0.2); 
+            background: rgba(10, 10, 10, 0.4); 
+            /* Blur reducido ligeramente para aliviar GPU */
+            backdrop-filter: blur(8px); 
             padding: 30px 60px; 
             border-radius: 6px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
             margin-bottom: 25px;
+            /* Animación suave usando solo transform (barato) */
             animation: float-box 6s infinite ease-in-out;
             max-width: 90%;
+            pointer-events: auto;
         }
 
         .brand { 
@@ -93,9 +96,9 @@
             letter-spacing: clamp(0.3rem, 1vw, 1rem); 
             font-weight: 900; 
             margin-bottom: 5px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
             width: 100%;
-            border-bottom: 1px solid rgba(255,255,255,0.2); 
+            border-bottom: 1px solid rgba(255,255,255,0.15); 
             padding-bottom: 12px;
             margin-bottom: 12px;
         }
@@ -106,12 +109,10 @@
             color: #8fbc8f; 
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 0 2px 5px rgba(0,0,0,1);
         }
 
         .line { 
-            width: 0; 
-            height: 2px; 
+            width: 0; height: 2px; 
             background: linear-gradient(to right, transparent, #8fbc8f, transparent); 
             margin: 25px 0; 
             animation: growLine 1.5s forwards 0.5s;
@@ -119,42 +120,32 @@
 
         .message-container {
             max-width: 600px;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.65); 
-            backdrop-filter: blur(10px); 
+            padding: 20px;
+            /* Eliminamos backdrop-filter aquí para ahorrar memoria, usamos opacidad sólida */
+            background: rgba(0, 0, 0, 0.75); 
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.05);
             animation: emerge 1s ease-out;
+            pointer-events: auto;
         }
 
         .main-msg {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
-            line-height: 1.4;
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-weight: 500;
+            color: #fff; margin-bottom: 10px; font-weight: 500;
         }
 
         .sub-msg {
             font-size: clamp(0.85rem, 2.5vw, 1rem);
-            color: #d0e0d0;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.6;
+            color: #ccc; font-weight: 300; font-style: italic; line-height: 1.5;
         }
 
-        @keyframes tile-fade-in { to { opacity: 0.95; } } 
-        @keyframes tile-breathe { 
-            0% { transform: scale(1); filter: brightness(0.95) grayscale(0.1); } 
-            100% { transform: scale(1.05); filter: brightness(1.05) grayscale(0); } 
-        }
-        @keyframes float-box { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes tile-fade-in { to { opacity: 0.9; } } 
+        @keyframes float-box { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         @keyframes growLine { to { width: 100px; } }
-        @keyframes emerge { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes emerge { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .loading-dot { animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
-        /* Ajuste móvil */
         @media (max-width: 768px) {
             .main-stage { width: 95vw; height: 95vh; }
             .brand-box { padding: 20px 30px; }
@@ -179,7 +170,7 @@
                     Nuestra estructura está evolucionando<span class="loading-dot">...</span>
                 </p>
                 <p class="sub-msg">
-                    Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural. Pronto, compartiremos una nueva forma de documentar y entender el terreno.
+                    Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural.
                 </p>
             </div>
         </div>
@@ -189,22 +180,29 @@
         const container = document.getElementById('gridContainer');
         const stage = document.getElementById('stage');
         
-        // IMÁGENES TIPO CHILE (URLs Estables y Rápidas)
-        const images = [
-            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop', // Montaña
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop', // Andes
-            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=600&auto=format&fit=crop', // Niebla
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop', // Noche
-            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop', // Valle
-            'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=600&auto=format&fit=crop', // Agua
-            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop', // Árbol
-            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=600&auto=format&fit=crop', // Nieve
-            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=600&auto=format&fit=crop', // Desierto
-            'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop', // Lago
-            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=600&auto=format&fit=crop', // Aurora
-            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=600&auto=format&fit=crop', // Roca
-            'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?q=80&w=600&auto=format&fit=crop'  // Oscuro
+        // OPTIMIZACIÓN DE IMÁGENES:
+        // 1. Usamos 'w=300' (en lugar de 800) -> Imagen pesa 70% menos.
+        // 2. Usamos 'q=50' (calidad 50) -> Fondo no requiere HD perfecto.
+        // 3. Usamos 'fm=webp' -> Formato ultra ligero.
+        const baseParams = "?q=50&w=300&fm=webp&auto=format&fit=crop";
+        
+        const rawImages = [
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
+            'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+            'https://images.unsplash.com/photo-1502082553048-f009c37129b9',
+            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325',
+            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5',
+            'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8',
+            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b'
         ];
+        
+        // Generamos el array optimizado
+        const images = rawImages.map(url => url + baseParams);
 
         let tiles = [];
 
@@ -212,54 +210,58 @@
             container.innerHTML = ''; 
             tiles = [];
             
-            // CÁLCULO DE SEGURIDAD: 
-            // Usamos window.innerWidth para asegurar cobertura total aunque el 'stage' no haya cargado dimensiones.
             const width = Math.max(stage.clientWidth, window.innerWidth);
             const height = Math.max(stage.clientHeight, window.innerHeight);
             const tileSize = 240; 
             
-            // Calculamos tiles necesarios + un margen de seguridad
-            const cols = Math.ceil(width / tileSize) + 1;
-            const rows = Math.ceil(height / tileSize) + 1;
-            const totalTiles = cols * rows;
+            // Limitamos artificialmente la cantidad de tiles para no saturar el DOM en pantallas 4K
+            const cols = Math.ceil(width / tileSize);
+            const rows = Math.ceil(height / tileSize);
+            // Máximo 30 tiles activos. Si la pantalla es gigante, quedarán espacios vacíos cubiertos por el negro,
+            // o se estirarán, pero protegemos la memoria.
+            const totalTiles = Math.min(cols * rows, 40); 
 
             for (let i = 0; i < totalTiles; i++) {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 const randomImg = images[Math.floor(Math.random() * images.length)];
-                tile.style.backgroundImage = `url('${randomImg}')`;
                 
-                // Retraso aleatorio para que no aparezcan todos de golpe (efecto dominó)
-                tile.style.animationDelay = `${Math.random() * 1.5}s`;
+                // Carga diferida manual (asignar imagen)
+                tile.style.backgroundImage = `url('${randomImg}')`;
+                tile.style.animationDelay = `${Math.random() * 0.5}s`; // Menos delay para sentirlo más rápido
                 
                 container.appendChild(tile);
                 tiles.push(tile);
             }
         }
 
-        // FUNCIÓN "SITIO VIVO": Rotación suave
         function startLivingWall() {
+            // Aumentamos intervalo a 4s para reducir ciclos de CPU
             setInterval(() => {
                 if(tiles.length > 0) {
                     const randomTileIndex = Math.floor(Math.random() * tiles.length);
                     const randomImgIndex = Math.floor(Math.random() * images.length);
-                    // Cambiamos la imagen
-                    tiles[randomTileIndex].style.backgroundImage = `url('${images[randomImgIndex]}')`;
+                    
+                    // Solo cambiamos si la imagen es diferente para evitar repintado inútil
+                    const currentUrl = tiles[randomTileIndex].style.backgroundImage;
+                    const newUrl = `url('${images[randomImgIndex]}')`;
+                    
+                    if (currentUrl !== newUrl) {
+                        tiles[randomTileIndex].style.backgroundImage = newUrl;
+                    }
                 }
-            }, 2500); // Cambio cada 2.5 segundos
+            }, 4000);
         }
 
-        // Inicialización robusta
         window.addEventListener('load', () => {
             createGrid();
             startLivingWall();
         });
         
-        // Reconstruir si cambia el tamaño (girar celular, etc)
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(createGrid, 200);
+            resizeTimer = setTimeout(createGrid, 500); // Debounce agresivo
         });
     </script>
 
