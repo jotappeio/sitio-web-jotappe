@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jotappe.io | High Performance</title>
+    <title>Jotappe.io | Ingeniería en Expediciones</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; font-family: 'Inter', sans-serif; overflow: hidden; color: white; height: 100vh; }
+        body { background: #000; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; overflow: hidden; color: white; height: 100vh; }
 
-        /* Contenedor optimizado */
+        /* Fondo Dinámico de Procesos */
         .container { position: absolute; width: 100%; height: 100%; z-index: 1; overflow: hidden; }
 
         .bubble {
             position: absolute;
             background-size: cover;
             background-position: center;
-            opacity: 0.8;
+            opacity: 0;
             animation: move linear infinite;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            filter: grayscale(40%) brightness(0.8);
         }
 
-        /* 8 Burbujas con imágenes de Chile de carga rápida */
-        .b1 { width: 120px; height: 120px; top: 10%; left: 10%; background-image: url('https://picsum.photos/id/10/300/300'); animation-duration: 8s; clip-path: circle(50%); }
-        .b2 { width: 150px; height: 150px; top: 50%; left: 20%; background-image: url('https://picsum.photos/id/1015/300/300'); animation-duration: 6s; clip-path: circle(50%); }
-        .b3 { width: 100px; height: 100px; top: 20%; left: 80%; background-image: url('https://picsum.photos/id/1016/300/300'); animation-duration: 7s; clip-path: circle(50%); }
-        .b4 { width: 180px; height: 180px; top: 70%; left: 70%; background-image: url('https://picsum.photos/id/1022/300/300'); animation-duration: 5s; clip-path: circle(50%); }
-        .b5 { width: 90px; height: 90px; top: 40%; left: 45%; background-image: url('https://picsum.photos/id/1036/300/300'); animation-duration: 9s; clip-path: circle(50%); }
-        .b6 { width: 140px; height: 140px; top: 5%; left: 60%; background-image: url('https://picsum.photos/id/1043/300/300'); animation-duration: 10s; clip-path: circle(50%); }
-        .b7 { width: 110px; height: 110px; top: 80%; left: 35%; background-image: url('https://picsum.photos/id/1050/300/300'); animation-duration: 4s; clip-path: circle(50%); }
-        .b8 { width: 130px; height: 130px; top: 30%; left: 30%; background-image: url('https://picsum.photos/id/1067/300/300'); animation-duration: 11s; clip-path: circle(50%); }
+        /* Esferas de Imagen aumentadas (250px - 350px) para mayor impacto visual */
+        .b1 { width: 250px; height: 250px; top: 10%; left: -5%; background-image: url('https://picsum.photos/id/10/600/600'); animation-duration: 25s; clip-path: circle(50%); }
+        .b2 { width: 350px; height: 350px; top: 40%; left: 15%; background-image: url('https://picsum.photos/id/1015/600/600'); animation-duration: 20s; clip-path: circle(50%); }
+        .b3 { width: 280px; height: 280px; top: 60%; left: 75%; background-image: url('https://picsum.photos/id/1016/600/600'); animation-duration: 22s; clip-path: circle(50%); }
+        .b4 { width: 320px; height: 320px; top: -5%; left: 65%; background-image: url('https://picsum.photos/id/1022/600/600'); animation-duration: 18s; clip-path: circle(50%); }
+        .b5 { width: 220px; height: 220px; top: 75%; left: 35%; background-image: url('https://picsum.photos/id/1036/600/600'); animation-duration: 30s; clip-path: circle(50%); }
 
         @keyframes move {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(-30vh) rotate(20deg) scale(1.1); opacity: 0; }
         }
 
+        /* Capa de Texto Profesional */
         .overlay {
             position: relative;
             z-index: 10;
@@ -46,13 +45,46 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, transparent 20%, #000 90%);
-            pointer-events: none;
+            background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, #000 85%);
+            padding: 20px;
         }
 
-        .brand { font-size: clamp(2rem, 10vw, 4.5rem); letter-spacing: 1rem; font-weight: 900; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
-        .line { width: 50px; height: 2px; background: white; margin: 20px; }
-        .desc { font-size: 0.8rem; letter-spacing: 5px; color: #888; text-transform: uppercase; }
+        .brand { 
+            font-size: clamp(2.5rem, 12vw, 5.5rem); 
+            letter-spacing: 1.2rem; 
+            font-weight: 900; 
+            text-shadow: 0 0 30px rgba(255,255,255,0.2);
+            margin-bottom: 10px;
+        }
+
+        .line { width: 80px; height: 1px; background: rgba(255,255,255,0.5); margin: 30px; }
+
+        .status-box {
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        .desc { 
+            font-size: 0.75rem; 
+            letter-spacing: 6px; 
+            color: #aaa; 
+            text-transform: uppercase; 
+            margin-bottom: 10px;
+        }
+
+        .main-msg {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #fff;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .loading-dot { animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -60,14 +92,23 @@
     <div class="container">
         <div class="bubble b1"></div><div class="bubble b2"></div>
         <div class="bubble b3"></div><div class="bubble b4"></div>
-        <div class="bubble b5"></div><div class="bubble b6"></div>
-        <div class="bubble b7"></div><div class="bubble b8"></div>
+        <div class="bubble b5"></div>
     </div>
 
     <div class="overlay">
         <div class="brand">JOTAPPE.IO</div>
-        <div class="line"></div>
         <div class="desc">Ingeniería // Media // Global</div>
+        
+        <div class="line"></div>
+        
+        <div class="status-box">
+            <p class="main-msg">
+                FASE DE MONTAJE LOGÍSTICO EN CURSO<span class="loading-dot">...</span><br>
+                <span style="font-size: 0.85rem; color: #777; margin-top: 10px; display: block;">
+                    Consolidando una nueva estructura de alto rendimiento para lo que viene.
+                </span>
+            </p>
+        </div>
     </div>
 
 </body>
