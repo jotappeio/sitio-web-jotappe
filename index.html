@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jotappe.io | Ingeniería & Naturaleza</title>
     <style>
-        /* OPTIMIZACIÓN CRÍTICA: Renderizado de fuentes y box model */
+        /* RESET Y BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body { 
@@ -25,12 +25,11 @@
             position: relative;
             width: 90vw;
             height: 90vh;
-            background: #0f0f0f; /* Color sólido base para evitar transparencia costosa */
+            background: #0f0f0f; 
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 40px rgba(0,0,0,0.8);
             border: 1px solid rgba(255,255,255,0.08);
-            /* Optimización GPU: Crea una capa compuesta separada */
             will-change: transform; 
             transform: translateZ(0);
         }
@@ -42,7 +41,6 @@
             width: 100%;
             height: 100%;
             display: grid;
-            /* Grid optimizado: menos columnas, menos nodos DOM */
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1px;
@@ -56,7 +54,6 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            /* OPTIMIZACIÓN: Quitamos el filtro de brillo animado continuo (muy costoso en RAM/CPU) */
             transition: opacity 1s ease-in, background-image 1s ease-in-out;
             animation: tile-fade-in 0.8s forwards;
         }
@@ -70,25 +67,25 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Degradado estático (barato en memoria) en vez de blur masivo */
             background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
-            pointer-events: none; /* Mejora rendimiento scroll/mouse */
+            pointer-events: none; 
         }
 
-        /* ÚNICO elemento con efecto costoso (Vidrio) */
+        /* BRAND BOX */
         .brand-box {
             border: 1px solid rgba(143, 188, 143, 0.2); 
             background: rgba(10, 10, 10, 0.4); 
-            /* Blur reducido ligeramente para aliviar GPU */
             backdrop-filter: blur(8px); 
-            padding: 30px 60px; 
+            padding: 35px 60px; 
             border-radius: 6px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
             margin-bottom: 25px;
-            /* Animación suave usando solo transform (barato) */
             animation: float-box 6s infinite ease-in-out;
             max-width: 90%;
-            pointer-events: auto;
+            pointer-events: auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .brand { 
@@ -109,7 +106,30 @@
             color: #8fbc8f; 
             text-transform: uppercase;
             font-weight: 700;
+            margin-bottom: 20px; 
         }
+
+        /* --- REDES SOCIALES (3 ICONOS) --- */
+        .social-row {
+            display: flex;
+            gap: 25px; /* Más espacio entre iconos */
+            margin-top: 5px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: rgba(255, 255, 255, 0.5); /* Blanco sutil */
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            fill: #8fbc8f; /* Verde Musgo al hover */
+            transform: translateY(-3px) scale(1.1); 
+            filter: drop-shadow(0 0 8px #8fbc8f);
+        }
+        /* -------------------------------- */
 
         .line { 
             width: 0; height: 2px; 
@@ -121,7 +141,6 @@
         .message-container {
             max-width: 600px;
             padding: 20px;
-            /* Eliminamos backdrop-filter aquí para ahorrar memoria, usamos opacidad sólida */
             background: rgba(0, 0, 0, 0.75); 
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
@@ -148,7 +167,7 @@
 
         @media (max-width: 768px) {
             .main-stage { width: 95vw; height: 95vh; }
-            .brand-box { padding: 20px 30px; }
+            .brand-box { padding: 25px 30px; }
         }
     </style>
 </head>
@@ -160,110 +179,4 @@
         <div class="overlay">
             <div class="brand-box">
                 <div class="brand">JOTAPPE.IO</div>
-                <div class="desc">Ingeniería // Media // Naturaleza</div>
-            </div>
-            
-            <div class="line"></div>
-            
-            <div class="message-container">
-                <p class="main-msg">
-                    Nuestra estructura está evolucionando<span class="loading-dot">...</span>
-                </p>
-                <p class="sub-msg">
-                    Estamos diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const container = document.getElementById('gridContainer');
-        const stage = document.getElementById('stage');
-        
-        // OPTIMIZACIÓN DE IMÁGENES:
-        // 1. Usamos 'w=300' (en lugar de 800) -> Imagen pesa 70% menos.
-        // 2. Usamos 'q=50' (calidad 50) -> Fondo no requiere HD perfecto.
-        // 3. Usamos 'fm=webp' -> Formato ultra ligero.
-        const baseParams = "?q=50&w=300&fm=webp&auto=format&fit=crop";
-        
-        const rawImages = [
-            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
-            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606',
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba',
-            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
-            'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
-            'https://images.unsplash.com/photo-1502082553048-f009c37129b9',
-            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325',
-            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5',
-            'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
-            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8',
-            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b'
-        ];
-        
-        // Generamos el array optimizado
-        const images = rawImages.map(url => url + baseParams);
-
-        let tiles = [];
-
-        function createGrid() {
-            container.innerHTML = ''; 
-            tiles = [];
-            
-            const width = Math.max(stage.clientWidth, window.innerWidth);
-            const height = Math.max(stage.clientHeight, window.innerHeight);
-            const tileSize = 240; 
-            
-            // Limitamos artificialmente la cantidad de tiles para no saturar el DOM en pantallas 4K
-            const cols = Math.ceil(width / tileSize);
-            const rows = Math.ceil(height / tileSize);
-            // Máximo 30 tiles activos. Si la pantalla es gigante, quedarán espacios vacíos cubiertos por el negro,
-            // o se estirarán, pero protegemos la memoria.
-            const totalTiles = Math.min(cols * rows, 40); 
-
-            for (let i = 0; i < totalTiles; i++) {
-                const tile = document.createElement('div');
-                tile.className = 'tile';
-                const randomImg = images[Math.floor(Math.random() * images.length)];
-                
-                // Carga diferida manual (asignar imagen)
-                tile.style.backgroundImage = `url('${randomImg}')`;
-                tile.style.animationDelay = `${Math.random() * 0.5}s`; // Menos delay para sentirlo más rápido
-                
-                container.appendChild(tile);
-                tiles.push(tile);
-            }
-        }
-
-        function startLivingWall() {
-            // Aumentamos intervalo a 4s para reducir ciclos de CPU
-            setInterval(() => {
-                if(tiles.length > 0) {
-                    const randomTileIndex = Math.floor(Math.random() * tiles.length);
-                    const randomImgIndex = Math.floor(Math.random() * images.length);
-                    
-                    // Solo cambiamos si la imagen es diferente para evitar repintado inútil
-                    const currentUrl = tiles[randomTileIndex].style.backgroundImage;
-                    const newUrl = `url('${images[randomImgIndex]}')`;
-                    
-                    if (currentUrl !== newUrl) {
-                        tiles[randomTileIndex].style.backgroundImage = newUrl;
-                    }
-                }
-            }, 4000);
-        }
-
-        window.addEventListener('load', () => {
-            createGrid();
-            startLivingWall();
-        });
-        
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(createGrid, 500); // Debounce agresivo
-        });
-    </script>
-
-</body>
-</html>
+                <div class="desc">Ingeniería // Media
