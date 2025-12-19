@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body { 
-            background: #050505; /* Marco negro infinito */
+            background: #080808; /* Marco exterior negro mate */
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
             overflow: hidden; 
             color: white; 
@@ -20,20 +20,19 @@
             align-items: center;
         }
 
-        /* 1. CONTENEDOR CENTRAL (NUEVO) */
-        /* Esto crea el "Marco" y centra todo */
+        /* 1. ESCENARIO CENTRAL (CONTENEDOR FLOTANTE) */
         .main-stage {
             position: relative;
-            width: 90vw; /* Ocupa el 90% del ancho */
-            height: 90vh; /* Ocupa el 90% del alto */
-            max-width: 1600px; /* Límite para pantallas gigantes */
-            border-radius: 20px; /* Esquinas modernas */
-            overflow: hidden; /* Corta las imágenes que se salgan */
-            box-shadow: 0 0 50px rgba(0,0,0,0.8); /* Sombra para que flote */
-            border: 1px solid #1a1a1a; /* Borde sutil de ingeniería */
+            width: 90vw;
+            height: 90vh;
+            background: #111; /* Fondo de respaldo si falla una imagen */
+            border-radius: 20px; /* Bordes redondeados modernos */
+            overflow: hidden; /* Mantiene todo dentro del cuadro */
+            box-shadow: 0 0 60px rgba(0,0,0,0.9); /* Sombra de profundidad */
+            border: 1px solid rgba(255,255,255,0.1); /* Borde sutil */
         }
 
-        /* 2. FONDO MOSAICO (GRID) */
+        /* 2. GRID ROBUSTO (CSS PURO) */
         .collage-container {
             position: absolute;
             top: 0;
@@ -41,11 +40,11 @@
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+            /* La magia: se adapta solo. Mínimo 240px por foto */
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
             gap: 2px;
-            z-index: 0;
-            pointer-events: none;
+            z-index: 1;
         }
 
         .tile {
@@ -59,7 +58,7 @@
             animation: tile-fade-in 1s forwards, tile-breathe 12s infinite alternate ease-in-out;
         }
 
-        /* 3. CAPA DE CONTENIDO */
+        /* 3. CAPA SUPERIOR (TEXTO Y MARCA) */
         .overlay {
             position: absolute;
             top: 0;
@@ -72,36 +71,33 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
             padding: 20px;
         }
 
-        /* --- MARCO DE CRISTAL --- */
+        /* MARCO DE MARCA */
         .brand-box {
             border: 1px solid rgba(143, 188, 143, 0.3); 
             background: rgba(0, 0, 0, 0.3); 
-            backdrop-filter: blur(10px); 
-            padding: 30px 50px; 
-            border-radius: 8px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
-            margin-bottom: 20px;
+            backdrop-filter: blur(12px); 
+            padding: 30px 60px; 
+            border-radius: 6px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+            margin-bottom: 25px;
             animation: float-box 6s infinite ease-in-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             max-width: 90%;
         }
 
         .brand { 
-            font-size: clamp(2rem, 6vw, 4.5rem); /* Ajustado ligeramente */
+            font-size: clamp(2rem, 7vw, 4.5rem); 
             letter-spacing: clamp(0.3rem, 1vw, 1rem); 
             font-weight: 900; 
             margin-bottom: 5px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
             width: 100%;
-            border-bottom: 1px solid rgba(255,255,255,0.15); 
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2); 
+            padding-bottom: 12px;
+            margin-bottom: 12px;
         }
 
         .desc { 
@@ -110,7 +106,7 @@
             color: #8fbc8f; 
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 5px rgba(0,0,0,1);
         }
 
         .line { 
@@ -124,10 +120,10 @@
         .message-container {
             max-width: 600px;
             padding: 25px;
-            background: rgba(0, 0, 0, 0.6); 
+            background: rgba(0, 0, 0, 0.65); 
             backdrop-filter: blur(10px); 
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             animation: emerge 1s ease-out;
         }
 
@@ -149,8 +145,8 @@
 
         @keyframes tile-fade-in { to { opacity: 0.95; } } 
         @keyframes tile-breathe { 
-            0% { transform: scale(1); filter: brightness(0.9) grayscale(0); } 
-            100% { transform: scale(1.05); filter: brightness(1.1) grayscale(0); } 
+            0% { transform: scale(1); filter: brightness(0.95) grayscale(0.1); } 
+            100% { transform: scale(1.05); filter: brightness(1.05) grayscale(0); } 
         }
         @keyframes float-box { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         @keyframes growLine { to { width: 100px; } }
@@ -158,16 +154,16 @@
         .loading-dot { animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
-        /* AJUSTE PARA MÓVILES */
+        /* Ajuste móvil */
         @media (max-width: 768px) {
-            .main-stage { width: 95vw; height: 95vh; } /* Aprovecha más espacio en celular */
+            .main-stage { width: 95vw; height: 95vh; }
+            .brand-box { padding: 20px 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-stage">
-        
+    <div class="main-stage" id="stage">
         <div class="collage-container" id="gridContainer"></div>
 
         <div class="overlay">
@@ -187,30 +183,27 @@
                 </p>
             </div>
         </div>
-        
     </div>
 
     <script>
         const container = document.getElementById('gridContainer');
-        const stage = document.querySelector('.main-stage'); // Referencia al nuevo contenedor
+        const stage = document.getElementById('stage');
         
-        // IMÁGENES
+        // IMÁGENES TIPO CHILE (URLs Estables y Rápidas)
         const images = [
-            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?q=80&w=800&auto=format&fit=crop'
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop', // Montaña
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop', // Andes
+            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=600&auto=format&fit=crop', // Niebla
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop', // Noche
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop', // Valle
+            'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=600&auto=format&fit=crop', // Agua
+            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop', // Árbol
+            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=600&auto=format&fit=crop', // Nieve
+            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=600&auto=format&fit=crop', // Desierto
+            'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop', // Lago
+            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=600&auto=format&fit=crop', // Aurora
+            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=600&auto=format&fit=crop', // Roca
+            'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?q=80&w=600&auto=format&fit=crop'  // Oscuro
         ];
 
         let tiles = [];
@@ -218,21 +211,57 @@
         function createGrid() {
             container.innerHTML = ''; 
             tiles = [];
-            // Usamos las dimensiones del contenedor .main-stage, no de la ventana completa
-            const width = stage.clientWidth;
-            const height = stage.clientHeight;
             
-            const tileSize = 250; // Azulejos medianos para que quepan bien en el cuadro
-            const cols = Math.ceil(width / tileSize);
-            const rows = Math.ceil(height / tileSize);
+            // CÁLCULO DE SEGURIDAD: 
+            // Usamos window.innerWidth para asegurar cobertura total aunque el 'stage' no haya cargado dimensiones.
+            const width = Math.max(stage.clientWidth, window.innerWidth);
+            const height = Math.max(stage.clientHeight, window.innerHeight);
+            const tileSize = 240; 
+            
+            // Calculamos tiles necesarios + un margen de seguridad
+            const cols = Math.ceil(width / tileSize) + 1;
+            const rows = Math.ceil(height / tileSize) + 1;
             const totalTiles = cols * rows;
-
-            container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
             for (let i = 0; i < totalTiles; i++) {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 const randomImg = images[Math.floor(Math.random() * images.length)];
                 tile.style.backgroundImage = `url('${randomImg}')`;
-                tile.style.animationDelay = `${Math.random() * 2}s`;
-                container
+                
+                // Retraso aleatorio para que no aparezcan todos de golpe (efecto dominó)
+                tile.style.animationDelay = `${Math.random() * 1.5}s`;
+                
+                container.appendChild(tile);
+                tiles.push(tile);
+            }
+        }
+
+        // FUNCIÓN "SITIO VIVO": Rotación suave
+        function startLivingWall() {
+            setInterval(() => {
+                if(tiles.length > 0) {
+                    const randomTileIndex = Math.floor(Math.random() * tiles.length);
+                    const randomImgIndex = Math.floor(Math.random() * images.length);
+                    // Cambiamos la imagen
+                    tiles[randomTileIndex].style.backgroundImage = `url('${images[randomImgIndex]}')`;
+                }
+            }, 2500); // Cambio cada 2.5 segundos
+        }
+
+        // Inicialización robusta
+        window.addEventListener('load', () => {
+            createGrid();
+            startLivingWall();
+        });
+        
+        // Reconstruir si cambia el tamaño (girar celular, etc)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(createGrid, 200);
+        });
+    </script>
+
+</body>
+</html>
