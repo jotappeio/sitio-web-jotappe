@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jotappe.io | Próximamente</title>
+    <title>Jotappe.io | Ingeniería & Naturaleza</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; font-family: 'Inter', -apple-system, sans-serif; overflow: hidden; color: white; height: 100vh; }
+        /* Fondo con tono 'Piedra Profunda' */
+        body { background: #0a0c0a; font-family: 'Inter', sans-serif; overflow: hidden; color: #f0f4f0; height: 100vh; }
 
-        /* Contenedor de Flujo Dinámico */
+        /* Contenedor de Ecosistema Digital */
         .container { position: absolute; width: 100%; height: 100%; z-index: 1; overflow: hidden; }
 
         .bubble {
@@ -16,26 +17,26 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            animation: move-up linear infinite;
-            border: 1px solid rgba(255,255,255,0.15);
-            /* Eliminamos la rotación para que las fotos se vean derechas */
+            animation: move-and-breathe linear infinite;
+            border: 1px solid rgba(143, 188, 143, 0.2); /* Tono verde suave */
+            box-shadow: 0 0 30px rgba(0, 255, 100, 0.05);
         }
 
-        /* Imágenes con velocidad aumentada y sin inclinación */
-        .b1 { width: 280px; height: 280px; left: 5%; background-image: url('https://picsum.photos/id/10/600/600'); animation-duration: 12s; clip-path: circle(50%); }
-        .b2 { width: 320px; height: 320px; left: 25%; background-image: url('https://picsum.photos/id/1015/600/600'); animation-duration: 8s; clip-path: circle(50%); }
-        .b3 { width: 240px; height: 240px; left: 55%; background-image: url('https://picsum.photos/id/1016/600/600'); animation-duration: 10s; clip-path: circle(50%); }
-        .b4 { width: 300px; height: 300px; left: 80%; background-image: url('https://picsum.photos/id/1022/600/600'); animation-duration: 7s; clip-path: circle(50%); }
-        .b5 { width: 200px; height: 200px; left: 40%; background-image: url('https://picsum.photos/id/1036/600/600'); animation-duration: 15s; clip-path: circle(50%); }
+        /* Imágenes con ritmo biológico y verticalidad */
+        .b1 { width: 280px; height: 280px; left: 5%; background-image: url('https://picsum.photos/id/10/600/600'); animation-duration: 15s; clip-path: circle(50%); }
+        .b2 { width: 340px; height: 340px; left: 20%; background-image: url('https://picsum.photos/id/1015/600/600'); animation-duration: 11s; clip-path: circle(50%); }
+        .b3 { width: 260px; height: 260px; left: 50%; background-image: url('https://picsum.photos/id/1016/600/600'); animation-duration: 13s; clip-path: circle(50%); }
+        .b4 { width: 310px; height: 310px; left: 75%; background-image: url('https://picsum.photos/id/1022/600/600'); animation-duration: 9s; clip-path: circle(50%); }
 
-        @keyframes move-up {
-            0% { transform: translateY(110vh) scale(0.9); opacity: 0; }
-            15% { opacity: 0.6; }
-            85% { opacity: 0.6; }
-            100% { transform: translateY(-30vh) scale(1); opacity: 0; }
+        /* Animación que simula 'vida' (sube y respira) */
+        @keyframes move-and-breathe {
+            0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+            20% { opacity: 0.5; transform: translateY(80vh) scale(1); }
+            50% { transform: translateY(50vh) scale(1.05); } /* Expansión pulmonar */
+            80% { opacity: 0.5; transform: translateY(20vh) scale(1); }
+            100% { transform: translateY(-30vh) scale(0.9); opacity: 0; }
         }
 
-        /* Capa de Mensaje Cercano y Profesional */
         .overlay {
             position: relative;
             z-index: 10;
@@ -45,60 +46,88 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, #000 80%);
-            padding: 30px;
+            /* Degradado orgánico de negro a verde musgo profundo */
+            background: radial-gradient(circle, rgba(10,20,10,0.2) 0%, #000 90%);
+            padding: 25px;
         }
 
         .brand { 
-            font-size: clamp(2.5rem, 12vw, 5rem); 
-            letter-spacing: 1.2rem; 
+            font-size: clamp(2.5rem, 10vw, 5.5rem); 
+            letter-spacing: 1.5rem; 
             font-weight: 900; 
             margin-bottom: 5px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
         .desc { 
-            font-size: 0.7rem; 
-            letter-spacing: 6px; 
-            color: #888; 
+            font-size: clamp(0.6rem, 2vw, 0.8rem); 
+            letter-spacing: 8px; 
+            color: #8fbc8f; /* Verde musgo profesional */
             text-transform: uppercase;
+            font-weight: 500;
         }
 
-        .line { width: 60px; height: 1px; background: rgba(255,255,255,0.4); margin: 35px; }
+        .line { 
+            width: 0; 
+            height: 1px; 
+            background: linear-gradient(to right, transparent, #8fbc8f, transparent); 
+            margin: 40px; 
+            animation: growLine 2.5s forwards;
+        }
 
         .message-container {
-            max-width: 550px;
-            backdrop-filter: blur(5px);
-            padding: 20px;
+            max-width: 650px;
+            animation: emerge 2s ease-out;
         }
 
         .main-msg {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 400;
-            line-height: 1.6;
-            letter-spacing: 0.5px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            color: #e0eee0;
         }
 
         .sub-msg {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 15px;
+            font-size: 1rem;
+            color: #9db09d;
             font-weight: 300;
+            line-height: 1.8;
+            font-style: italic;
         }
 
-        .loading-dot { animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+        @keyframes growLine { to { width: 120px; } }
+        @keyframes emerge { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .loading-dot { animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="bubble b1" style="animation-delay: 0s;"></div>
-        <div class="bubble b2" style="animation-delay: 3s;"></div>
-        <div class="bubble b3" style="animation-delay: 1s;"></div>
-        <div class="bubble b4" style="animation-delay: 5s;"></div>
-        <div class="bubble b5" style="animation-delay: 2s;"></div>
+        <div class="bubble b2" style="animation-delay: 4s;"></div>
+        <div class="bubble b3" style="animation-delay: 2s;"></div>
+        <div class="bubble b4" style="animation-delay: 6s;"></div>
     </div>
 
     <div class="overlay">
         <div class="brand">JOTAPPE.IO</div>
-        <div class="desc">Ingen
+        <div class="desc">Ingeniería // Media // Naturaleza</div>
+        
+        <div class="line"></div>
+        
+        <div class="message-container">
+            <p class="main-msg">
+                Nuestra estructura está evolucionando<span class="loading-dot">...</span>
+            </p>
+            <p class="sub-msg">
+                Estamos diseñando un espacio donde la precisión de la ingeniería se encuentra con la fuerza de lo natural. Pronto, compartiremos con ustedes una nueva forma de documentar y entender el terreno.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
