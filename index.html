@@ -9,65 +9,63 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body { 
-            background: #080a08; 
+            background: #050505; 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
             overflow: hidden; 
-            color: #f0f4f0; 
+            color: white; 
             height: 100vh; 
             width: 100vw;
         }
 
-        /* 1. FONDO MOSAICO (ILUMINACIÓN AUMENTADA) */
-        .collage-bg {
+        /* 1. FONDO MOSAICO (GRID) */
+        .collage-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 2px;
-            z-index: 1;
-            /* AJUSTE CLAVE: Menos desenfoque, más brillo, menos gris */
-            filter: brightness(0.6) grayscale(0.2) blur(0px); 
-            opacity: 0.7; /* Mayor visibilidad */
+            /* Celdas automáticas de 120px */
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1px;
+            z-index: 0; /* Nivel más bajo */
+            pointer-events: none;
         }
 
         .tile {
             width: 100%;
             height: 100%;
-            background-color: #222; /* Respaldo más claro */
+            background-color: #111;
             background-size: cover;
             background-position: center;
-            animation: pulse-life 8s infinite alternate ease-in-out;
-            will-change: opacity, transform;
+            opacity: 0; /* Empiezan invisibles */
+            animation: tile-fade-in 2s forwards, tile-breathe 8s infinite alternate ease-in-out;
         }
 
-        /* 2. CAPA DE TEXTO (CONTRASTE OPTIMIZADO) */
+        /* 2. CAPA DE TEXTO (BLINDAJE DE VISIBILIDAD) */
         .overlay {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            width: 100vw;
+            position: absolute; /* Asegura posición sobre el fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999; /* Z-INDEX MÁXIMO PARA QUE NO SE PIERDA */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Viñeta más suave para dejar ver el fondo */
-            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 90%);
+            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
             padding: 20px;
         }
 
         .brand { 
-            font-size: clamp(2.5rem, 12vw, 6rem); 
-            letter-spacing: clamp(0.3rem, 1.5vw, 1.2rem); 
+            font-size: clamp(2.5rem, 10vw, 6rem); 
+            letter-spacing: clamp(0.5rem, 1.5vw, 1.2rem); 
             font-weight: 900; 
-            margin-bottom: 5px;
-            /* Sombra fuerte para asegurar lectura sobre fondo visible */
-            text-shadow: 0 4px 40px rgba(0,0,0,0.8);
-            width: 100%;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 30px rgba(0,0,0,0.9);
             animation: float-text 6s infinite ease-in-out;
         }
 
@@ -76,85 +74,118 @@
             letter-spacing: clamp(3px, 1vw, 8px); 
             color: #8fbc8f; 
             text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.6); /* Fondo de seguridad para lectura */
+            padding: 5px 15px;
+            border-radius: 4px;
         }
 
         .line { 
             width: 0; 
-            height: 1px; 
+            height: 2px; 
             background: linear-gradient(to right, transparent, #8fbc8f, transparent); 
-            margin: 25px 0; 
-            animation: growLine 2s forwards 0.5s;
+            margin: 20px 0; 
+            animation: growLine 1.5s forwards 0.5s;
         }
 
         .message-container {
-            width: 100%;
-            max-width: 650px;
-            padding: 0 15px;
+            max-width: 700px;
+            padding: 20px;
+            /* Efecto cristal oscuro para garantizar lectura */
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px); 
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
             animation: emerge 1.5s ease-out;
-            /* Fondo sutil detrás del texto para garantizar lectura */
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(2px);
-            border-radius: 10px;
         }
 
         .main-msg {
-            font-size: clamp(1.1rem, 4vw, 1.6rem);
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             line-height: 1.4;
-            color: #fff; /* Blanco puro para máximo contraste */
+            color: #fff;
             margin-bottom: 15px;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-weight: 500;
         }
 
         .sub-msg {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            color: #d0e0d0; /* Verde muy claro */
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: #d0e0d0;
             font-weight: 300;
             font-style: italic;
             line-height: 1.6;
         }
 
         /* ANIMACIONES */
-        @keyframes pulse-life {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.02); }
+        @keyframes tile-fade-in { to { opacity: 0.6; } } /* Visibilidad controlada */
+        @keyframes tile-breathe { 
+            0% { transform: scale(1); filter: brightness(0.4) grayscale(0.5); } 
+            100% { transform: scale(1.02); filter: brightness(0.6) grayscale(0.2); } 
         }
-
-        @keyframes float-text {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes growLine { to { width: 100px; } }
+        @keyframes float-text { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes growLine { to { width: 120px; } }
         @keyframes emerge { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .loading-dot { animation: blink 2s infinite; }
+        .loading-dot { animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-
-        /* AJUSTES RESPONSIVOS */
-        @media (min-width: 768px) {
-            .collage-bg { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-            .line { margin: 40px 0; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="collage-bg">
-        <div class="tile" style="background-image: url('https://picsum.photos/id/10/400/400'); animation-delay: 0s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1015/400/400'); animation-delay: 2s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1016/400/400'); animation-delay: 4s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1036/400/400'); animation-delay: 1s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1043/400/400'); animation-delay: 3s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1022/400/400'); animation-delay: 5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1050/400/400'); animation-delay: 0.5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/1067/400/400'); animation-delay: 2.5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/11/400/400'); animation-delay: 4.5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/14/400/400'); animation-delay: 1.5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/15/400/400'); animation-delay: 3.5s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/16/400/400'); animation-delay: 0.2s;"></div>
-        <div class="tile" style="background-image: url('https://picsum.photos/id/17/400/400'); animation-delay: 2.2s;"></div>
-        <div class="tile" style="background-image: url('
+    <div class="collage-container" id="gridContainer"></div>
+
+    <div class="overlay">
+        <div class="brand">JOTAPPE.IO</div>
+        <div class="desc">Ingeniería // Media // Naturaleza</div>
+        
+        <div class="line"></div>
+        
+        <div class="message-container">
+            <p class="main-msg">
+                Nuestra estructura está evolucionando<span class="loading-dot">...</span>
+            </p>
+            <p class="sub-msg">
+                Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural. Pronto, compartiremos una nueva forma de documentar y entender el terreno.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('gridContainer');
+        // Lista de tus imágenes (puedes añadir más URLs aquí)
+        const images = [
+            'https://picsum.photos/id/10/500/500', 'https://picsum.photos/id/1015/500/500',
+            'https://picsum.photos/id/1016/500/500', 'https://picsum.photos/id/1036/500/500',
+            'https://picsum.photos/id/1043/500/500', 'https://picsum.photos/id/1022/500/500',
+            'https://picsum.photos/id/1050/500/500', 'https://picsum.photos/id/1067/500/500',
+            'https://picsum.photos/id/11/500/500', 'https://picsum.photos/id/14/500/500',
+            'https://picsum.photos/id/15/500/500', 'https://picsum.photos/id/16/500/500',
+            'https://picsum.photos/id/17/500/500', 'https://picsum.photos/id/18/500/500',
+            'https://picsum.photos/id/19/500/500', 'https://picsum.photos/id/28/500/500'
+        ];
+
+        function createGrid() {
+            container.innerHTML = ''; // Limpiar grid anterior
+            // Calcular cuántos azulejos necesitamos para cubrir la pantalla
+            const cols = Math.ceil(window.innerWidth / 120);
+            const rows = Math.ceil(window.innerHeight / 120);
+            const totalTiles = cols * rows;
+
+            for (let i = 0; i < totalTiles; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                // Elegir imagen aleatoria
+                const randomImg = images[Math.floor(Math.random() * images.length)];
+                tile.style.backgroundImage = `url('${randomImg}')`;
+                // Retraso aleatorio para efecto "vivo"
+                tile.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(tile);
+            }
+        }
+
+        // Generar grid al cargar y al redimensionar ventana
+        window.addEventListener('load', createGrid);
+        window.addEventListener('resize', createGrid);
+    </script>
+
+</body>
+</html>
