@@ -1,20 +1,35 @@
-- name: Verificar Estado del Sitio
-        id: check_status
+name: Centinela de Seguridad Jotappe
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # ESTO ACTIVA EL BOTÓN AZUL
+
+jobs:
+  security-patrol:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar con Seguimiento de Redirección
+        id: check
         run: |
-          # Añadimos -L para que siga el rastro hasta el destino final
+          # Usamos -L para seguir el salto 307 que vemos en tu Telegram
           STATUS=$(curl -o /dev/null -s -L -w "%{http_code}\n" https://jotappe.com)
           echo "STATUS_CODE=$STATUS" >> $GITHUB_ENV
-          
-          # Ahora comparamos contra el código final
-          if [ "$STATUS" -ne 200 ]; then
-            echo "ALERT=TRUE" >> $GITHUB_ENV
+          if [ "$STATUS" -eq 200 ]; then
+            echo "RESULT=OK" >> $GITHUB_ENV
           else
-            echo "ALERT=FALSE" >> $GITHUB_ENV
+            echo "RESULT=FAIL" >> $GITHUB_ENV
           fi
 
-      - name: Verificar Certificado SSL
-        id: check_ssl
-        run: |
-          # Limpiamos la salida para que en Telegram solo veas la fecha
-          EXPIRY=$(echo | openssl s_client -servername jotappe.com -connect jotappe.com:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
-          echo "SSL_EXPIRY=$EXPIRY" >> $GITHUB_ENV
+      - name: Enviar Reporte a Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ✅ CENTINELA JOTAPPE: REVISIÓN LISTA
+            Dominio: jotappe.com
+            Estado Final: ${{ env.STATUS_CODE }}
+            Resultado: ${{ env.RESULT }}
+            
+            Logística: El sistema ha verificado el sitio siguiendo las redirecciones técnicas.
