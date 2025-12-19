@@ -3,108 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jotappe.io | Engineering & Media</title>
+    <title>Jotappe.io | Global Engineering & Media</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #0a0a0a; 
-            font-family: 'Inter', sans-serif; 
-            overflow: hidden; 
-            color: white; 
-            height: 100vh;
-        }
+        body { background: #050505; font-family: 'Inter', sans-serif; overflow: hidden; color: white; height: 100vh; }
 
-        /* Contenedor de las figuras flotantes */
-        .container-floating {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            filter: blur(0px);
-        }
+        .container-floating { position: absolute; width: 100%; height: 100%; z-index: 1; }
 
         .shape {
             position: absolute;
             background-size: cover;
             background-position: center;
-            opacity: 0.6;
-            animation: float 25s infinite linear;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            /* Forma estilizada: un hexágono suavizado o burbuja geométrica */
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            opacity: 0.7;
+            animation: float infinite ease-in-out;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transition: transform 0.3s;
         }
 
-        /* Definición de figuras con imágenes de Chile */
-        .shape1 { 
-            width: 300px; height: 300px; 
-            top: 10%; left: -10%; 
-            background-image: url('https://images.unsplash.com/photo-1517235047625-780655866164?auto=format&fit=crop&w=600&q=80');
-            animation-duration: 35s;
-        }
-        .shape2 { 
-            width: 250px; height: 250px; 
-            top: 50%; left: 80%; 
-            background-image: url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=600&q=80');
-            animation-duration: 28s;
-            clip-path: circle(50% at 50% 50%); /* Una burbuja circular */
-        }
-        .shape3 { 
-            width: 350px; height: 350px; 
-            top: 70%; left: 10%; 
-            background-image: url('https://images.unsplash.com/photo-1500049242364-5f500807cdd7?auto=format&fit=crop&w=600&q=80');
-            animation-duration: 40s;
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Pentágono */
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(100px, 50px) rotate(5deg); }
-            66% { transform: translate(-50px, 100px) rotate(-5deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
-        /* Capa de contenido central */
-        .overlay {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.8) 100%);
-        }
-
-        .brand-box {
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .brand { font-size: 3.5rem; letter-spacing: 0.8rem; font-weight: 900; margin-bottom: 10px; }
-        .tagline { font-size: 1rem; letter-spacing: 4px; color: #888; text-transform: uppercase; }
-        
-        .loading-text { margin-top: 30px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
-    </style>
-</head>
-<body>
-
-    <div class="container-floating">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-    </div>
-
-    <div class="overlay">
-        <div class="brand-box">
-            <div class="brand">JOTAPPE.IO</div>
-            <div class="tagline">Ingeniería & Registro Visual</div>
-        </div>
-        <div class="loading-text">SISTEMA GLOBAL EN DESARROLLO // CHILE 2025</div>
-    </div>
-
-</body>
-</html>
+        /* 8 Formas con diferentes imágenes, tamaños y velocidades rápidas */
+        .s1 { width: 180px; height: 180px; top: 10%; left: 5%; background-image: url('https://images.unsplash.com/photo-1517235047625-780655866164?w=400'); animation-duration: 12s; clip-path: circle(50%); }
+        .s2 { width: 220px; height: 220px; top: 60%; left: 15%; background-image: url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400'); animation-duration: 10s; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+        .s3 { width: 150px; height: 150px; top: 20%; left: 80%; background-image: url('https://images.unsplash.com/photo-1500049242364-5f500807cdd7?w=400'); animation-duration: 14s; clip-path: circle(50%); }
+        .s4 { width: 200px; height: 200px; top: 70%; left: 75%; background-image: url('https://images.unsplash.com/photo-1490682143124-b73273899531?w=400'); animation-duration: 9s; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+        .s5 { width: 130px; height: 130px; top: 40%; left: 45%; background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400'); animation-duration: 11s; clip-path: circle(50%); }
+        .s6 { width: 190px; height: 190px; top: 5%; left: 60%; background-image: url('https://images.unsplash.com/photo-1516655855035-d5215bc56041?w=400'); animation-duration: 13s; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        .s7 { width: 160
