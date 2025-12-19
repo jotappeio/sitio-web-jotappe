@@ -9,24 +9,40 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body { 
-            background: #050505; 
+            background: #050505; /* Marco negro infinito */
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
             overflow: hidden; 
             color: white; 
             height: 100vh; 
             width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 1. FONDO MOSAICO (GRID) */
+        /* 1. CONTENEDOR CENTRAL (NUEVO) */
+        /* Esto crea el "Marco" y centra todo */
+        .main-stage {
+            position: relative;
+            width: 90vw; /* Ocupa el 90% del ancho */
+            height: 90vh; /* Ocupa el 90% del alto */
+            max-width: 1600px; /* Límite para pantallas gigantes */
+            border-radius: 20px; /* Esquinas modernas */
+            overflow: hidden; /* Corta las imágenes que se salgan */
+            box-shadow: 0 0 50px rgba(0,0,0,0.8); /* Sombra para que flote */
+            border: 1px solid #1a1a1a; /* Borde sutil de ingeniería */
+        }
+
+        /* 2. FONDO MOSAICO (GRID) */
         .collage-container {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
             gap: 2px;
             z-index: 0;
             pointer-events: none;
@@ -39,36 +55,35 @@
             background-size: cover;
             background-position: center;
             opacity: 0; 
-            transition: background-image 1.5s ease-in-out; /* Transición suave al cambiar foto */
-            animation: tile-fade-in 0.8s forwards, tile-breathe 12s infinite alternate ease-in-out;
+            transition: background-image 2s ease-in-out; 
+            animation: tile-fade-in 1s forwards, tile-breathe 12s infinite alternate ease-in-out;
         }
 
-        /* 2. CAPA DE CONTENIDO */
+        /* 3. CAPA DE CONTENIDO */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999; 
+            z-index: 10; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
             padding: 20px;
         }
 
-        /* --- MARCO DE CRISTAL (MÁS TRANSPARENTE) --- */
+        /* --- MARCO DE CRISTAL --- */
         .brand-box {
             border: 1px solid rgba(143, 188, 143, 0.3); 
-            /* Fondo mucho más transparente (0.25) para efecto hielo */
-            background: rgba(0, 0, 0, 0.25); 
-            backdrop-filter: blur(8px); /* Desenfoque para leer el texto */
+            background: rgba(0, 0, 0, 0.3); 
+            backdrop-filter: blur(10px); 
             padding: 30px 50px; 
-            border-radius: 4px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            border-radius: 8px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
             margin-bottom: 20px;
             animation: float-box 6s infinite ease-in-out;
             display: flex;
@@ -78,7 +93,7 @@
         }
 
         .brand { 
-            font-size: clamp(2rem, 8vw, 5rem); 
+            font-size: clamp(2rem, 6vw, 4.5rem); /* Ajustado ligeramente */
             letter-spacing: clamp(0.3rem, 1vw, 1rem); 
             font-weight: 900; 
             margin-bottom: 5px;
@@ -90,28 +105,26 @@
         }
 
         .desc { 
-            font-size: clamp(0.5rem, 2vw, 0.8rem); 
+            font-size: clamp(0.5rem, 1.5vw, 0.8rem); 
             letter-spacing: clamp(2px, 1vw, 6px); 
             color: #8fbc8f; 
             text-transform: uppercase;
             font-weight: 700;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
-        /* ------------------------------------- */
 
         .line { 
             width: 0; 
             height: 2px; 
             background: linear-gradient(to right, transparent, #8fbc8f, transparent); 
-            margin: 30px 0; 
+            margin: 25px 0; 
             animation: growLine 1.5s forwards 0.5s;
         }
 
         .message-container {
-            max-width: 650px;
+            max-width: 600px;
             padding: 25px;
-            /* Fondo del mensaje también más sutil */
-            background: rgba(0, 0, 0, 0.5); 
+            background: rgba(0, 0, 0, 0.6); 
             backdrop-filter: blur(10px); 
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
@@ -119,7 +132,7 @@
         }
 
         .main-msg {
-            font-size: clamp(1.1rem, 4vw, 1.6rem);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             line-height: 1.4;
             color: #ffffff;
             margin-bottom: 15px;
@@ -127,7 +140,7 @@
         }
 
         .sub-msg {
-            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
             color: #d0e0d0;
             font-weight: 300;
             font-style: italic;
@@ -136,59 +149,68 @@
 
         @keyframes tile-fade-in { to { opacity: 0.95; } } 
         @keyframes tile-breathe { 
-            0% { transform: scale(1); filter: brightness(0.95) grayscale(0); } 
-            100% { transform: scale(1.02); filter: brightness(1.1) grayscale(0); } 
+            0% { transform: scale(1); filter: brightness(0.9) grayscale(0); } 
+            100% { transform: scale(1.05); filter: brightness(1.1) grayscale(0); } 
         }
         @keyframes float-box { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         @keyframes growLine { to { width: 100px; } }
         @keyframes emerge { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .loading-dot { animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+        /* AJUSTE PARA MÓVILES */
+        @media (max-width: 768px) {
+            .main-stage { width: 95vw; height: 95vh; } /* Aprovecha más espacio en celular */
+        }
     </style>
 </head>
 <body>
 
-    <div class="collage-container" id="gridContainer"></div>
+    <div class="main-stage">
+        
+        <div class="collage-container" id="gridContainer"></div>
 
-    <div class="overlay">
-        <div class="brand-box">
-            <div class="brand">JOTAPPE.IO</div>
-            <div class="desc">Ingeniería // Media // Naturaleza</div>
+        <div class="overlay">
+            <div class="brand-box">
+                <div class="brand">JOTAPPE.IO</div>
+                <div class="desc">Ingeniería // Media // Naturaleza</div>
+            </div>
+            
+            <div class="line"></div>
+            
+            <div class="message-container">
+                <p class="main-msg">
+                    Nuestra estructura está evolucionando<span class="loading-dot">...</span>
+                </p>
+                <p class="sub-msg">
+                    Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural. Pronto, compartiremos una nueva forma de documentar y entender el terreno.
+                </p>
+            </div>
         </div>
         
-        <div class="line"></div>
-        
-        <div class="message-container">
-            <p class="main-msg">
-                Nuestra estructura está evolucionando<span class="loading-dot">...</span>
-            </p>
-            <p class="sub-msg">
-                Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural. Pronto, compartiremos una nueva forma de documentar y entender el terreno.
-            </p>
-        </div>
     </div>
 
     <script>
         const container = document.getElementById('gridContainer');
+        const stage = document.querySelector('.main-stage'); // Referencia al nuevo contenedor
         
-        // BANCO DE IMÁGENES (Referencia: Naturaleza tipo Chile)
-        // He recopilado URLs estables de paisajes de montaña, bosques y texturas.
+        // IMÁGENES
         const images = [
-            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop', // Montaña
-            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop', // Bosque
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop', // Andes vibes
-            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=800&auto=format&fit=crop', // Niebla montaña
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop', // Estrellas/Noche
-            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop', // Valle verde
-            'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop', // Atardecer campo
-            'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=800&auto=format&fit=crop', // Cascada/Agua
-            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop', // Árbol solitario
-            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop', // Invierno/Nieve
-            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=800&auto=format&fit=crop', // Paisaje árido
-            'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop', // Lago y montaña
-            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=800&auto=format&fit=crop', // Aurora/Cielo
-            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=800&auto=format&fit=crop', // Textura Roca
-            'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?q=80&w=800&auto=format&fit=crop'  // Bosque oscuro
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?q=80&w=800&auto=format&fit=crop'
         ];
 
         let tiles = [];
@@ -196,10 +218,16 @@
         function createGrid() {
             container.innerHTML = ''; 
             tiles = [];
-            const tileSize = 280;
-            const cols = Math.ceil(window.innerWidth / tileSize);
-            const rows = Math.ceil(window.innerHeight / tileSize);
+            // Usamos las dimensiones del contenedor .main-stage, no de la ventana completa
+            const width = stage.clientWidth;
+            const height = stage.clientHeight;
+            
+            const tileSize = 250; // Azulejos medianos para que quepan bien en el cuadro
+            const cols = Math.ceil(width / tileSize);
+            const rows = Math.ceil(height / tileSize);
             const totalTiles = cols * rows;
+
+            container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
             for (let i = 0; i < totalTiles; i++) {
                 const tile = document.createElement('div');
@@ -207,31 +235,4 @@
                 const randomImg = images[Math.floor(Math.random() * images.length)];
                 tile.style.backgroundImage = `url('${randomImg}')`;
                 tile.style.animationDelay = `${Math.random() * 2}s`;
-                container.appendChild(tile);
-                tiles.push(tile);
-            }
-        }
-
-        // FUNCIÓN DE VIDA: Cambia una foto al azar cada 3 segundos
-        function startLivingWall() {
-            setInterval(() => {
-                if(tiles.length > 0) {
-                    // Elegir un azulejo al azar
-                    const randomTileIndex = Math.floor(Math.random() * tiles.length);
-                    // Elegir una imagen al azar
-                    const randomImgIndex = Math.floor(Math.random() * images.length);
-                    // Aplicar cambio
-                    tiles[randomTileIndex].style.backgroundImage = `url('${images[randomImgIndex]}')`;
-                }
-            }, 3000); // 3000ms = 3 segundos
-        }
-
-        window.addEventListener('load', () => {
-            createGrid();
-            startLivingWall();
-        });
-        window.addEventListener('resize', createGrid);
-    </script>
-
-</body>
-</html>
+                container
