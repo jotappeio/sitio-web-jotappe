@@ -3,68 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jotappe.io | Chile & Global</title>
+    <title>Jotappe.io | Engineering & Media</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; font-family: 'Inter', sans-serif; overflow: hidden; color: white; }
-        
-        /* Carrusel de Fondo */
-        .slideshow {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            list-style: none;
+        body { 
+            background: #0a0a0a; 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            color: white; 
+            height: 100vh;
         }
-        .slideshow li {
+
+        /* Contenedor de las figuras flotantes */
+        .container-floating {
             position: absolute;
             width: 100%;
             height: 100%;
+            z-index: 1;
+            filter: blur(0px);
+        }
+
+        .shape {
+            position: absolute;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            animation: imageAnimation 24s linear infinite;
-        }
-        
-        /* Imágenes de Chile (Andes, Torres del Paine, Desierto) */
-        .slideshow li:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1517235047625-780655866164?auto=format&fit=crop&w=1920&q=80'); }
-        .slideshow li:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1920&q=80'); animation-delay: 6s; }
-        .slideshow li:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1500049242364-5f500807cdd7?auto=format&fit=crop&w=1920&q=80'); animation-delay: 12s; }
-        .slideshow li:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1490682143124-b73273899531?auto=format&fit=crop&w=1920&q=80'); animation-delay: 18s; }
-
-        @keyframes imageAnimation { 
-            0% { opacity: 0; animation-timing-function: ease-in; }
-            8% { opacity: 1; animation-timing-function: ease-out; }
-            25% { opacity: 1; }
-            33% { opacity: 0; }
+            opacity: 0.6;
+            animation: float 25s infinite linear;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            /* Forma estilizada: un hexágono suavizado o burbuja geométrica */
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
         }
 
+        /* Definición de figuras con imágenes de Chile */
+        .shape1 { 
+            width: 300px; height: 300px; 
+            top: 10%; left: -10%; 
+            background-image: url('https://images.unsplash.com/photo-1517235047625-780655866164?auto=format&fit=crop&w=600&q=80');
+            animation-duration: 35s;
+        }
+        .shape2 { 
+            width: 250px; height: 250px; 
+            top: 50%; left: 80%; 
+            background-image: url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=600&q=80');
+            animation-duration: 28s;
+            clip-path: circle(50% at 50% 50%); /* Una burbuja circular */
+        }
+        .shape3 { 
+            width: 350px; height: 350px; 
+            top: 70%; left: 10%; 
+            background-image: url('https://images.unsplash.com/photo-1500049242364-5f500807cdd7?auto=format&fit=crop&w=600&q=80');
+            animation-duration: 40s;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Pentágono */
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(100px, 50px) rotate(5deg); }
+            66% { transform: translate(-50px, 100px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Capa de contenido central */
         .overlay {
+            position: relative;
+            z-index: 10;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: rgba(0,0,0,0.4);
+            background: radial-gradient(circle, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.8) 100%);
         }
 
-        .brand { font-size: 3rem; letter-spacing: 0.5rem; font-weight: 800; border: 2px solid white; padding: 10px 30px; margin-bottom: 20px; }
-        .status { background: #ff4500; padding: 5px 15px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; text-transform: uppercase; margin-bottom: 10px; }
-        h2 { font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; }
+        .brand-box {
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .brand { font-size: 3.5rem; letter-spacing: 0.8rem; font-weight: 900; margin-bottom: 10px; }
+        .tagline { font-size: 1rem; letter-spacing: 4px; color: #888; text-transform: uppercase; }
+        
+        .loading-text { margin-top: 30px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <ul class="slideshow">
-        <li></li><li></li><li></li><li></li>
-    </ul>
+    <div class="container-floating">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
 
     <div class="overlay">
-        <div class="status">Preparando Expedición Digital</div>
-        <div class="brand">JOTAPPE.IO</div>
-        <h2>CHILE | INGENIERÍA | MEDIA</h2>
+        <div class="brand-box">
+            <div class="brand">JOTAPPE.IO</div>
+            <div class="tagline">Ingeniería & Registro Visual</div>
+        </div>
+        <div class="loading-text">SISTEMA GLOBAL EN DESARROLLO // CHILE 2025</div>
     </div>
 
 </body>
