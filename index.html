@@ -6,18 +6,244 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <title>Jotappe.io | Ingeniería & Naturaleza</title>
-    <meta name="description" content="Portfolio Profesional. Donde la precisión técnica de la ingeniería se encuentra con la fuerza narrativa de la naturaleza.">
-    <meta name="author" content="Juan Pablo Diaz">
-
+    <meta name="description" content="Ingeniería, Media y Expediciones. Explorando la intersección entre la técnica y lo natural.">
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.jotappe.com/">
     <meta property="og:title" content="Jotappe.io | Ingeniería & Naturaleza">
-    <meta property="og:description" content="Explora mi portfolio 2025: Ingeniería, Media y Expediciones.">
+    <meta property="og:description" content="Ingeniería // Media // Naturaleza. Contacto directo y portafolio 2025.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=50&w=1200&fm=jpg">
 
     <style>
-        /* ... AQUÍ VA TODO EL CSS QUE YA TIENES (NO LO TOQUES) ... */
-        /* Si copias y pegas solo el head, asegúrate de mantener tu bloque <style> intacto */
+        /* RESET Y BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            background: #080808; 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            overflow: hidden; 
+            color: white; 
+            height: 100vh; 
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ESCENARIO CENTRAL */
+        .main-stage {
+            position: relative;
+            width: 90vw;
+            height: 90vh;
+            background: #0f0f0f; 
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            will-change: transform; 
+            transform: translateZ(0);
+        }
+
+        /* GRID DE FONDO */
+        .collage-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1px;
+            z-index: 1;
+        }
+
+        .tile {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in, background-image 1.5s ease-in-out;
+            animation: tile-fade-in 1s forwards;
+        }
+
+        /* CAPA SUPERIOR */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            pointer-events: none; 
+        }
+
+        /* CAJA DE MARCA (ELÁSTICA) */
+        .brand-box {
+            border: 1px solid rgba(143, 188, 143, 0.25); 
+            background: rgba(5, 5, 5, 0.6); 
+            backdrop-filter: blur(12px); 
+            padding: 40px 5vw; 
+            border-radius: 12px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
+            margin-bottom: 25px;
+            animation: float-box 6s infinite ease-in-out;
+            width: auto;
+            max-width: 95%; 
+            pointer-events: auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand { 
+            font-size: clamp(2rem, 9vw, 4.5rem); 
+            letter-spacing: clamp(0.2rem, 1vw, 0.8rem); 
+            font-weight: 900; 
+            margin-bottom: 8px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.15); 
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            white-space: nowrap; 
+        }
+
+        .desc { 
+            font-size: clamp(0.7rem, 3vw, 1.1rem); 
+            letter-spacing: clamp(1px, 0.5vw, 4px); 
+            color: #8fbc8f; 
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 25px; 
+            width: 100%;
+            white-space: normal; 
+            line-height: 1.5; 
+            text-align: center;
+        }
+
+        /* --- REDES SOCIALES --- */
+        .social-row {
+            display: flex;
+            gap: 25px; 
+            margin-bottom: 30px; 
+            flex-wrap: wrap; 
+            justify-content: center;
+        }
+
+        .social-icon {
+            width: 30px; 
+            height: 30px;
+            fill: rgba(255, 255, 255, 0.6); 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            fill: #8fbc8f; 
+            transform: translateY(-5px) scale(1.15); 
+            filter: drop-shadow(0 0 10px rgba(143, 188, 143, 0.6));
+        }
+
+        /* --- TARJETA DE ÁLBUM --- */
+        .album-card {
+            width: 100%;
+            max-width: 400px; 
+            height: 80px; 
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(35, 45, 35, 0.9) 100%);
+            border: 1px solid rgba(143, 188, 143, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            gap: 20px;
+        }
+
+        .album-card:hover {
+            transform: translateY(-2px);
+            border-color: #8fbc8f; 
+            background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(40, 55, 40, 0.95) 100%);
+            box-shadow: 0 8px 25px rgba(143, 188, 143, 0.15);
+        }
+
+        .album-art-icon {
+            width: 36px;
+            height: 36px;
+            fill: #8fbc8f; 
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+
+        .album-info {
+            flex-grow: 1;
+            display: flex;
+            align-items: center; 
+        }
+
+        .album-title { 
+            color: white; 
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            letter-spacing: 2px;
+            text-transform: uppercase; 
+        }
+        
+        .album-arrow { 
+            width: 20px; 
+            height: 20px; 
+            fill: white; 
+            opacity: 0.3; 
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .album-card:hover .album-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* ELEMENTOS DECORATIVOS */
+        .line { 
+            width: 0; height: 2px; 
+            background: linear-gradient(to right, transparent, #8fbc8f, transparent); 
+            margin: 30px 0; 
+            animation: growLine 1.5s forwards 0.5s;
+        }
+
+        .message-container {
+            max-width: 650px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.8); 
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            animation: emerge 1s ease-out;
+            pointer-events: auto;
+        }
+
+        .main-msg { font-size: clamp(1.1rem, 3vw, 1.6rem); color: #fff; margin-bottom: 12px; font-weight: 500; }
+        .sub-msg { font-size: clamp(0.85rem, 2.5vw, 1rem); color: #bbb; font-weight: 300; font-style: italic; line-height: 1.6; }
+
+        @keyframes tile-fade-in { to { opacity: 0.95; } } 
+        @keyframes float-box { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes growLine { to { width: 120px; } }
+        @keyframes emerge { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .loading-dot { animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .main-stage { width: 95vw; height: 95vh; }
+            .brand-box { padding: 30px 5vw; width: 95%; } 
+            .brand { white-space: normal; line-height: 1.1; }
+        }
     </style>
 </head>
 <body>
@@ -31,6 +257,12 @@
                 <div class="desc">Ingeniería // Media // Naturaleza</div>
                 
                 <div class="social-row">
+                    
+                    <a href="https://wa.me/56950005651" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                    </a>
                     
                     <a href="https://www.linkedin.com/in/jotappe-io/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                         <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -72,7 +304,7 @@
                     Nuestra estructura está evolucionando<span class="loading-dot">...</span>
                 </p>
                 <p class="sub-msg">
-                    Estamos diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural.
+                    Diseñando un espacio donde la precisión técnica se encuentra con la fuerza de lo natural.
                 </p>
             </div>
         </div>
