@@ -1,85 +1,145 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JOTAPPE | Ingeniería & Naturaleza</title>
+    <meta name="description" content="Ingeniería en Expediciones, Gestión de Riesgos y Tecnología aplicada en entornos complejos.">
+    
+    <style>
+        /* RESET BÁSICO */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: #0a0a0a; color: #f0f0f0; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* HEADER & NAV */
+        header { position: fixed; top: 0; width: 100%; padding: 20px 40px; background: rgba(10, 10, 10, 0.95); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #333; }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; }
+        nav ul { display: flex; gap: 30px; }
+        nav a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        nav a:hover { color: #fff; }
+
+        /* SECCIONES GENERALES */
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        h2 { font-size: 2rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid #fff; padding-left: 20px; }
+        
+        /* HERO (PORTADA) */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin-bottom: 40px; }
+        .btn { padding: 15px 30px; border: 1px solid #fff; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .btn:hover { background: #fff; color: #000; }
+
+        /* GRILLA DE SERVICIOS (3 COLUMNAS) */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { background: #111; padding: 40px; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: #555; transform: translateY(-5px); }
+        .card h3 { margin-bottom: 15px; font-size: 1.2rem; color: #fff; }
+        .card p { color: #999; font-size: 0.95rem; }
+        .icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+
+        /* SOBRE MÍ (2 COLUMNAS) */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text p { margin-bottom: 20px; color: #ccc; }
+        .about-img { width: 100%; height: 400px; background-color: #222; display: flex; align-items: center; justify-content: center; color: #555; border: 1px dashed #444; }
+
+        /* PORTAFOLIO */
+        .portfolio-item { border-top: 1px solid #333; padding-top: 20px; }
+        .portfolio-item h4 { font-size: 1.1rem; margin-bottom: 10px; color: #ddd; }
+        
+        /* FOOTER */
+        footer { background: #050505; padding: 60px 20px; text-align: center; border-top: 1px solid #222; margin-top: 50px; }
+        .contact-btn { display: inline-block; background: #fff; color: #000; padding: 15px 40px; margin-top: 20px; font-weight: bold; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            nav ul { display: none; /* Ocultamos menú simple en móvil por ahora */ }
+        }
+    </style>
 </head>
 <body>
 
     <header>
+        <div class="logo">JOTAPPE</div>
         <nav>
-            <div class="logo">JOTAPPE</div>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Ingeniería</a></li> <li><a href="#sobre-mi">Perfil</a></li>
-                <li><a href="#experiencia">Naturaleza</a></li> <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#servicios">Ingeniería</a></li>
+                <li><a href="#sobre-mi">Perfil</a></li>
+                <li><a href="#experiencia">Naturaleza</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio" class="hero-section">
-        <div class="container">
-            <h1>INGENIERÍA EN EXPEDICIONES & INTEGRACIÓN TECNOLÓGICA</h1>
-            <p>Gestión de riesgos, logística técnica y documentación visual para entornos complejos.</p>
-            <a href="#servicios" class="btn-primary">Ver Propuesta</a>
-        </div>
+    <section id="inicio" class="hero">
+        <h1>INGENIERÍA & NATURALEZA</h1>
+        <p>Gestión de riesgos, logística técnica y documentación visual para entornos complejos.</p>
+        <a href="#servicios" class="btn">Explorar Capacidades</a>
     </section>
 
-    <section id="servicios" class="services-section">
+    <section id="servicios">
         <h2>Servicios Técnicos</h2>
-        <div class="grid-3-col">
+        <div class="grid-3">
             <div class="card">
+                <span class="icon">⚙️</span>
                 <h3>Tecnología y Logística</h3>
-                <p>Optimización de actividades outdoor mediante el uso de tecnología. Desde la planificación digital de rutas hasta la gestión de equipos.</p>
+                <p>Optimización de actividades outdoor mediante tecnología. Desde planificación digital de rutas hasta gestión de equipos.</p>
             </div>
             <div class="card">
+                <span class="icon">🛡️</span>
                 <h3>Gestión de Riesgos</h3>
-                <p>Diseño de protocolos de seguridad y matrices de riesgo, potenciados por tecnología y experiencia técnica.</p>
+                <p>Diseño de protocolos de seguridad y matrices de riesgo, potenciados por ingeniería aplicada.</p>
             </div>
             <div class="card">
+                <span class="icon">🚁</span>
                 <h3>Registro Media & Drone</h3>
-                <p>Fotografía técnica y video aéreo para documentación de procesos y análisis de terreno.</p>
+                <p>Fotografía técnica y video aéreo para documentación de procesos, avances y análisis de terreno.</p>
             </div>
         </div>
     </section>
 
-    <section id="sobre-mi" class="about-section">
-        <div class="grid-2-col">
+    <section id="sobre-mi">
+        <div class="grid-2">
             <div class="about-img">
-                <img src="ruta/a/tu-foto-perfil.jpg" alt="Jotape Ingeniero en Expediciones">
+                [FOTO JOTAPPE]
             </div>
             <div class="about-text">
                 <h2>Ingeniería en Expediciones: Tradición y Tecnología</h2>
-                <p>Cuento con más de 10 años de experiencia... [Pegar texto del Documento Maestro]</p>
-                <p>Lo que distingue mi trabajo hoy es la integración tecnológica... [Pegar texto]</p>
+                <p>Cuento con más de <strong>10 años de experiencia</strong> en la industria del turismo y aire libre. Mi carrera se basa en la planificación estratégica y la gestión del riesgo.</p>
+                <p>Lo que distingue mi trabajo es la <strong>integración tecnológica</strong>. No solo planifico la ruta; implemento herramientas digitales para optimizar la logística y la seguridad.</p>
+                <p><em>Performance Lifestyle Athlete: Entreno para estar preparado física y mentalmente para cualquier desafío.</em></p>
             </div>
         </div>
     </section>
 
-    <section id="experiencia" class="portfolio-section">
+    <section id="experiencia">
         <h2>Experiencia en Terreno</h2>
-        <div class="grid-3-col">
-            <article>
+        <div class="grid-3">
+            <div class="card portfolio-item">
                 <h4>Producción Técnica Eventos</h4>
-                <p>Coordinación logística global y cronometraje técnico.</p>
-            </article>
-            <article>
+                <p>Coordinación logística global, cronometraje y uso de sistemas de datos en tiempo real.</p>
+            </div>
+            <div class="card portfolio-item">
                 <h4>Consultoría Operaciones</h4>
-                <p>Planificación de seguridad y mapeo digital.</p>
-            </article>
-            <article>
+                <p>Planificación de seguridad, protocolos y mapeo digital para minimizar incertidumbre.</p>
+            </div>
+            <div class="card portfolio-item">
                 <h4>Docencia Técnica</h4>
-                <p>Transferencia de conocimientos y capacitación outdoor.</p>
-            </article>
+                <p>Transferencia de conocimientos académicos y capacitación de equipos de trabajo.</p>
+            </div>
         </div>
     </section>
 
     <footer id="contacto">
         <h2>Iniciemos un Proyecto</h2>
-        <p>Hablemos: contacto@jotappe.com</p>
-        <div class="social-links">
-            <a href="LINKEDIN_URL">LinkedIn</a>
-            <a href="INSTAGRAM_URL">Instagram</a>
-        </div>
+        <p>Estoy disponible para consultoría y operaciones en todo Chile.</p>
+        <a href="mailto:contacto@jotappe.com" class="contact-btn">Solicitar Disponibilidad</a>
+        <br><br>
+        <p style="color: #666; font-size: 0.8rem;">Santiago, Chile | LinkedIn: /in/jotappe-io</p>
     </footer>
 
 </body>
