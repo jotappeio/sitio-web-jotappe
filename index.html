@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JOTAPPE | Ingeniería en Expediciones. Especialista en Logística Outdoor, Cronometraje Electrónico y Dirección de Proyectos.">
-    <meta name="author" content="Juan Pablo Diaz">
+    <meta name="description" content="JOTAPPE | Portafolio profesional de Juan Pablo Díaz. Ingeniería en Expediciones, Dirección de Proyectos y Fotografía Técnica.">
+    <meta name="author" content="Juan Pablo Díaz">
     <title>JOTAPPE | Ingeniería & Naturaleza</title>
     
     <style>
@@ -52,7 +52,7 @@
         
         a { text-decoration: none; color: white; transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
-        /* CLASES PARA ANIMACIÓN SCROLL (Reveal Effect) */
+        /* ANIMACIÓN SCROLL (Reveal Effect) */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -76,26 +76,18 @@
         nav a { font-size: 0.75rem; letter-spacing: 2px; color: #bbb; font-weight: 600; text-transform: uppercase; }
         nav a:hover { color: var(--primary); }
 
-        /* --- 4. HERO: MOVIMIENTO SUTIL --- */
+        /* --- 4. HERO --- */
         .hero { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; }
         
         .hero-bg {
-            position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; /* Un poco más grande para moverse */
+            position: absolute; top: -5%; left: -5%; width: 110%; height: 110%;
             display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
             opacity: 0.4; z-index: 0;
-            animation: breathe 20s infinite alternate ease-in-out; /* Animación de fondo */
+            animation: breathe 20s infinite alternate ease-in-out;
         }
-        
-        @keyframes breathe {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
+        @keyframes breathe { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
 
-        .bg-tile { 
-            background-size: cover; background-position: center; 
-            filter: grayscale(100%) brightness(0.6) contrast(1.1);
-        }
-        /* Imágenes CDN Optimizado */
+        .bg-tile { background-size: cover; background-position: center; filter: grayscale(100%) brightness(0.6) contrast(1.1); }
         .t1 { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80'); }
         .t2 { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=800&q=80'); }
         .t3 { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80'); }
@@ -113,15 +105,9 @@
             max-width: 900px; width: 90%;
             animation: heroEnter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        @keyframes heroEnter { 
-            from { opacity: 0; transform: translateY(40px) scale(0.95); } 
-            to { opacity: 1; transform: translateY(0) scale(1); } 
-        }
+        @keyframes heroEnter { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        .hero-subtitle { 
-            color: var(--primary); font-size: 0.85rem; letter-spacing: 4px; font-weight: 700; 
-            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; display: inline-block; margin-top: 15px; 
-        }
+        .hero-subtitle { color: var(--primary); font-size: 0.85rem; letter-spacing: 4px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; display: inline-block; margin-top: 15px; }
 
         .social-icons { display: flex; justify-content: center; gap: 30px; margin: 40px 0; }
         .social-icons svg { width: 22px; height: 22px; fill: #666; transition: 0.3s; }
@@ -132,12 +118,12 @@
             padding: 16px 36px; border: 1px solid rgba(255,255,255,0.2);
             background: transparent; color: #fff;
             text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 700;
-            transition: 0.3s; cursor: pointer; position: relative; overflow: hidden;
+            transition: 0.3s; cursor: pointer;
         }
         .btn-primary:hover { background: var(--primary); border-color: var(--primary); color: #000; }
         .btn-primary svg { width: 18px; fill: currentColor; }
 
-        /* --- 5. SECCIONES: ESTRUCTURA MEJORADA --- */
+        /* --- 5. SECCIONES --- */
         section { padding: 140px 5%; position: relative; }
         .container { max-width: 1200px; margin: 0 auto; }
         
@@ -150,14 +136,13 @@
         .card {
             background: #0b0b0b; border: 1px solid #151515; padding: 50px 40px; 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex; flex-direction: column; justify-content: flex-start;
             position: relative;
         }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); background: #111; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .card-icon { width: 40px; height: 40px; fill: var(--primary); margin-bottom: 30px; opacity: 0.8; }
         .card:hover .card-icon { opacity: 1; transform: scale(1.1); transition: 0.3s; }
 
-        /* --- 6. PERFIL PARALLAX --- */
+        /* --- 6. PERFIL PARALLAX (CON NOMBRE) --- */
         .parallax-section {
             background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');
             background-attachment: fixed; background-size: cover; background-position: center;
@@ -171,12 +156,13 @@
         }
         .highlight { color: #fff; border-bottom: 1px solid var(--primary); font-weight: 500; }
         
+        /* Stats */
         .stats { display: flex; gap: 50px; margin-top: 50px; }
         .stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; line-height: 1; margin-bottom: 5px; }
         .stat-desc { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #888; }
 
-        /* --- 7. CONTACTO DIRECTO --- */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 70px; }
+        /* --- 7. CONTACTO --- */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 70px; }
         
         .contact-btn {
             display: flex; align-items: center; gap: 25px;
@@ -189,16 +175,13 @@
         .c-text h4 { font-size: 0.7rem; color: #666; margin-bottom: 8px; letter-spacing: 1px; }
         .c-text span { font-size: 1rem; color: #fff; font-weight: 700; }
 
-        /* FOOTER */
         footer { padding: 80px 5%; text-align: center; border-top: 1px solid #111; font-size: 0.75rem; color: #444; letter-spacing: 1px; }
 
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
             header { padding: 20px; }
             nav { display: none; }
             h1 { font-size: 2.8rem; letter-spacing: 4px; }
             .hero-card { padding: 50px 25px; width: 100%; border: none; background: transparent; box-shadow: none; }
-            .hero-bg { opacity: 0.3; }
             .grid-3, .profile-box { grid-template-columns: 1fr; gap: 50px; }
             section { padding: 100px 5%; }
             .stats { flex-direction: column; gap: 30px; }
@@ -275,20 +258,23 @@
         <div class="parallax-overlay"></div>
         <div class="container profile-box reveal">
             <div>
-                <h2>Dirección de Proyectos <br>& Docencia</h2>
+                <span style="color: var(--primary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Sobre el Especialista</span>
+                <h2 style="font-size: 3rem; margin-top: 10px; line-height: 1;">Juan Pablo Díaz</h2>
+                <h3 style="font-weight: 300; color: #ccc; margin-top: 5px; font-size: 1rem;">Ingeniero en Expediciones y Ecoturismo</h3>
                 <div class="line"></div>
+                
                 <p style="margin-top: 30px; font-size: 1.1rem; color: #f0f0f0;">
-                    "No solo camino la ruta, la <span class="highlight">digitalizo y optimizo</span>."
+                    "Transformo la incertidumbre del terreno en <span class="highlight">logística de precisión</span>."
                 </p>
                 <p style="margin-top: 20px;">
-                    Durante <strong>11 años</strong> he sido docente en la Universidad San Sebastián (USS), impartiendo cátedras especializadas en <strong>Mountain Bike, Orientación Terrestre y Supervivencia</strong>.
+                    Con más de 11 años de trayectoria, he combinado la docencia universitaria en la <strong>Universidad San Sebastián</strong> (cátedras de Orientación y Supervivencia) con la gestión operativa en terreno.
                     <br><br>
-                    Actualmente, complemento mi experiencia operativa con un <strong>Diplomado en Dirección de Proyectos (UDD)</strong> para profesionalizar la industria del turismo territorial.
+                    Actualmente cursando el <strong>Diplomado en Dirección de Proyectos (UDD)</strong> para llevar la gestión outdoor al siguiente nivel corporativo.
                 </p>
                 
                 <div class="stats">
                     <div>
-                        <span class="stat-num">10+</span>
+                        <span class="stat-num">11+</span>
                         <span class="stat-desc">Años Exp.</span>
                     </div>
                     <div>
@@ -344,7 +330,7 @@
     </section>
 
     <footer>
-        © 2025 JOTAPPE | SANTIAGO, CHILE
+        <p>© 2025 JOTAPPE | Juan Pablo Díaz</p>
     </footer>
 
     <script>
@@ -360,7 +346,6 @@
                 }
             }
         }
-        // Disparar una vez al inicio
         reveal();
     </script>
 
