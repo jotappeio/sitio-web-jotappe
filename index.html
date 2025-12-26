@@ -3,158 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOTAPPE.IO | Ingeniería // Media // Naturaleza</title>
+    <title>JOTAPPE.IO | Ingeniería & Naturaleza</title>
     
     <style>
-        /* --- 1. ADN VISUAL DEL SITIO --- */
+        /* --- 1. CONFIGURACIÓN BASE (Asegura que se vea) --- */
         :root {
-            --primary-green: #5c8d6d; /* Verde musgo técnico */
-            --neon-green: #4CAF50;    /* Verde para interacciones */
-            --dark-base: #020202;     /* Negro profundo */
-            --dark-surface: #0a0a0a;  /* Gris muy oscuro para contraste */
-            --glass-bg: rgba(20, 20, 20, 0.75); /* El efecto cristal oscuro */
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary-green: #5c8d6d;
+            --neon-green: #4CAF50;
+            --bg-dark: #050505;
+            --text-light: #e0e0e0;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
         
         body { 
-            background-color: var(--dark-base); 
-            color: #e0e0e0; 
-            scroll-behavior: smooth; 
-            overflow-x: hidden; 
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
 
-        /* TIPOGRAFÍA CON "ALMA" */
-        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 3px; }
-        p { font-weight: 300; letter-spacing: 0.5px; line-height: 1.8; color: #aaa; }
-        a { text-decoration: none; color: white; transition: 0.4s; }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
 
-        /* --- 2. HEADER FLOTANTE (GLASS) --- */
+        /* --- 2. HEADER (Navegación) --- */
         header { 
-            position: fixed; top: 0; width: 100%; padding: 20px 50px; 
-            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px); /* Efecto borroso en el menú */
-            border-bottom: 1px solid var(--glass-border);
+            position: fixed; 
+            top: 0; left: 0; width: 100%; 
+            padding: 20px 40px; 
+            background: rgba(0,0,0,0.8); /* Fondo oscuro semi-transparente */
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 9999; /* SIEMPRE ARRIBA */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo { font-weight: 800; font-size: 0.9rem; letter-spacing: 4px; color: #fff; }
-        nav ul { display: flex; gap: 30px; }
-        nav a { font-size: 0.7rem; letter-spacing: 2px; color: #bbb; font-weight: 600; }
-        nav a:hover { color: var(--primary-green); }
+        .logo { font-weight: 800; letter-spacing: 2px; color: #fff; font-size: 1.2rem; }
+        nav ul { display: flex; gap: 20px; }
+        nav a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; }
+        nav a:hover { color: var(--neon-green); }
 
-        /* --- 3. ELEMENTO DIFERENCIADOR: LÍNEA TÉCNICA --- */
-        .section-divider {
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        /* --- 3. HERO SECTION (La Portada) --- */
+        .hero {
             position: relative;
-        }
-        .section-divider::after {
-            content: ''; position: absolute; left: 50%; top: -1px;
-            width: 50px; height: 3px; background: var(--primary-green);
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px var(--primary-green); /* Brillo neón */
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* IMAGEN DE FONDO SEGURA */
+            background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
         }
 
-        /* --- 4. HERO SECTION (EL MOSAICO) --- */
-        .hero-section {
-            height: 100vh; display: flex; justify-content: center; align-items: center;
-            position: relative; overflow: hidden;
+        /* Capa oscura para que el texto resalte */
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); /* Oscurece la foto */
+            z-index: 1;
         }
-        /* Grid de fondo simulado */
-        .hero-grid {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
-            opacity: 0.6; z-index: 0;
+
+        /* TARJETA GLASS (El Contenido) */
+        .hero-content {
+            position: relative; 
+            z-index: 10; /* ENCIMA DE TODO */
+            background: rgba(20, 20, 20, 0.7); /* Efecto vidrio oscuro */
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 60px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .grid-img { background-size: cover; background-position: center; filter: grayscale(40%) contrast(1.2) brightness(0.6); transition: 5s; }
-        .grid-img:hover { filter: grayscale(0%) contrast(1) brightness(0.8); transform: scale(1.02); }
-        
-        /* Imágenes Placeholder (Reemplazar con las tuyas si quieres) */
-        .g1 { background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800'); }
-        .g2 { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800'); }
-        .g3 { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800'); }
-        .g4 { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800'); }
-        .g5 { background-image: url('https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=800'); }
-        .g6 { background-image: url('https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?w=800'); }
 
-        .overlay { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, transparent 30%, #000 100%); z-index: 1; }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 5px; text-transform: uppercase; color: #fff; }
+        .hero-subtitle { color: var(--primary-green); letter-spacing: 3px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 30px; display: inline-block; border-top: 1px solid #555; padding-top: 15px; }
 
-        /* TARJETA GLASS (El Alma) */
-        .glass-card {
-            position: relative; z-index: 10;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 60px; border-radius: 12px;
-            text-align: center; max-width: 700px; width: 90%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        .btn-hero {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+            margin-top: 20px;
+            border-radius: 4px;
         }
-        .hero-title { font-size: 3rem; letter-spacing: 6px; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .hero-subtitle { color: var(--primary-green); font-size: 0.8rem; letter-spacing: 3px; font-weight: 700; border-top: 1px solid #333; padding-top: 15px; display: inline-block; width: 60%; }
-        
-        .social-row { display: flex; justify-content: center; gap: 25px; margin: 30px 0; }
-        .social-row svg { width: 20px; fill: #aaa; transition: 0.3s; }
-        .social-row a:hover svg { fill: #fff; transform: scale(1.2); }
+        .btn-hero:hover { background: var(--neon-green); border-color: var(--neon-green); color: #000; font-weight: bold; }
 
-        .btn-ghost {
-            border: 1px solid rgba(255,255,255,0.2); padding: 15px 30px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
-            background: rgba(0,0,0,0.3); transition: 0.3s; display: inline-block;
-        }
-        .btn-ghost:hover { background: var(--primary-green); border-color: var(--primary-green); color: black; font-weight: bold; }
+        /* Iconos Sociales SVG */
+        .socials { display: flex; justify-content: center; gap: 25px; margin-bottom: 30px; }
+        .socials svg { width: 24px; height: 24px; fill: #bbb; transition: 0.3s; }
+        .socials a:hover svg { fill: #fff; transform: scale(1.1); }
 
-        /* --- 5. SECCIÓN SERVICIOS (FONDO SÓLIDO + TARJETAS GLASS) --- */
-        .section-dark { background-color: var(--dark-base); padding: 100px 20px; }
+        /* --- 4. SECCIONES (Layout General) --- */
+        section { padding: 100px 20px; }
         
         .container { max-width: 1100px; margin: 0 auto; }
         
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2rem; color: #fff; }
-        .section-header p { font-size: 0.9rem; margin-top: 10px; color: var(--primary-green); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 10px; }
+        .section-title p { color: var(--primary-green); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* Grid de Servicios */
+        /* SERVICIOS (Grid 3 Columnas) */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        /* Aquí traspasamos el "Alma Glass" a las tarjetas de servicio */
-        .service-glass {
-            background: rgba(20, 20, 20, 0.4); /* Más transparente que el hero */
-            border: 1px solid var(--glass-border);
-            padding: 40px; transition: 0.3s;
+        .card {
+            background: #0f0f0f;
+            padding: 40px;
+            border: 1px solid #222;
+            transition: 0.3s;
         }
-        .service-glass:hover { 
-            background: rgba(30, 30, 30, 0.6); 
-            border-color: var(--primary-green); 
-            transform: translateY(-5px);
-        }
-        .icon-box { font-size: 2rem; margin-bottom: 20px; color: var(--primary-green); }
-        .service-glass h3 { font-size: 1.1rem; margin-bottom: 15px; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary-green); }
+        .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.2rem; }
+        .card p { color: #888; font-size: 0.9rem; }
+        .icon { font-size: 2rem; margin-bottom: 20px; display: block; }
 
-        /* --- 6. SECCIÓN PERFIL (IMAGEN PARALLAX) --- */
-        .section-profile {
-            background-color: var(--dark-surface);
-            padding: 100px 20px;
+        /* PERFIL (2 Columnas) */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .bio-img { 
+            width: 100%; height: 400px; 
+            background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1000');
+            background-size: cover; background-position: center;
+            filter: grayscale(100%); 
+            border: 1px solid #333;
         }
-        .profile-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--glass-border); }
-        .profile-img { 
-            background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=800'); /* Foto "Técnica" */
-            background-size: cover; background-position: center; min-height: 400px;
-            filter: grayscale(100%); transition: 0.5s;
-        }
-        .profile-layout:hover .profile-img { filter: grayscale(0%); }
-        
-        .profile-content { padding: 60px; background: rgba(10,10,10,0.5); display: flex; flex-direction: column; justify-content: center; }
-        .highlight { color: #fff; font-weight: 600; border-bottom: 1px solid var(--primary-green); }
+        .bio-text p { margin-bottom: 20px; color: #ccc; }
+        .highlight { color: #fff; font-weight: bold; border-bottom: 1px solid var(--neon-green); }
 
-        /* --- 7. FOOTER --- */
-        footer { padding: 80px 20px; text-align: center; background: #000; border-top: 1px solid #111; }
-        .footer-email { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: 2px; }
-        
-        /* RESPONSIVE */
+        /* FOOTER */
+        footer { background: #000; text-align: center; padding: 60px 20px; border-top: 1px solid #222; }
+        .email-link { font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 1px; }
+
+        /* MÓVIL */
         @media (max-width: 768px) {
-            .hero-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 1fr); }
-            .hero-title { font-size: 2rem; }
-            .profile-layout { grid-template-columns: 1fr; }
-            nav { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            nav { display: none; } /* Oculta menú en móvil temporalmente */
         }
     </style>
 </head>
@@ -167,8 +154,96 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Ingeniería</a></li>
                 <li><a href="#perfil">Perfil</a></li>
-                <li><a href="#experiencia">Naturaleza</a></li>
+                <li><a href="#naturaleza">Naturaleza</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>JOTAPPE.IO</h1>
+            <div class="hero-subtitle">Ingeniería // Media // Naturaleza</div>
+            
+            <div class="socials">
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.641c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.148 3.228-1.667 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.148-4.771-1.699-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.204 1.667-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.947-.2-4.354-2.617-6.782-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
+            </div>
+
+            <a href="#naturaleza" class="btn-hero">📷 FOTOGRAFÍAS 2025</a>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servicios Técnicos</h2>
+                <p>Tecnología aplicada al terreno</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="icon">⚙️</span>
+                    <h3>Tecnología y Logística</h3>
+                    <p>Planificación digital de rutas y gestión de equipos en entornos remotos.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🛡️</span>
+                    <h3>Gestión de Riesgos</h3>
+                    <p>Protocolos de seguridad y matrices de riesgo con respaldo técnico.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🚁</span>
+                    <h3>Media & Drone</h3>
+                    <p>Registro audiovisual técnico y monitoreo aéreo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="perfil">
+        <div class="container grid-2">
+            <div class="bio-text">
+                <div class="section-title" style="text-align: left;">
+                    <h2>Ingeniería & Tradición</h2>
+                    <p>Más de 10 años de experiencia</p>
+                </div>
+                <p>Mi carrera combina la ingeniería en expediciones con la gestión moderna. Lo que me distingue es la <span class="highlight">integración tecnológica</span>: no solo camino la ruta, la digitalizo y optimizo.</p>
+                <p>Como <em>Performance Lifestyle Athlete</em>, aplico la misma disciplina de entrenamiento a mis proyectos profesionales.</p>
+            </div>
+            <div class="bio-img"></div>
+        </div>
+    </section>
+    
+    <section id="naturaleza">
+        <div class="container">
+             <div class="section-title">
+                <h2>Naturaleza & Terreno</h2>
+                <p>Experiencia comprobable</p>
+            </div>
+            <div class="grid-3">
+                 <div class="card">
+                    <h3>Producción Eventos</h3>
+                    <p>Coordinación logística global.</p>
+                </div>
+                 <div class="card">
+                    <h3>Consultoría</h3>
+                    <p>Seguridad y normativa outdoor.</p>
+                </div>
+                 <div class="card">
+                    <h3>Docencia</h3>
+                    <p>Formación de nuevas generaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <p style="color: #666; margin-bottom: 20px;">INICIEMOS UN PROYECTO</p>
+        <a href="mailto:contacto@jotappe.com" class="email-link">contacto@jotappe.com</a>
+        <br><br>
+        <p style="font-size: 0.8rem; color: #444;">© 2025 JOTAPPE.IO | Santiago, Chile</p>
+    </footer>
+
+</body>
+</html>
