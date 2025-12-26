@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JOTAPPE | Ingeniería en Expediciones, Dirección de Proyectos y Fotografía Técnica en Chile.">
+    <meta name="description" content="JOTAPPE | Ingeniería en Expediciones. Especialista en Logística Outdoor, Cronometraje Electrónico y Dirección de Proyectos.">
     <meta name="author" content="Juan Pablo Diaz">
     <title>JOTAPPE | Ingeniería & Naturaleza</title>
     
@@ -12,81 +12,90 @@
         :root {
             --primary: #5c8d6d;      /* Verde Musgo Técnico */
             --accent: #ffffff;       /* Blanco Puro */
-            --bg: #050505;           /* Negro Profundo (World Class Standard) */
+            --bg: #050505;           /* Negro Profundo */
             --surface: #0a0a0a;      /* Superficie Sutil */
-            --glass: rgba(10, 10, 10, 0.85); /* Vidrio Optimizado */
+            --glass: rgba(10, 10, 10, 0.85);
             --border: rgba(255, 255, 255, 0.1);
             --text-main: #f0f0f0;
-            --text-sec: #888888;
+            --text-sec: #999;
         }
         
-        /* FUENTES DEL SISTEMA (Carga Instantánea - 0ms Latencia) */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         
         body { 
             background-color: var(--bg); 
             color: var(--text-main); 
-            line-height: 1.6; 
+            line-height: 1.7; 
             overflow-x: hidden; 
-            -webkit-font-smoothing: antialiased; /* Texto nítido en pantallas retina */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* TIPOGRAFÍA REFINADA (Menos agresiva, más elegante) */
+        /* --- 2. TIPOGRAFÍA & DINAMISMO --- */
         h1, h2, h3, h4 { text-transform: uppercase; color: #fff; font-weight: 800; letter-spacing: 2px; }
         
         h1 { 
-            letter-spacing: 8px; 
-            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Se adapta al móvil/PC */
+            letter-spacing: 6px; 
+            font-size: clamp(2.5rem, 5vw, 4.5rem); 
             line-height: 1.1; 
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         } 
         
-        h2 { 
-            font-size: clamp(1.5rem, 2.5vw, 2rem); /* Títulos de sección más controlados */
-            margin-bottom: 10px; 
-        }
-        
-        h3 { 
-            font-size: 1.1rem; 
-            letter-spacing: 1.5px; 
-            margin-bottom: 15px; 
-            font-weight: 700;
-        }
+        h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 10px; }
+        h3 { font-size: 1.1rem; letter-spacing: 1.5px; margin-bottom: 15px; color: #fff; }
         
         p { 
-            font-weight: 400; 
+            font-weight: 300; 
             color: var(--text-sec); 
-            font-size: 0.95rem; 
-            max-width: 65ch; /* Ancho ideal de lectura */
+            font-size: 1rem; 
+            max-width: 65ch; 
         } 
         
-        a { text-decoration: none; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        a { text-decoration: none; color: white; transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
-        /* --- 2. HEADER INTELIGENTE --- */
+        /* CLASES PARA ANIMACIÓN SCROLL (Reveal Effect) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 3. HEADER --- */
         header { 
             position: fixed; top: 0; width: 100%; padding: 20px 5%; 
             display: flex; justify-content: space-between; align-items: center; z-index: 999;
-            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+            transition: transform 0.3s;
         }
         .logo { font-size: 1rem; letter-spacing: 4px; font-weight: 900; }
         nav ul { display: flex; gap: 30px; list-style: none; }
         nav a { font-size: 0.75rem; letter-spacing: 2px; color: #bbb; font-weight: 600; text-transform: uppercase; }
         nav a:hover { color: var(--primary); }
 
-        /* --- 3. HERO: GRID OPTIMIZADO --- */
+        /* --- 4. HERO: MOVIMIENTO SUTIL --- */
         .hero { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; }
         
         .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; /* Un poco más grande para moverse */
             display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
             opacity: 0.4; z-index: 0;
+            animation: breathe 20s infinite alternate ease-in-out; /* Animación de fondo */
         }
+        
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
         .bg-tile { 
             background-size: cover; background-position: center; 
-            filter: grayscale(100%) brightness(0.5); transition: opacity 1s ease;
+            filter: grayscale(100%) brightness(0.6) contrast(1.1);
         }
-        /* Imágenes optimizadas por CDN (WebP automático + Resize) */
+        /* Imágenes CDN Optimizado */
         .t1 { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80'); }
         .t2 { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=800&q=80'); }
         .t3 { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80'); }
@@ -94,97 +103,106 @@
         .t5 { background-image: url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=800&q=80'); }
         .t6 { background-image: url('https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&w=800&q=80'); }
 
-        .overlay { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, transparent 0%, var(--bg) 90%); z-index: 1; }
+        .overlay { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, transparent 0%, var(--bg) 95%); z-index: 1; }
 
         .hero-card {
             position: relative; z-index: 10;
-            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border); padding: 80px 60px; text-align: center;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8); border-radius: 4px;
-            animation: fadeIn 1.5s ease-out;
+            background: var(--glass); backdrop-filter: blur(25px);
+            border: 1px solid var(--border); padding: 70px 50px; text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9); border-radius: 2px;
             max-width: 900px; width: 90%;
+            animation: heroEnter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes heroEnter { 
+            from { opacity: 0; transform: translateY(40px) scale(0.95); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
 
-        .hero-subtitle { color: var(--primary); font-size: 0.8rem; letter-spacing: 4px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: inline-block; margin-top: 10px; }
+        .hero-subtitle { 
+            color: var(--primary); font-size: 0.85rem; letter-spacing: 4px; font-weight: 700; 
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; display: inline-block; margin-top: 15px; 
+        }
 
-        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 35px 0; }
-        .social-icons svg { width: 24px; height: 24px; fill: #666; transition: 0.3s; }
-        .social-icons a:hover svg { fill: #fff; transform: translateY(-3px); }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin: 40px 0; }
+        .social-icons svg { width: 22px; height: 22px; fill: #666; transition: 0.3s; }
+        .social-icons a:hover svg { fill: #fff; transform: translateY(-3px) scale(1.1); }
 
         .btn-primary {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 14px 30px; border: 1px solid rgba(255,255,255,0.2);
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 16px 36px; border: 1px solid rgba(255,255,255,0.2);
             background: transparent; color: #fff;
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 700;
-            transition: 0.3s; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 700;
+            transition: 0.3s; cursor: pointer; position: relative; overflow: hidden;
         }
         .btn-primary:hover { background: var(--primary); border-color: var(--primary); color: #000; }
-        .btn-primary svg { width: 16px; fill: currentColor; }
+        .btn-primary svg { width: 18px; fill: currentColor; }
 
-        /* --- 4. SECCIONES: LAYOUT --- */
-        section { padding: 120px 5%; position: relative; }
+        /* --- 5. SECCIONES: ESTRUCTURA MEJORADA --- */
+        section { padding: 140px 5%; position: relative; }
         .container { max-width: 1200px; margin: 0 auto; }
         
-        .section-header { margin-bottom: 80px; }
-        .line { width: 40px; height: 2px; background: var(--primary); margin-top: 20px; }
+        .section-header { margin-bottom: 90px; }
+        .line { width: 50px; height: 3px; background: var(--primary); margin-top: 25px; transform-origin: left; }
+        .section-header:hover .line { transform: scaleX(1.5); transition: 0.5s; }
 
-        /* GRID RESPONSIVE (Auto-fit mágico) */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         
         .card {
-            background: #0c0c0c; border: 1px solid #1a1a1a; padding: 40px; transition: transform 0.3s ease, border-color 0.3s ease;
+            background: #0b0b0b; border: 1px solid #151515; padding: 50px 40px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex; flex-direction: column; justify-content: flex-start;
+            position: relative;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); background: #111; }
-        
-        /* ICONOS SVG (Vectoriales, no Emojis) */
-        .card-icon { width: 36px; height: 36px; fill: var(--primary); margin-bottom: 25px; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: #111; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .card-icon { width: 40px; height: 40px; fill: var(--primary); margin-bottom: 30px; opacity: 0.8; }
+        .card:hover .card-icon { opacity: 1; transform: scale(1.1); transition: 0.3s; }
 
-        /* --- 5. PERFIL & PARALLAX --- */
+        /* --- 6. PERFIL PARALLAX --- */
         .parallax-section {
             background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');
             background-attachment: fixed; background-size: cover; background-position: center;
-            padding: 160px 5%;
+            padding: 180px 5%;
         }
-        .parallax-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); }
+        .parallax-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to right, #050505 0%, rgba(5,5,5,0.8) 50%, transparent 100%); }
         
         .profile-box {
             position: relative; z-index: 2;
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center;
         }
-        .highlight { color: #fff; border-bottom: 1px solid var(--primary); }
+        .highlight { color: #fff; border-bottom: 1px solid var(--primary); font-weight: 500; }
         
-        .stats { display: flex; gap: 40px; margin-top: 40px; }
-        .stat-num { font-size: 2rem; font-weight: 800; color: #fff; display: block; line-height: 1; }
-        .stat-desc { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        .stats { display: flex; gap: 50px; margin-top: 50px; }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; line-height: 1; margin-bottom: 5px; }
+        .stat-desc { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #888; }
 
-        /* --- 6. CONTACTO MINIMALISTA --- */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 60px; }
+        /* --- 7. CONTACTO DIRECTO --- */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 70px; }
         
         .contact-btn {
-            display: flex; align-items: center; gap: 20px;
-            background: #0a0a0a; border: 1px solid #1a1a1a; padding: 25px;
+            display: flex; align-items: center; gap: 25px;
+            background: #0a0a0a; border: 1px solid #1a1a1a; padding: 35px;
             transition: 0.3s;
         }
-        .contact-btn:hover { border-color: var(--primary); background: #0f0f0f; }
-        .c-icon { width: 24px; height: 24px; fill: #666; }
+        .contact-btn:hover { border-color: var(--primary); background: #0f0f0f; transform: translateX(5px); }
+        .c-icon { width: 28px; height: 28px; fill: #555; transition: 0.3s; }
         .contact-btn:hover .c-icon { fill: #fff; }
-        .c-text h4 { font-size: 0.7rem; color: #666; margin-bottom: 5px; }
-        .c-text span { font-size: 0.9rem; color: #fff; font-weight: 600; }
+        .c-text h4 { font-size: 0.7rem; color: #666; margin-bottom: 8px; letter-spacing: 1px; }
+        .c-text span { font-size: 1rem; color: #fff; font-weight: 700; }
 
         /* FOOTER */
-        footer { padding: 60px 5%; text-align: center; border-top: 1px solid #111; font-size: 0.7rem; color: #444; letter-spacing: 1px; }
+        footer { padding: 80px 5%; text-align: center; border-top: 1px solid #111; font-size: 0.75rem; color: #444; letter-spacing: 1px; }
 
-        /* --- 7. MOBILE OPTIMIZATION --- */
+        /* --- MOBILE --- */
         @media (max-width: 768px) {
             header { padding: 20px; }
             nav { display: none; }
-            .hero-card { padding: 40px 20px; width: 100%; border: none; background: transparent; box-shadow: none; }
+            h1 { font-size: 2.8rem; letter-spacing: 4px; }
+            .hero-card { padding: 50px 25px; width: 100%; border: none; background: transparent; box-shadow: none; }
             .hero-bg { opacity: 0.3; }
-            .grid-3, .profile-box { grid-template-columns: 1fr; }
-            section { padding: 80px 20px; }
-            .stats { flex-direction: row; gap: 30px; }
+            .grid-3, .profile-box { grid-template-columns: 1fr; gap: 50px; }
+            section { padding: 100px 5%; }
+            .stats { flex-direction: column; gap: 30px; }
+            .parallax-overlay { background: rgba(5,5,5,0.9); }
         }
     </style>
 </head>
@@ -213,15 +231,9 @@
             <div class="hero-subtitle">INGENIERÍA // MEDIA // NATURALEZA</div>
             
             <div class="social-icons">
-                <a href="https://wa.me/56950005651" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.888.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.978zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/jotappe-io/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/jotappe.media" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.148 3.228-1.667 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.148-4.771-1.699-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.204 1.667-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
+                <a href="https://wa.me/56950005651" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.888.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.978zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+                <a href="https://www.linkedin.com/in/jotappe-io/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zM4.98 20h-5v-16h5v16zm7.98 0h-5v-16h5v8.4c0 4.67 6.03 5.05 6.03 0v-8.4h5v10.1c0 7.88-8.92 7.59-11.03 3.71v2.19z"/></svg></a>
+                <a href="https://www.instagram.com/jotappe.media" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.148 3.228-1.667 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.148-4.771-1.699-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.204 1.667-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
             </div>
 
             <a href="#experiencia" class="btn-primary">
@@ -233,27 +245,27 @@
 
     <section id="servicios">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2>Soluciones Técnicas</h2>
                 <div class="line"></div>
-                <p style="margin-top: 15px;">Aplicando ingeniería y lógica militar a la operación turística</p>
+                <p style="margin-top: 20px;">Aplicando ingeniería y lógica militar a la operación turística.</p>
             </div>
             
-            <div class="grid-3">
+            <div class="grid-3 reveal">
                 <div class="card">
                     <svg class="card-icon" viewBox="0 0 24 24"><path d="M24 13.616v-3.232c-1.651-.587-2.694-2.384-2.219-4.102.963-3.483-3.924-6.319-5.996-3.482-1.256 1.719-3.931 1.719-5.187 0-2.069-2.834-6.961.003-5.996 3.482.474 1.718-.568 3.515-2.219 4.102v3.232c1.651.587 2.694 2.384 2.219 4.102-.963 3.483 3.924 6.319 5.996 3.482 1.256-1.719 3.931-1.719 5.187 0 2.069 2.835 6.961-.003 5.996-3.482-.475-1.718.568-3.515 2.219-4.102zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"/></svg>
-                    <h3>Logística Compleja</h3>
-                    <p>Coordinación de eventos masivos y expediciones. Experiencia en Trail Running, Aventura y operaciones en zonas remotas.</p>
+                    <h3>Logística Trail & Adventure</h3>
+                    <p>Coordinación en Huella Sports y Latitud Sur. Operaciones complejas para competencias de Trail Running y Orientación Terrestre.</p>
                 </div>
                 <div class="card">
                     <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/></svg>
-                    <h3>Cronometraje & Datos</h3>
-                    <p>Control de tiempos electrónico y gestión de datos deportivos (Countdown Timing). Precisión técnica.</p>
+                    <h3>Sistemas CDT & Datos</h3>
+                    <p>Experiencia en Countdown Timing (CDT). Implementación de control electrónico de tiempos y gestión de datos deportivos de alta precisión.</p>
                 </div>
                 <div class="card">
                     <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 0l-12 5v9c0 5.523 4.477 10 10 10s10-4.477 10-10v-9l-12-5zm0 18.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5z"/></svg>
-                    <h3>Gestión de Riesgos</h3>
-                    <p>Experiencia como Jefe de Guardaparques (Yerba Loca) y diseño de protocolos de seguridad bajo estándares internacionales.</p>
+                    <h3>Jefatura de Parques & Riesgos</h3>
+                    <p>Ex Jefe de Guardaparques (Yerba Loca). Diseño de protocolos de seguridad, matrices de riesgo y atención de emergencias.</p>
                 </div>
             </div>
         </div>
@@ -261,7 +273,7 @@
 
     <section id="perfil" class="parallax-section">
         <div class="parallax-overlay"></div>
-        <div class="container profile-box">
+        <div class="container profile-box reveal">
             <div>
                 <h2>Dirección de Proyectos <br>& Docencia</h2>
                 <div class="line"></div>
@@ -269,8 +281,9 @@
                     "No solo camino la ruta, la <span class="highlight">digitalizo y optimizo</span>."
                 </p>
                 <p style="margin-top: 20px;">
-                    Durante <strong>11 años</strong> he formado a nuevas generaciones en la Universidad San Sebastián (USS). 
-                    Actualmente, complemento mi experiencia en terreno con un <strong>Diplomado en Dirección de Proyectos (UDD)</strong>.
+                    Durante <strong>11 años</strong> he sido docente en la Universidad San Sebastián (USS), impartiendo cátedras especializadas en <strong>Mountain Bike, Orientación Terrestre y Supervivencia</strong>.
+                    <br><br>
+                    Actualmente, complemento mi experiencia operativa con un <strong>Diplomado en Dirección de Proyectos (UDD)</strong> para profesionalizar la industria del turismo territorial.
                 </p>
                 
                 <div class="stats">
@@ -292,7 +305,7 @@
     </section>
 
     <section id="contacto">
-        <div class="container">
+        <div class="container reveal">
             <div class="section-header" style="text-align: center;">
                 <h2>Conexión Directa</h2>
                 <p>Sin formularios largos. Comunicación efectiva.</p>
@@ -325,7 +338,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 50px;">
-                <a href="mailto:jpdiaz08@gmail.com" style="color: #666;">jpdiaz08@gmail.com</a>
+                <a href="mailto:jpdiaz08@gmail.com" style="color: #666; font-size: 0.8rem;">jpdiaz08@gmail.com</a>
             </div>
         </div>
     </section>
@@ -333,6 +346,23 @@
     <footer>
         © 2025 JOTAPPE | SANTIAGO, CHILE
     </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Disparar una vez al inicio
+        reveal();
+    </script>
 
 </body>
 </html>
