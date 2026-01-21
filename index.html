@@ -134,7 +134,7 @@
         .hero {
             text-align: center;
             max-width: 900px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             padding: 0 10px;
         }
 
@@ -165,15 +165,26 @@
             line-height: 1.7;
         }
 
-        /* --- ESTILO DE MARCAS (EFECTO OUTLINE) --- */
+        /* --- TÍTULO DEL CARRUSEL --- */
+        .marquee-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #777;
+            margin-bottom: 20px;
+            text-align: center;
+            display: block;
+        }
+
+        /* --- ESTILO DE MARCAS (SÓLIDO GRIS) --- */
         .marquee-section {
             width: 100vw;
             margin-left: calc(-50vw + 50%);
             margin-bottom: 90px;
-            padding: 40px 0; /* Más espacio */
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.02);
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.01);
             position: relative;
             overflow: hidden;
         }
@@ -181,30 +192,28 @@
         .marquee-track {
             display: flex;
             width: max-content;
-            gap: 80px;
-            animation: scroll 40s linear infinite;
+            gap: 70px;
+            animation: scroll 45s linear infinite;
         }
 
-        /* AQUÍ ESTÁ LA MAGIA DEL DISEÑO HUECO */
+        /* AJUSTES SOLICITADOS: Gris sólido y más pequeño */
         .marquee-item {
             font-family: 'Inter', sans-serif;
-            font-weight: 900; /* Extra bold para que el borde se vea bien */
-            font-size: clamp(1.8rem, 4vw, 2.5rem); /* Texto grande */
-            color: transparent; /* Relleno transparente */
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3); /* Borde fino */
+            font-weight: 700;
+            font-size: clamp(1.1rem, 3vw, 1.4rem); /* Tamaño reducido notablemente */
+            color: #888888; /* Color gris sólido */
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             white-space: nowrap;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             cursor: default;
         }
 
-        /* Efecto al pasar el mouse: se rellena de verde */
+        /* Efecto al pasar el mouse: se ilumina en verde */
         .marquee-item:hover {
             color: var(--accent);
-            -webkit-text-stroke: 0px transparent;
-            text-shadow: 0 0 20px rgba(143, 188, 143, 0.4);
-            transform: scale(1.02);
+            text-shadow: 0 0 15px rgba(143, 188, 143, 0.3);
+            transform: scale(1.05);
         }
 
         .marquee-section:hover .marquee-track { animation-play-state: paused; }
@@ -295,7 +304,6 @@
             header { flex-direction: column; gap: 20px; }
             .whatsapp-btn { width: 100%; justify-content: center; }
             .hero { text-align: left; }
-            .marquee-item { font-size: 1.5rem; -webkit-text-stroke: 1px rgba(255,255,255,0.4); } 
         }
     </style>
 </head>
@@ -324,6 +332,8 @@
                 Ingeniero especialista en el diseño de flujos donde la precisión técnica (ERP & Sistemas) potencia la capacidad humana en proyectos outdoor y eventos de alta complejidad.
             </p>
         </section>
+
+        <span class="marquee-title">Trayectoria & Colaboraciones</span>
 
         <div class="marquee-section">
             <div class="marquee-track">
