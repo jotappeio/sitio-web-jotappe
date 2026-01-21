@@ -47,6 +47,7 @@
             --accent: #8fbc8f;
             --bg-dark: #050505;
             --text-main: #ffffff;
+            --text-muted: #888888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -165,43 +166,45 @@
             line-height: 1.7;
         }
 
-        /* --- TÍTULO DEL CARRUSEL --- */
-        .marquee-title {
-            font-size: 0.85rem;
+        /* --- TÍTULO DE SECCIÓN --- */
+        .section-label {
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #777;
-            margin-bottom: 20px;
+            color: #666;
+            margin-bottom: 25px;
             text-align: center;
             display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            width: 100%;
+            max-width: 1100px;
         }
 
-        /* --- ESTILO DE MARCAS (SÓLIDO GRIS) --- */
+        /* --- CARRUSEL INFINITO DE MARCAS --- */
         .marquee-section {
             width: 100vw;
             margin-left: calc(-50vw + 50%);
-            margin-bottom: 90px;
-            padding: 30px 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 50px;
+            padding: 25px 0;
             background: rgba(255,255,255,0.01);
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .marquee-track {
             display: flex;
             width: max-content;
-            gap: 70px;
-            animation: scroll 45s linear infinite;
+            gap: 60px;
+            animation: scroll 40s linear infinite;
         }
 
-        /* AJUSTES SOLICITADOS: Gris sólido y más pequeño */
         .marquee-item {
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.1rem, 3vw, 1.4rem); /* Tamaño reducido notablemente */
-            color: #888888; /* Color gris sólido */
+            font-weight: 800;
+            font-size: clamp(1rem, 2.5vw, 1.3rem); /* Tamaño ajustado */
+            color: #777; /* Gris sólido elegante */
             text-transform: uppercase;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -209,14 +212,11 @@
             cursor: default;
         }
 
-        /* Efecto al pasar el mouse: se ilumina en verde */
         .marquee-item:hover {
             color: var(--accent);
-            text-shadow: 0 0 15px rgba(143, 188, 143, 0.3);
             transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(143, 188, 143, 0.2);
         }
-
-        .marquee-section:hover .marquee-track { animation-play-state: paused; }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -226,12 +226,34 @@
         .marquee-section::before, .marquee-section::after {
             content: "";
             position: absolute;
-            top: 0; width: 150px; height: 100%;
+            top: 0; width: 100px; height: 100%;
             z-index: 2;
             pointer-events: none;
         }
         .marquee-section::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
         .marquee-section::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
+
+        
+        /* --- CONTEXTO (ROLES ACTUALIZADOS CON CV) --- */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 90px;
+        }
+        
+        .role-item {
+            border-left: 2px solid #333;
+            padding-left: 20px;
+            transition: 0.3s;
+        }
+        
+        .role-item:hover { border-left-color: var(--accent); }
+        
+        .role-brand { font-size: 0.95rem; color: #fff; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+        .role-desc { font-size: 0.9rem; color: #999; line-height: 1.5; }
 
 
         /* --- SERVICIOS --- */
@@ -276,7 +298,7 @@
             line-height: 1.6;
         }
 
-        /* --- SOCIAL BAR --- */
+        /* --- SOCIAL FOOTER --- */
         .social-bar {
             display: flex;
             gap: 25px;
@@ -304,6 +326,7 @@
             header { flex-direction: column; gap: 20px; }
             .whatsapp-btn { width: 100%; justify-content: center; }
             .hero { text-align: left; }
+            .roles-grid { gap: 30px; }
         }
     </style>
 </head>
@@ -333,8 +356,7 @@
             </p>
         </section>
 
-        <span class="marquee-title">Trayectoria & Colaboraciones</span>
-
+        <span class="section-label">Colaboraciones & Proyectos</span>
         <div class="marquee-section">
             <div class="marquee-track">
                 <span class="marquee-item">LATITUD SUR EXPEDITION</span>
@@ -354,7 +376,31 @@
                 <span class="marquee-item">PARQUE YERBA LOCA</span>
             </div>
         </div>
+        
+        <div class="roles-grid">
+            <div class="role-item">
+                <div class="role-brand">Latitud Sur & Huella Sports</div>
+                <div class="role-desc">Apoyo logístico integral para competencias de Trail Running y Aventura a lo largo de Chile.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Inelma Gamma</div>
+                <div class="role-desc">Apoyo en modernización corporativa: Implementación de Odoo ERP y desarrollo de nueva estructura digital.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Outlife (Parque Yerba Loca)</div>
+                <div class="role-desc">Jefatura de Guardaparques. Coordinación de operaciones, mantención y recepción de visitantes.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">CDT Timing</div>
+                <div class="role-desc">Encargado de cronometraje electrónico y control de tiempos para eventos deportivos.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Universidad San Sebastián</div>
+                <div class="role-desc">Docencia y asistencia técnica en terreno para Ingeniería en Expediciones (11 años de trayectoria).</div>
+            </div>
+        </div>
 
+        <span class="section-label">Áreas de Especialidad</span>
         <div class="services-grid">
             <article class="service-card">
                 <h3><span class="accent-line"></span>Ingeniería de Procesos</h3>
