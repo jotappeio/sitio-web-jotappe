@@ -46,7 +46,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             z-index: 0; 
-            opacity: 0.4;
+            opacity: 0.35;
             pointer-events: none;
             filter: grayscale(100%) contrast(110%);
         }
@@ -68,7 +68,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Fondo con degradado para asegurar legibilidad del texto */
             background: radial-gradient(circle, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.88) 70%, rgba(5,5,5,0.96) 100%);
             padding: 30px 20px;
         }
@@ -85,8 +84,7 @@
         }
 
         .logo-box {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             background: #111;
             border-radius: 12px;
             display: flex;
@@ -100,13 +98,7 @@
             position: relative;
         }
 
-        .logo-img { 
-            position: absolute;
-            width: 100%; height: 100%; 
-            object-fit: contain; 
-            z-index: 2;
-        }
-        
+        .logo-img { position: absolute; width: 100%; height: 100%; object-fit: contain; z-index: 2; }
         .name-tag { font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; }
 
         .whatsapp-btn {
@@ -124,29 +116,50 @@
             box-shadow: 0 4px 15px rgba(143, 188, 143, 0.3);
         }
 
-        /* --- SECCIONES --- */
+        /* --- ENFASIS EN TITULOS DE SECCIÓN --- */
+        .section-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent); /* Cambiado a verde para más impacto */
+            margin: 100px 0 40px; /* Más espacio entre bloques */
+            text-align: center;
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Líneas decorativas laterales para los títulos */
+        .section-label::before, .section-label::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(143, 188, 143, 0.4), transparent);
+        }
+
+        /* --- CUERPO --- */
         .hero { text-align: center; max-width: 900px; margin-bottom: 70px; }
         h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 15px; letter-spacing: -2px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--accent); margin-bottom: 25px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .intro-text { font-size: 1.2rem; color: #eee; max-width: 750px; margin: 0 auto; font-weight: 300; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; }
+        .subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--accent); margin-bottom: 25px; }
+        .intro-text { font-size: 1.2rem; color: #eee; max-width: 750px; margin: 0 auto; font-weight: 300; }
 
-        .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: #777; margin: 50px 0 30px; text-align: center; width: 100%; max-width: 1100px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; margin-bottom: 70px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; margin-bottom: 50px; }
         .service-card { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.3s; }
         .service-card:hover { border-color: var(--accent); transform: translateY(-5px); }
         .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; color: #fff; }
         .accent-line { width: 4px; height: 22px; background: var(--accent); border-radius: 2px; }
         .service-card p { font-size: 1rem; color: #ccc; }
 
-        /* --- MARQUEE --- */
-        .marquee-section { width: 100vw; overflow: hidden; background: rgba(255,255,255,0.02); padding: 30px 0; margin-bottom: 50px; }
+        .marquee-section { width: 100vw; overflow: hidden; background: rgba(255,255,255,0.02); padding: 35px 0; margin-bottom: 50px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .marquee-track { display: flex; width: max-content; gap: 80px; animation: scroll 45s linear infinite; }
-        .marquee-item { font-weight: 800; color: #666; text-transform: uppercase; white-space: nowrap; font-size: 1.3rem; letter-spacing: 2px; }
+        .marquee-item { font-weight: 800; color: #666; text-transform: uppercase; white-space: nowrap; font-size: 1.3rem; letter-spacing: 2px; transition: 0.3s; }
+        .marquee-item:hover { color: var(--accent); }
 
-        /* --- CV --- */
-        .cv-download-btn { margin-bottom: 40px; display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; border: 1px solid #444; padding: 14px 30px; border-radius: 40px; font-size: 0.9rem; transition: 0.3s; background: rgba(255,255,255,0.05); }
-        .cv-download-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(143, 188, 143, 0.1); }
+        .cv-download-btn { margin-bottom: 40px; display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; border: 1px solid #444; padding: 14px 35px; border-radius: 40px; font-size: 0.9rem; transition: 0.3s; background: rgba(255,255,255,0.05); font-weight: 600; }
+        .cv-download-btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(143, 188, 143, 0.1); }
 
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; max-width: 1100px; margin-bottom: 80px; }
         .role-item { border-left: 2px solid #333; padding-left: 25px; transition: 0.3s; }
@@ -154,11 +167,11 @@
         .role-brand { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
         .role-desc { font-size: 0.95rem; color: #888; }
 
-        footer { text-align: center; padding: 60px 0; color: #555; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; max-width: 1100px; }
+        footer { text-align: center; padding: 80px 0; color: #444; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; max-width: 1100px; }
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes tile-fade-in { to { opacity: 1; } }
-        @media (max-width: 768px) { header { flex-direction: column; gap: 25px; } .hero { text-align: left; } .roles-grid { gap: 30px; } }
+        @media (max-width: 768px) { header { flex-direction: column; gap: 25px; } .hero { text-align: left; } .section-label { font-size: 0.8rem; letter-spacing: 3px; } .section-label::before, .section-label::after { display: none; } }
     </style>
 </head>
 <body>
@@ -174,7 +187,7 @@
                 </div>
                 <div class="name-tag">Ingeniería // Media // Naturaleza</div>
             </div>
-            <a href="https://wa.me/56950005651" class="whatsapp-btn">
+            <a href="https://wa.me/56950005651" target="_blank" class="whatsapp-btn">
                 Hablemos por WhatsApp
             </a>
         </header>
@@ -209,6 +222,7 @@
 
         <span class="section-label">Trayectoria & Colaboraciones</span>
         <a href="./CV_Juan_Pablo_Diaz.pdf" class="cv-download-btn" download>
+            <svg style="width:18px; height:18px; fill:currentColor;" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             Descargar CV Actualizado [PDF]
         </a>
         <div class="marquee-section">
@@ -252,8 +266,8 @@
 
         <footer>
             <p><strong>Juan Pablo Díaz Godoy</strong></p>
-            <p>Temuco, Chile | <a href="https://www.jotappe.com/" style="color: #666; text-decoration: none;">jotappe.com</a></p>
-            <p style="margin-top: 15px; opacity: 0.5;">© 2026 Jotappe Engineering & Media</p>
+            <p>Temuco, Chile | <a href="https://www.jotappe.com/">jotappe.com</a></p>
+            <p style="margin-top: 15px; opacity: 0.4;">© 2026 Jotappe Engineering & Media</p>
         </footer>
     </div>
 
