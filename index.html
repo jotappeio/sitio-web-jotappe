@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <title>Juan Pablo Díaz | Ingeniería & Gestión Outdoor</title>
-    <meta name="description" content="Ingeniero especialista en optimizar operaciones mediante la integración de tecnología y territorio. Experiencia con Latitud Sur, Huellasports, Outlife y más.">
+    <meta name="description" content="Ingeniero especialista en optimizar operaciones mediante la integración de tecnología y territorio. Experiencia con Latitud Sur, Huella Sports, Outlife y más.">
     <meta name="author" content="Juan Pablo Díaz">
     <link rel="canonical" href="https://www.jotappe.com/">
     
@@ -47,7 +47,6 @@
             --accent: #8fbc8f;
             --bg-dark: #050505;
             --text-main: #ffffff;
-            --text-muted: #cccccc;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -69,7 +68,7 @@
             grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
             gap: 0;
             z-index: -1;
-            opacity: 0.25; /* Opacidad baja para no molestar el texto */
+            opacity: 0.25; 
             pointer-events: none;
             filter: grayscale(80%) contrast(120%);
         }
@@ -84,7 +83,7 @@
             animation: tile-fade-in 1s forwards;
         }
 
-        /* --- WRAPPER PRINCIPAL (CAPA OSCURA) --- */
+        /* --- WRAPPER PRINCIPAL --- */
         .main-wrapper {
             position: relative;
             width: 100%;
@@ -92,7 +91,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Degradado sólido para garantizar lectura */
             background: linear-gradient(to bottom, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.98) 100%);
             padding: 30px 20px;
         }
@@ -112,7 +110,7 @@
         .logo { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; color: #fff; line-height: 1; }
         .name-tag { font-size: 0.85rem; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
 
-        /* BOTÓN WHATSAPP DESTACADO */
+        /* BOTÓN WHATSAPP */
         .whatsapp-btn {
             background-color: var(--accent);
             color: #000;
@@ -127,7 +125,6 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(143, 188, 143, 0.2);
         }
-        
         .whatsapp-btn:hover {
             transform: translateY(-2px);
             background-color: #aaddaa;
@@ -138,7 +135,7 @@
         .hero {
             text-align: center;
             max-width: 900px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             padding: 0 10px;
         }
 
@@ -159,8 +156,8 @@
         }
 
         .intro-text {
-            font-size: 1.2rem; /* Texto más grande */
-            color: #ddd; /* Texto más claro */
+            font-size: 1.2rem;
+            color: #ddd;
             margin-bottom: 40px;
             max-width: 750px;
             margin-left: auto;
@@ -169,47 +166,55 @@
             line-height: 1.7;
         }
 
-        /* --- NUEVA SECCIÓN DE CREDENCIALES (LOGOS) --- */
-        .credentials-section {
+        /* --- NUEVO: CARRUSEL DE MARCAS (MARQUEE) --- */
+        .marquee-container {
             width: 100%;
-            max-width: 1000px;
-            text-align: center;
-            margin-bottom: 80px;
-            padding: 30px 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            margin-bottom: 90px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.02);
+            position: relative;
         }
 
-        .cred-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #666;
-            margin-bottom: 25px;
-            display: block;
+        /* Degradado lateral para suavizar la entrada/salida */
+        .marquee-container::before, .marquee-container::after {
+            content: "";
+            position: absolute;
+            top: 0; width: 100px; height: 100%;
+            z-index: 2;
+            pointer-events: none;
         }
+        .marquee-container::before { left: 0; background: linear-gradient(to right, rgba(5,5,5,1), transparent); }
+        .marquee-container::after { right: 0; background: linear-gradient(to left, rgba(5,5,5,1), transparent); }
 
-        .logo-grid {
+        .marquee-track {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px 40px;
-            align-items: center;
+            width: max-content;
+            animation: scroll 30s linear infinite;
         }
 
-        /* Estilo para simular logotipos con texto */
-        .logo-item {
+        .marquee-item {
             font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: #777;
+            font-weight: 900;
+            font-size: 1.5rem; /* Tamaño grande y potente */
+            color: rgba(255,255,255,0.3); /* Color apagado por defecto */
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            cursor: default;
+            padding: 0 50px;
+            white-space: nowrap;
+            transition: color 0.3s;
         }
 
-        .logo-item:hover { color: #fff; transform: scale(1.05); }
+        /* Al pasar el mouse por encima del contenedor, se detiene para leer */
+        .marquee-container:hover .marquee-track { animation-play-state: paused; }
+        .marquee-item:hover { color: var(--accent); cursor: default; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         /* --- SERVICIOS --- */
         .services-grid {
@@ -253,7 +258,7 @@
             line-height: 1.6;
         }
 
-        /* --- FOOTER & SOCIAL --- */
+        /* --- SOCIAL BAR --- */
         .social-bar {
             display: flex;
             gap: 25px;
@@ -280,10 +285,8 @@
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 20px; }
             .whatsapp-btn { width: 100%; justify-content: center; }
-            .logo-grid { gap: 15px 20px; }
-            .logo-item { font-size: 0.9rem; }
             .hero { text-align: left; }
-            .intro-text { font-size: 1.1rem; }
+            .marquee-item { font-size: 1.1rem; padding: 0 25px; } /* Ajuste de tamaño en móvil */
         }
     </style>
 </head>
@@ -313,15 +316,20 @@
             </p>
         </section>
 
-        <div class="credentials-section">
-            <span class="cred-title">Colaboración y Trayectoria</span>
-            <div class="logo-grid">
-                <div class="logo-item">INELMA GAMMA</div>
-                <div class="logo-item">LATITUD SUR EXPEDITION</div>
-                <div class="logo-item">HUELLASPORTS</div>
-                <div class="logo-item">OUTLIFE</div>
-                <div class="logo-item">CDT TIMING</div>
-                <div class="logo-item">USS</div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
+                <span class="marquee-item">HUELLA SPORTS</span>
+                <span class="marquee-item">INELMA GAMMA</span>
+                <span class="marquee-item">OUTLIFE</span>
+                <span class="marquee-item">CDT TIMING</span>
+                <span class="marquee-item">UNIVERSIDAD SAN SEBASTIAN</span>
+                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
+                <span class="marquee-item">HUELLA SPORTS</span>
+                <span class="marquee-item">INELMA GAMMA</span>
+                <span class="marquee-item">OUTLIFE</span>
+                <span class="marquee-item">CDT TIMING</span>
+                <span class="marquee-item">UNIVERSIDAD SAN SEBASTIAN</span>
             </div>
         </div>
 
@@ -355,7 +363,7 @@
         <footer>
             <p><strong>Juan Pablo Díaz Godoy</strong></p>
             <p>Temuco - Santiago, Chile | <a href="https://www.jotappe.com">jotappe.com</a></p>
-            <p style="margin-top: 10px; font-size: 0.7rem; opacity: 0.5;">© 2026 Jotappe Engineering & Media</p>
+            <p style="margin-top: 10px; font-size: 0.7rem; opacity: 0.5;">© 2026 Jotappe: Ingeniería, Media y Naturaleza </p>
         </footer>
 
     </div>
