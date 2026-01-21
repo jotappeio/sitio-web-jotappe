@@ -131,11 +131,11 @@
             box-shadow: 0 6px 25px rgba(143, 188, 143, 0.4);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- 1. HERO SECTION --- */
         .hero {
             text-align: center;
             max-width: 900px;
-            margin-bottom: 40px;
+            margin-bottom: 60px; 
             padding: 0 10px;
         }
 
@@ -179,9 +179,10 @@
             padding-bottom: 10px;
             width: 100%;
             max-width: 1100px;
+            margin-top: 40px;
         }
 
-        /* --- CARRUSEL INFINITO DE MARCAS --- */
+        /* --- 2. CARRUSEL INFINITO DE MARCAS --- */
         .marquee-section {
             width: 100vw;
             margin-left: calc(-50vw + 50%);
@@ -203,8 +204,8 @@
         .marquee-item {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
-            font-size: clamp(1rem, 2.5vw, 1.3rem); /* Tamaño ajustado */
-            color: #777; /* Gris sólido elegante */
+            font-size: clamp(1rem, 2.5vw, 1.3rem); 
+            color: #777; 
             text-transform: uppercase;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -233,37 +234,14 @@
         .marquee-section::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
         .marquee-section::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
 
-        
-        /* --- CONTEXTO (ROLES ACTUALIZADOS CON CV) --- */
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1100px;
-            margin-bottom: 90px;
-        }
-        
-        .role-item {
-            border-left: 2px solid #333;
-            padding-left: 20px;
-            transition: 0.3s;
-        }
-        
-        .role-item:hover { border-left-color: var(--accent); }
-        
-        .role-brand { font-size: 0.95rem; color: #fff; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-        .role-desc { font-size: 0.9rem; color: #999; line-height: 1.5; }
-
-
-        /* --- SERVICIOS --- */
+        /* --- 3. SERVICIOS --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             max-width: 1100px;
             width: 100%;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .service-card {
@@ -298,11 +276,33 @@
             line-height: 1.6;
         }
 
-        /* --- SOCIAL FOOTER --- */
+        /* --- 4. CONTEXTO (ROLES) --- */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 60px;
+        }
+        
+        .role-item {
+            border-left: 1px solid #333;
+            padding-left: 20px;
+            transition: 0.3s;
+        }
+        
+        .role-item:hover { border-left-color: var(--accent); }
+        
+        .role-brand { font-size: 0.9rem; color: #fff; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+        .role-desc { font-size: 0.85rem; color: #777; line-height: 1.5; }
+
+        /* --- 5. FOOTER --- */
         .social-bar {
             display: flex;
             gap: 25px;
             margin-bottom: 30px;
+            margin-top: 20px;
         }
         .social-icon { width: 24px; height: 24px; fill: #666; transition: 0.3s; }
         .social-icon:hover { fill: var(--accent); transform: scale(1.2); }
@@ -356,50 +356,6 @@
             </p>
         </section>
 
-        <span class="section-label">Colaboraciones & Proyectos</span>
-        <div class="marquee-section">
-            <div class="marquee-track">
-                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
-                <span class="marquee-item">HUELLA SPORTS</span>
-                <span class="marquee-item">INELMA GAMMA</span>
-                <span class="marquee-item">OUTLIFE</span>
-                <span class="marquee-item">CDT TIMING</span>
-                <span class="marquee-item">USS</span>
-                <span class="marquee-item">PARQUE YERBA LOCA</span>
-                
-                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
-                <span class="marquee-item">HUELLA SPORTS</span>
-                <span class="marquee-item">INELMA GAMMA</span>
-                <span class="marquee-item">OUTLIFE</span>
-                <span class="marquee-item">CDT TIMING</span>
-                <span class="marquee-item">USS</span>
-                <span class="marquee-item">PARQUE YERBA LOCA</span>
-            </div>
-        </div>
-        
-        <div class="roles-grid">
-            <div class="role-item">
-                <div class="role-brand">Latitud Sur & Huella Sports</div>
-                <div class="role-desc">Apoyo logístico integral para competencias de Trail Running y Aventura a lo largo de Chile.</div>
-            </div>
-            <div class="role-item">
-                <div class="role-brand">Inelma Gamma</div>
-                <div class="role-desc">Apoyo en modernización corporativa: Implementación de Odoo ERP y desarrollo de nueva estructura digital.</div>
-            </div>
-            <div class="role-item">
-                <div class="role-brand">Outlife (Parque Yerba Loca)</div>
-                <div class="role-desc">Jefatura de Guardaparques. Coordinación de operaciones, mantención y recepción de visitantes.</div>
-            </div>
-            <div class="role-item">
-                <div class="role-brand">CDT Timing</div>
-                <div class="role-desc">Encargado de cronometraje electrónico y control de tiempos para eventos deportivos.</div>
-            </div>
-            <div class="role-item">
-                <div class="role-brand">Universidad San Sebastián</div>
-                <div class="role-desc">Docencia y asistencia técnica en terreno para Ingeniería en Expediciones (11 años de trayectoria).</div>
-            </div>
-        </div>
-
         <span class="section-label">Áreas de Especialidad</span>
         <div class="services-grid">
             <article class="service-card">
@@ -421,6 +377,51 @@
                 <h3><span class="accent-line"></span>Media & Estrategia</h3>
                 <p>Comunicación visual y narrativa estratégica. Producción de contenido que conecta la identidad técnica con el entorno natural.</p>
             </article>
+        </div>
+
+        <span class="section-label">Trayectoria & Colaboraciones</span>
+        <div class="marquee-section">
+            <div class="marquee-track">
+                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
+                <span class="marquee-item">HUELLA SPORTS</span>
+                <span class="marquee-item">INELMA GAMMA</span>
+                <span class="marquee-item">OUTLIFE</span>
+                <span class="marquee-item">CDT TIMING</span>
+                <span class="marquee-item">USS</span>
+                <span class="marquee-item">PARQUE YERBA LOCA</span>
+                
+                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
+                <span class="marquee-item">HUELLA SPORTS</span>
+                <span class="marquee-item">INELMA GAMMA</span>
+                <span class="marquee-item">OUTLIFE</span>
+                <span class="marquee-item">CDT TIMING</span>
+                <span class="marquee-item">USS</span>
+                <span class="marquee-item">PARQUE YERBA LOCA</span>
+            </div>
+        </div>
+        
+        <span class="section-label">Resumen de Experiencia</span>
+        <div class="roles-grid">
+            <div class="role-item">
+                <div class="role-brand">Latitud Sur & Huella Sports</div>
+                <div class="role-desc">Apoyo logístico integral para competencias de Trail Running y Aventura a lo largo de Chile.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Inelma Gamma</div>
+                <div class="role-desc">Apoyo en modernización corporativa: Implementación de Odoo ERP y desarrollo de nueva estructura digital.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Outlife (Parque Yerba Loca)</div>
+                <div class="role-desc">Jefatura de Guardaparques. Coordinación de operaciones, mantención y recepción de visitantes.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">CDT Timing</div>
+                <div class="role-desc">Encargado de cronometraje electrónico y control de tiempos para eventos deportivos.</div>
+            </div>
+            <div class="role-item">
+                <div class="role-brand">Universidad San Sebastián</div>
+                <div class="role-desc">Docencia y asistencia técnica en terreno para Ingeniería en Expediciones (11 años de trayectoria).</div>
+            </div>
         </div>
 
         <div class="social-bar">
