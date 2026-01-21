@@ -103,7 +103,7 @@
         .logo-img { position: absolute; width: 100%; height: 100%; object-fit: contain; z-index: 2; }
         .name-tag { font-size: 0.85rem; color: var(--accent); font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 15px; }
 
-        /* --- WHATSAPP FLOTANTE (ESTILO "FOLLOW") --- */
+        /* --- WHATSAPP FLOTANTE --- */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -128,12 +128,12 @@
             background-color: #aaddaa;
         }
 
-        /* --- TÍTULOS DE SECCIÓN (BLANCOS CON ÉNFASIS) --- */
+        /* --- TÍTULOS DE SECCIÓN BLANCOS --- */
         .section-label {
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 6px;
-            color: #ffffff; /* Ajustado a Blanco */
+            color: #ffffff;
             margin: 120px 0 50px;
             text-align: center;
             width: 100%;
@@ -152,12 +152,13 @@
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
         }
 
-        /* --- CUERPO --- */
+        /* --- HERO --- */
         .hero { text-align: center; max-width: 900px; margin-bottom: 40px; }
         h1 { font-size: clamp(2.5rem, 6vw, 4.8rem); font-weight: 900; margin-bottom: 20px; letter-spacing: -2px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
         .subtitle { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--accent); margin-bottom: 30px; font-weight: 600; }
         .intro-text { font-size: 1.25rem; color: #f0f0f0; max-width: 780px; margin: 0 auto; font-weight: 300; }
 
+        /* --- SERVICIOS --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 35px; width: 100%; max-width: 1100px; margin-bottom: 20px; }
         .service-card { background: rgba(15, 15, 15, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 24px; backdrop-filter: blur(15px); transition: 0.4s; }
         .service-card:hover { border-color: var(--accent); transform: translateY(-10px); }
@@ -165,16 +166,20 @@
         .accent-line { width: 5px; height: 25px; background: var(--accent); border-radius: 3px; }
         .service-card p { font-size: 1.05rem; color: #bbb; line-height: 1.7; }
 
+        /* --- MARQUEE --- */
         .marquee-section { width: 100vw; overflow: hidden; background: rgba(255,255,255,0.03); padding: 40px 0; margin-bottom: 30px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .marquee-track { display: flex; width: max-content; gap: 100px; animation: scroll 50s linear infinite; }
         .marquee-item { font-weight: 900; color: #777; text-transform: uppercase; white-space: nowrap; font-size: 1.4rem; letter-spacing: 3px; transition: 0.3s; }
         .marquee-item:hover { color: var(--accent); }
 
+        /* --- CV --- */
         .cv-download-btn { margin-bottom: 60px; display: inline-flex; align-items: center; gap: 15px; color: #fff; text-decoration: none; border: 1px solid #555; padding: 16px 40px; border-radius: 50px; font-size: 1rem; transition: 0.3s; background: rgba(255,255,255,0.05); font-weight: 700; }
         .cv-download-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* --- EXPERIENCIA --- */
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 50px; width: 100%; max-width: 1100px; margin-bottom: 100px; }
-        .role-item { border-left: 3px solid #2a2a2a; padding-left: 30px; }
+        .role-item { border-left: 3px solid #2a2a2a; padding-left: 30px; transition: 0.3s; }
+        .role-item:hover { border-left-color: var(--accent); }
         .role-brand { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; color: #fff; }
         .role-desc { font-size: 1rem; color: #999; }
 
@@ -185,6 +190,7 @@
         @media (max-width: 768px) { 
             header { flex-direction: column; } 
             .whatsapp-btn { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.8rem; }
+            .section-label { font-size: 0.85rem; letter-spacing: 4px; margin: 80px 0 30px; }
             .section-label::before, .section-label::after { display: none; }
         }
     </style>
@@ -197,7 +203,7 @@
         <header>
             <div class="brand-group">
                 <div class="logo-box">
-                    <img src=".github/logo.png" alt="" class="logo-img" onerror="this.style.display='none'">
+                    <img src="assets/logo.png" alt="" class="logo-img" onerror="this.style.display='none'">
                     J
                 </div>
                 <div class="name-tag">Ingeniería // Media // Naturaleza</div>
@@ -238,7 +244,7 @@
         </div>
 
         <span class="section-label">Trayectoria & Colaboraciones</span>
-        <a href="./CV_Juan_Pablo_Diaz.pdf" class="cv-download-btn" download>
+        <a href="assets/CV_Juan_Pablo_Diaz.pdf" class="cv-download-btn" download>
             <svg style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             Descargar CV Profesional [PDF]
         </a>
@@ -283,7 +289,7 @@
 
         <footer>
             <p><strong>Juan Pablo Díaz Godoy</strong></p>
-            <p>Santiago/Temuco, Chile | <a href="https://www.jotappe.com/" style="color: #888; text-decoration: none;">jotappe.com</a></p>
+            <p>Temuco, Chile | <a href="https://www.jotappe.com/" style="color: #888; text-decoration: none;">jotappe.com</a></p>
             <p style="margin-top: 20px; opacity: 0.4;">© 2026 Jotappe Engineering & Media</p>
         </footer>
     </div>
