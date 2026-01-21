@@ -60,7 +60,7 @@
             overflow-x: hidden;
         }
 
-        /* --- FONDO DINÁMICO --- */
+        /* --- FONDO DINÁMICO (CORREGIDO) --- */
         .collage-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -68,8 +68,9 @@
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
             gap: 0;
-            z-index: -1;
-            opacity: 0.25; 
+            /* CAMBIO: z-index 0 para que no se esconda detrás del body */
+            z-index: 0; 
+            opacity: 0.35; /* Un poco más visible */
             pointer-events: none;
             filter: grayscale(80%) contrast(120%);
         }
@@ -87,12 +88,15 @@
         /* --- WRAPPER PRINCIPAL --- */
         .main-wrapper {
             position: relative;
+            /* CAMBIO: z-index 1 para estar SOBRE las fotos */
+            z-index: 1; 
             width: 100%;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.98) 100%);
+            /* CAMBIO: Fondo más transparente (0.85) para que se vean las fotos detrás */
+            background: linear-gradient(to bottom, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.95) 100%);
             padding: 30px 20px;
         }
 
@@ -107,9 +111,17 @@
             padding: 15px 0;
         }
 
-        .brand-group { display: flex; flex-direction: column; }
-        .logo { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; color: #fff; line-height: 1; }
-        .name-tag { font-size: 0.85rem; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
+        .brand-group { display: flex; flex-direction: column; justify-content: center; }
+        
+        /* ESTILO PARA TU LOGO (IMAGEN) */
+        .logo-img {
+            max-height: 50px; /* Ajusta este valor según el tamaño de tu logo */
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .name-tag { font-size: 0.85rem; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; }
 
         .whatsapp-btn {
             background-color: var(--accent);
@@ -197,7 +209,7 @@
             display: block;
         }
 
-        /* ESTILO DEL BOTÓN DE CV */
+        /* BOTÓN DE DESCARGA */
         .cv-download-btn {
             display: inline-flex;
             align-items: center;
@@ -223,7 +235,49 @@
 
         .cv-icon { width: 16px; height: 16px; fill: currentColor; }
 
-        /* --- 2. CARRUSEL INFINITO DE MARCAS --- */
+        /* --- 3. SERVICIOS (ORDEN AJUSTADO) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(40, 40, 40, 0.7);
+        }
+
+        .service-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .accent-line { width: 4px; height: 20px; background: var(--accent); display: inline-block; border-radius: 2px; }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* --- 2. CARRUSEL INFINITO --- */
         .marquee-section {
             width: 100vw;
             margin-left: calc(-50vw + 50%);
@@ -274,48 +328,6 @@
         }
         .marquee-section::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
         .marquee-section::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
-
-        /* --- 3. SERVICIOS --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            width: 100%;
-            margin-bottom: 60px;
-        }
-
-        .service-card {
-            background: rgba(30, 30, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 16px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background: rgba(40, 40, 40, 0.7);
-        }
-
-        .service-card h3 {
-            color: #fff;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .accent-line { width: 4px; height: 20px; background: var(--accent); display: inline-block; border-radius: 2px; }
-
-        .service-card p {
-            font-size: 1rem;
-            color: #bbb;
-            line-height: 1.6;
-        }
 
         /* --- 4. CONTEXTO (ROLES) --- */
         .roles-grid {
@@ -368,6 +380,7 @@
             .whatsapp-btn { width: 100%; justify-content: center; }
             .hero { text-align: left; }
             .roles-grid { gap: 30px; }
+            .logo-img { max-height: 40px; margin: 0 auto; } /* Ajuste logo móvil */
         }
     </style>
 </head>
@@ -379,7 +392,7 @@
         
         <header>
             <div class="brand-group">
-                <div class="logo">JOTAPPE</div>
+                <img src="logo.png" alt="Jotappe Logo" class="logo-img">
                 <div class="name-tag">Ingeniería // Media // Naturaleza</div>
             </div>
             
@@ -388,7 +401,7 @@
                 Hablemos por WhatsApp
             </a>
         </header>
- 
+
         <section class="hero">
             <h1>Juan Pablo Díaz</h1>
             <div class="subtitle">Gestión de Operaciones en la intersección de Tecnología y Territorio</div>
