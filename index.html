@@ -53,11 +53,10 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             color: white; 
             line-height: 1.6;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
         }
 
-        /* --- FONDO DINÁMICO (TU COLLAGE) --- */
-        /* Lo fijamos al fondo para que no se mueva al hacer scroll */
+        /* --- FONDO DINÁMICO (COLLAGE) --- */
         .collage-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,8 +64,8 @@
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1px;
-            z-index: -1; /* Detrás del contenido */
-            opacity: 0.35; /* Oscurecido para que el texto se lea bien */
+            z-index: -1;
+            opacity: 0.3; /* Ajustado para mejor lectura */
             pointer-events: none;
         }
 
@@ -89,8 +88,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Degradado para mejorar lectura */
-            background: linear-gradient(to bottom, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0.95) 100%);
+            /* Degradado más oscuro para resaltar texto */
+            background: linear-gradient(to bottom, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.98) 100%);
             padding: 40px 20px;
         }
 
@@ -101,78 +100,134 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .brand-group { display: flex; flex-direction: column; }
         .logo { font-size: 2rem; font-weight: 900; letter-spacing: 4px; color: #fff; line-height: 1; }
         .name-tag { font-size: 0.9rem; color: #8fbc8f; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        /* --- HERO SECTION (AEO FRIENDLY) --- */
+        /* BOTÓN CTA WHATSAPP (MEJORADO) */
+        .cta-button {
+            background: #8fbc8f; 
+            color: #050505; 
+            text-decoration: none; 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(143, 188, 143, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(143, 188, 143, 0.4);
+            background: #a3d4a3;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
-            max-width: 800px;
-            margin-bottom: 80px;
+            max-width: 850px;
+            margin-bottom: 40px;
             padding: 0 10px;
         }
 
         h1 { 
-            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-size: clamp(2.2rem, 6vw, 3.8rem); 
             font-weight: 800; 
-            margin-bottom: 20px; 
+            margin-bottom: 15px; 
             line-height: 1.1;
-            background: -webkit-linear-gradient(#fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
         }
 
         .subtitle { 
-            font-size: clamp(1rem, 2.5vw, 1.25rem); 
+            font-size: clamp(1rem, 2.5vw, 1.3rem); 
             color: #8fbc8f; 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .intro-text {
             font-size: 1.1rem;
             color: #ccc;
             margin-bottom: 40px;
-            max-width: 650px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
+
+        /* --- BARRA DE AUTORIDAD (NUEVO) --- */
+        .authority-bar {
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .authority-label {
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .authority-logos {
+            font-weight: 700; 
+            color: #bbb; 
+            font-size: clamp(0.9rem, 2vw, 1.1rem); 
+            letter-spacing: 1px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .separator { color: #333; margin: 0 5px; }
 
         /* --- GRID DE SERVICIOS --- */
         .services-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
             max-width: 1000px;
             width: 100%;
             margin-bottom: 80px;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(30, 30, 30, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 30px;
-            border-radius: 16px;
+            border-radius: 12px;
             transition: transform 0.3s ease, border-color 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
         }
 
         .service-card:hover {
             transform: translateY(-5px);
             border-color: #8fbc8f;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(40, 40, 40, 0.6);
         }
 
         .service-card h3 {
             color: #fff;
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-left: 3px solid #8fbc8f;
             padding-left: 15px;
         }
@@ -180,7 +235,7 @@
         .service-card p {
             font-size: 0.95rem;
             color: #aaa;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* --- REDES SOCIALES --- */
@@ -188,12 +243,12 @@
             display: flex;
             gap: 25px;
             justify-content: center;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
         }
 
         .social-icon {
-            width: 28px; height: 28px;
-            fill: rgba(255,255,255,0.5);
+            width: 26px; height: 26px;
+            fill: rgba(255,255,255,0.6);
             transition: all 0.3s ease;
         }
         .social-icon:hover { fill: #8fbc8f; transform: scale(1.1); }
@@ -209,17 +264,19 @@
             max-width: 1000px;
         }
 
-        footer a { color: #888; text-decoration: none; }
+        footer a { color: #888; text-decoration: none; transition: 0.3s; }
         footer a:hover { color: #8fbc8f; }
 
         @keyframes tile-fade-in { to { opacity: 0.8; } }
 
         /* MÓVIL OPTIMIZACIÓN */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 10px; align-items: flex-start; }
-            .hero { text-align: left; }
-            .intro-text { margin-left: 0; }
-            .collage-container { opacity: 0.25; } /* Más oscuro en móvil para leer mejor */
+            header { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+            .brand-group { align-items: center; }
+            .hero { text-align: center; }
+            .authority-logos { flex-direction: column; gap: 8px; }
+            .separator { display: none; }
+            .collage-container { opacity: 0.2; } 
         }
     </style>
 </head>
@@ -234,24 +291,36 @@
                 <div class="logo">JOTAPPE</div>
                 <div class="name-tag">Ingeniería // Media // Naturaleza</div>
             </div>
-            <a href="mailto:jpdiaz08@gmail.com" style="color: #fff; text-decoration: none; border: 1px solid #8fbc8f; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; transition: 0.3s;">
-                Contacto
+            
+            <a href="https://wa.me/56950005651" target="_blank" class="cta-button">
+                <span>Hablemos por WhatsApp</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.572 1.973.911 3.298.911 3.182 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.766-5.771zm5.281 7.426c-.22.618-1.074 1.132-1.492 1.192-.472.062-1.09.288-3.411-.634-2.846-1.129-4.706-4.008-4.848-4.204-.145-.196-1.161-1.545-1.161-2.946 0-1.402.731-2.091.989-2.373.258-.281.558-.352.744-.352.187 0 .373.003.536.009.206.006.402-.057.575.45.195.57.669 1.636.727 1.756.058.12.097.26.015.42-.082.16-.123.259-.242.4-.12.14-.251.312-.358.419-.117.117-.238.245-.102.48.136.234.603.992 1.294 1.608.889.791 1.64 1.037 1.871 1.15.232.112.368.096.505-.061.137-.157.591-.689.749-.925.158-.236.315-.197.532-.117.217.08 1.368.645 1.603.762.234.118.391.176.448.274.058.098.058.568-.162 1.187z"/></svg>
             </a>
         </header>
 
         <section class="hero">
             <h1>Juan Pablo Díaz</h1>
             <div class="subtitle">Gestión de Operaciones en la intersección de Tecnología y Territorio</div>
-            <p class="intro-text">
-                Ingeniero especialista en optimizar la eficiencia operativa. Diseño flujos donde la precisión técnica (ERP & Sistemas) potencia la capacidad humana en la gestión de proyectos outdoor y eventos de alta complejidad.
-            </p>
-
+            
             <div class="social-row">
                 <a href="https://www.linkedin.com/in/jotappecom/" target="_blank" title="LinkedIn"><svg class="social-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
                 <a href="https://www.instagram.com/jotappe.io" target="_blank" title="Instagram"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8 2c-3.2 0-5.8 2.6-5.8 5.8v8.4c0 3.2 2.6 5.8 5.8 5.8h8.4c3.2 0 5.8-2.6 5.8-5.8v-8.4c0-3.2-2.6-5.8-5.8-5.8h-8.4zm0 2h8.4c2.1 0 3.8 1.7 3.8 3.8v8.4c0 2.1-1.7 3.8-3.8 3.8h-8.4c-2.1 0-3.8-1.7-3.8-3.8v-8.4c0-2.1 1.7-3.8 3.8-3.8zm9.45 1.5c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm-5.25 1.5c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg></a>
-                <a href="https://wa.me/56950005651" target="_blank" title="WhatsApp"><svg class="social-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
             </div>
+
+            <p class="intro-text">
+                Ingeniero especialista en optimizar la eficiencia operativa. Diseño flujos donde la precisión técnica (ERP & Sistemas) potencia la capacidad humana en la gestión de proyectos outdoor y eventos de alta complejidad.
+            </p>
         </section>
+
+        <div class="authority-bar">
+            <span class="authority-label">Experiencia en proyectos junto a</span>
+            <div class="authority-logos">
+                INELMA GAMMA <span class="separator">/</span> 
+                USS <span class="separator">/</span> 
+                OUTLIFE <span class="separator">/</span> 
+                CDT TIMING
+            </div>
+        </div>
 
         <div class="services-section">
             <article class="service-card">
@@ -302,7 +371,7 @@
             container.innerHTML = '';
             const width = window.innerWidth;
             const height = window.innerHeight;
-            const tileSize = 240; // Tamaño de cada cuadro
+            const tileSize = 240; 
             const cols = Math.ceil(width / tileSize);
             const rows = Math.ceil(height / tileSize);
             const totalTiles = cols * rows;
@@ -312,13 +381,11 @@
                 tile.className = 'tile';
                 const randomImg = images[Math.floor(Math.random() * images.length)];
                 tile.style.backgroundImage = `url('${randomImg}')`;
-                // Animación escalonada
                 tile.style.animationDelay = `${Math.random() * 2}s`;
                 container.appendChild(tile);
             }
         }
 
-        // Crear grid al cargar y al redimensionar
         window.addEventListener('load', createGrid);
         let resizeTimer;
         window.addEventListener('resize', () => {
