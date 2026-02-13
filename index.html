@@ -77,19 +77,14 @@
             width: 100%;
             max-width: 1100px;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between; /* Separa Logo a la izq y Menú a la der */
             align-items: center;
             margin-bottom: 60px;
             padding: 15px 0;
         }
 
         .brand-group { display: flex; flex-direction: column; align-items: flex-start; }
-
-        <nav style="margin-top: 20px; display: flex; gap: 20px;">
-    <a href="index.html" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Inicio</a>
-    <a href="resultados.html" style="color: var(--text-muted); text-decoration: none; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">Resultados</a>
-</nav>
-       
+        
         .logo-box {
             width: 60px; height: 60px;
             background: #111;
@@ -107,6 +102,41 @@
 
         .logo-img { position: absolute; width: 100%; height: 100%; object-fit: contain; z-index: 2; }
         .name-tag { font-size: 0.85rem; color: var(--accent); font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 15px; }
+
+        /* --- MENÚ DE NAVEGACIÓN (NUEVO) --- */
+        .main-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link:hover { color: var(--accent); }
+        
+        /* Estado Activo (Página Actual) */
+        .nav-link.active { 
+            color: var(--accent); 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
 
         /* --- WHATSAPP FLOTANTE --- */
         .whatsapp-btn {
@@ -192,11 +222,13 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes tile-fade-in { to { opacity: 1; } }
+        
         @media (max-width: 768px) { 
-            header { flex-direction: column; } 
+            header { flex-direction: column; gap: 20px; } 
             .whatsapp-btn { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.8rem; }
             .section-label { font-size: 0.85rem; letter-spacing: 4px; margin: 80px 0 30px; }
             .section-label::before, .section-label::after { display: none; }
+            .main-nav { gap: 15px; } /* Ajuste móvil del menú */
         }
     </style>
 </head>
@@ -213,6 +245,11 @@
                 </div>
                 <div class="name-tag">Ingeniería // Media // Naturaleza</div>
             </div>
+
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="resultados.html" class="nav-link">Resultados</a>
+            </nav>
         </header>
 
         <a href="https://wa.me/56950005651" target="_blank" class="whatsapp-btn">
