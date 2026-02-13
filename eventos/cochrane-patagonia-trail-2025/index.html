@@ -221,4 +221,71 @@
             ["5", "415", "Rodrigo Hermosilla", "50K", "30 a 39", "7:02:45.3"],
             ["6", "430", "Marcelo Soto", "50K", "40 a 49", "7:08:21.2"],
             ["7", "429", "Cristian Solis", "50K", "30 a 39", "7:14:55.7"],
-            ["8", "414", "Patricio Gutierrez", "50K", "50 a 5
+            ["8", "414", "Patricio Gutierrez", "50K", "50 a 59", "7:35:10.1"],
+            ["9", "408", "Miguel Angel Cisterna", "50K", "40 a 49", "7:38:22.9"],
+            ["10", "431", "Alejandro Valdebenito", "50K", "30 a 39", "7:45:01.8"],
+            ["11", "422", "Ricardo Maldonado", "50K", "40 a 49", "8:12:33.4"],
+            ["12", "412", "Diego Gajardo", "50K", "18 a 29", "8:25:10.5"],
+            ["13", "417", "Jorge Jara", "50K", "50 a 59", "8:32:45.9"],
+            ["14", "432", "Claudio Vera", "50K", "40 a 49", "8:41:59.6"],
+            ["15", "421", "Pablo López", "50K", "40 a 49", "8:45:12.3"],
+            ["16", "409", "Felipe Contreras", "50K", "30 a 39", "9:02:15.1"],
+            ["17", "401", "Macarena Albornoz", "50K", "30 a 39 F", "9:18:22.8"],
+            ["18", "411", "Francisco Fuentes", "50K", "30 a 39", "9:25:34.2"],
+            ["19", "402", "Romina Alvarez", "50K", "30 a 39 F", "9:32:15.7"],
+            ["20", "427", "Daniel Silva", "50K", "30 a 39", "9:45:22.3"],
+            ["1", "539", "Antonio Rojas", "8K", "FAMILIAR", "32:10.9"],
+            ["2", "537", "Aldrin Lagos", "8K", "FAMILIAR", "35:31.5"],
+            ["3", "510", "Javier Andrés Martinez Acosta", "8K", "FAMILIAR", "35:47.7"],
+            ["4", "538", "Juan Jose Cortes", "8K", "FAMILIAR", "35:52.7"],
+            ["5", "531", "Vicente Cossio", "8K", "FAMILIAR", "39:31.9"],
+            ["6", "500", "Antonia Bahamonde", "8K", "FAMILIAR F", "40:13.2"],
+            ["7", "534", "Gonzalo Garces", "8K", "FAMILIAR", "41:23.0"],
+            ["8", "527", "Paz Francisca Gatica", "8K", "FAMILIAR F", "42:11.4"],
+            ["9", "507", "Manuel Jara", "8K", "FAMILIAR", "42:13.9"],
+            ["10", "515", "Nicolas Oporto", "8K", "FAMILIAR", "43:36.0"],
+            ["11", "519", "Gabriela Ant Pérez Muñoz", "8K", "FAMILIAR F", "44:42.8"],
+            ["12", "530", "Macarena Herrera", "8K", "FAMILIAR F", "45:12.5"],
+            ["13", "514", "Lucas Ocampo", "8K", "FAMILIAR", "45:39.4"],
+            ["14", "517", "Renzo Ordenes", "8K", "FAMILIAR", "46:22.7"],
+            ["15", "540", "Vanessa García Paillán", "8K", "FAMILIAR F", "50:01.0"],
+            ["16", "506", "Jorge Hinojosa Castillo", "8K", "FAMILIAR", "51:33.9"],
+            ["17", "518", "Karem Ortúzar Moreno", "8K", "FAMILIAR F", "51:36.5"],
+            ["18", "520", "Rodrigo Rivera", "8K", "FAMILIAR", "52:16.4"],
+            ["19", "509", "Fabiola Luna Arratia", "8K", "FAMILIAR F", "52:25.2"],
+            ["20", "502", "Luciano Castillo Vasquez", "8K", "FAMILIAR", "52:27.0"],
+            ["21", "525", "Paola Andrea Zambrano Maldonado", "8K", "FAMILIAR F", "53:34.3"],
+            ["22", "533", "Renato Muñoz", "8K", "FAMILIAR", "53:48.3"],
+            ["23", "535", "Pablo Gelardi", "8K", "FAMILIAR", "54:30.4"],
+            ["24", "528", "Laura Troncoso", "8K", "FAMILIAR F", "54:54.7"],
+            ["25", "504", "Danisa Cutipa", "8K", "FAMILIAR F", "55:18.5"],
+            ["26", "522", "Paulina Andrea Soto Soto", "8K", "FAMILIAR F", "1:01:44.0"],
+            ["27", "526", "Manuel Melinao Soto", "8K", "FAMILIAR", "1:01:45.0"],
+            ["28", "536", "Isabel Burgos", "8K", "FAMILIAR F", "1:04:05.6"],
+            ["29", "532", "Ramon Lujan", "8K", "FAMILIAR", "1:04:05.8"],
+            ["30", "529", "Maria Paz Parra", "8K", "FAMILIAR F", "1:12:48.3"],
+            ["31", "508", "Paci Lizama", "8K", "FAMILIAR F", "1:12:49.5"]
+        ];
+
+        $(document).ready(function() {
+            $('#tablaResultados').DataTable({
+                data: eventData,
+                language: {
+                    search: "Buscar:",
+                    searchPlaceholder: "Nombre, bib o categoría...",
+                    lengthMenu: "Ver _MENU_",
+                    info: "Total: _TOTAL_ corredores",
+                    paginate: { first: "«", last: "»", next: "›", previous: "‹" },
+                    zeroRecords: "Sin resultados",
+                    infoEmpty: "0 registros",
+                    infoFiltered: "(de _MAX_)"
+                },
+                responsive: true,
+                pageLength: 25,
+                order: [[0, 'asc']],
+                dom: 'frtip' // Simplificado para móvil
+            });
+        });
+    </script>
+</body>
+</html>
