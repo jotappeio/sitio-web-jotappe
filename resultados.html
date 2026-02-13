@@ -1,23 +1,60 @@
-<section class="table-section">
-    <span class="data-label">Archivo Histórico // Gestión de Tiempos</span>
-    <h2>Eventos Cronometrados</h2>
-    <p style="color: #666; margin-bottom: 40px;">Selecciona una competencia para ver el análisis de resultados y tiempos oficiales.</p>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-        
-       <a href="eventos/cochrane-2025/index.html" style="display: block; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; text-decoration: none; transition: 0.3s;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.03)'">
-    <span style="color: var(--accent); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">Trail Running // Patagonia 2025</span>
-    <h3 style="color: #fff; margin: 10px 0; font-size: 1.4rem;">Cochrane Patagonia Trail</h3>
-    <p style="color: #777; font-size: 0.9rem;">Gestión de tiempos distancias 17K, 35K y 50K. Análisis de eficiencia por categoría.</p>
-    <div style="margin-top: 20px; color: var(--accent); font-weight: 700; font-size: 0.8rem;">VER RESULTADOS →</div>
-</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos y Resultados | Jotappe</title>
+    <style>
+        :root { --accent: #8fbc8f; --bg-dark: #050505; --text-main: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.6; }
+        .main-wrapper { position: relative; z-index: 1; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background: radial-gradient(circle, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.95) 100%); padding: 30px 20px; }
+        header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+        .logo-box { width: 60px; height: 60px; background: #111; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 36px; color: var(--accent); border: 1px solid rgba(143, 188, 143, 0.4); }
+        .main-nav { display: flex; gap: 25px; }
+        .nav-link { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+        .nav-link.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+        .section-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 6px; color: #ffffff; margin: 40px 0 50px; text-align: center; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; gap: 25px; font-weight: 800; }
+        .section-label::before, .section-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 35px; width: 100%; max-width: 1100px; }
+        .service-card { background: rgba(15, 15, 15, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 24px; backdrop-filter: blur(15px); transition: 0.4s; }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .service-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .accent-line { width: 5px; height: 25px; background: var(--accent); border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header>
+            <div class="logo-box">J</div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="resultados.html" class="nav-link active">Resultados</a>
+            </nav>
+        </header>
 
-        <a href="eventos/huilo-huilo-2025/index.html" style="display: block; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; text-decoration: none; transition: 0.3s;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.03)'">
-            <span style="color: var(--accent); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">Trail Running // 2025</span>
-            <h3 style="color: #fff; margin: 10px 0; font-size: 1.4rem;">Huilo Huilo Outdoor</h3>
-            <p style="color: #777; font-size: 0.9rem;">Resultados oficiales distancias 50K y 80K.</p>
-            <div style="margin-top: 20px; color: var(--accent); font-weight: 700; font-size: 0.8rem;">VER RESULTADOS →</div>
-        </a>
+        <section style="text-align: center; max-width: 800px; margin-bottom: 40px;">
+            <h1 style="font-size: 3rem; font-weight: 900; letter-spacing: -1px;">Eventos & Tiempos</h1>
+            <p style="color: #888; font-size: 1.2rem;">Repositorio histórico de gestión de datos y cronometraje electrónico.</p>
+        </section>
 
+        <span class="section-label">Competencias 2025</span>
+
+        <div class="services-grid">
+            <a href="eventos/cochrane-2025/index.html" style="text-decoration: none; display: block;">
+                <article class="service-card">
+                    <h3><span class="accent-line"></span>Cochrane Patagonia Trail</h3>
+                    <p style="color: var(--accent); font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px;">TRAIL RUNNING // XI REGIÓN</p>
+                    <p style="color: #bbb;">Análisis completo de resultados para una de las carreras más técnicas de la Patagonia. Control de tiempos en entornos extremos.</p>
+                    <div style="margin-top: 25px; color: var(--accent); font-weight: 800; font-size: 0.8rem;">REVISAR DATOS →</div>
+                </article>
+            </a>
+            
+            </div>
+
+        <footer style="margin-top: 100px; color: #444; font-size: 0.8rem;">
+            ©Jotappe 2026 - Ingeniería Deportiva
+        </footer>
     </div>
-</section>
+</body>
+</html>
