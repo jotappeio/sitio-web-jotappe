@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Cochrane 2025 | Jotappe</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        :root { --accent: #8fbc8f; --bg-dark: #050505; --text-main: #ffffff; }
+        body { background: var(--bg-dark); font-family: 'Inter', sans-serif; color: var(--text-main); margin: 0; overflow-x: hidden; }
+        .main-wrapper { position: relative; z-index: 1; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background: radial-gradient(circle, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.92) 75%, rgba(5,5,5,0.98) 100%); padding: 30px 20px; }
+        header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+        .logo-box { width: 60px; height: 60px; background: #111; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 36px; color: var(--accent); border: 1px solid rgba(143, 188, 143, 0.4); text-decoration: none; }
+        .table-section { width: 100%; max-width: 1100px; background: rgba(15, 15, 15, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 24px; backdrop-filter: blur(15px); }
+        h1 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; }
+        .data-label { color: var(--accent); font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        table.dataTable { background: transparent !important; color: #ddd !important; border: none !important; }
+        table.dataTable thead th { color: var(--accent) !important; border-bottom: 1px solid #333 !important; text-transform: uppercase; font-size: 0.75rem; padding: 15px !important; }
+        .dataTables_wrapper .dataTables_filter input { background: #111 !important; border: 1px solid #333 !important; color: white !important; border-radius: 8px; padding: 8px; }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header>
+            <a href="../../index.html" class="logo-box">J</a>
+            <nav><a href="../../resultados.html" style="color: var(--accent); text-decoration: none; font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">← Volver al listado</a></nav>
+        </header>
+        <section class="table-section">
+            <span class="data-label">Cochrane, Patagonia Chilena // 2025</span>
+            <h1>Resultados Oficiales</h1>
+            <table id="tablaCochrane" class="display" style="width:100%">
+                <thead>
+                    <tr><th>Pos</th><th>Bib</th><th>Nombre</th><th>Distancia</th><th>Categoría</th><th>Tiempo</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        // Data real extraída de tu CSV (Muestra de los primeros registros)
+        const cochraneData = [
+            ["1", "54", "Leonardo Macaya", "17K", "50 a 59", "1:36:34.5"],
+            ["2", "31", "Luis Ferrero", "17K", "50 a 59", "1:42:08.4"],
+            ["3", "1", "Hugo Aceituno Pinto", "17K", "30 a 39", "1:45:17.9"],
+            ["4", "121", "Benjamin Silva", "17K", "18 a 29", "1:51:15.0"],
+            ["5", "61", "Gustavo Martinez Valdivia", "17K", "30 a 39", "1:52:38.5"]
+            // Aquí puedes pegar los 517 registros restantes
+        ];
+
+        $(document).ready(function() {
+            $('#tablaCochrane').DataTable({
+                data: cochraneData,
+                language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' },
+                responsive: true,
+                pageLength: 25,
+                order: [[0, 'asc']]
+            });
+        });
+    </script>
+</body>
+</html>
