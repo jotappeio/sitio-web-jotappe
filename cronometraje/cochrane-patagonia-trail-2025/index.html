@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resultados Oficiales | Cochrane Patagonia Trail 2025</title>
+    <title>Resultados Cochrane 2025 | CDT Timing</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root { --accent: #8fbc8f; --bg-dark: #050505; --text-main: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg-dark); font-family: 'Inter', sans-serif; color: var(--text-main); padding: clamp(10px, 5vw, 20px); font-size: 14px; }
-        .container { max-width: 1300px; margin: 0 auto; background: #111; padding: clamp(15px, 5vw, 25px); border-radius: 12px; border: 1px solid #333; }
+        body { background: var(--bg-dark); font-family: 'Inter', sans-serif; color: var(--text-main); padding: 20px; font-size: 14px; }
+        .container { max-width: 1300px; margin: 0 auto; background: #111; padding: 25px; border-radius: 12px; border: 1px solid #333; }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; }
         .logo { font-weight: 900; font-size: 24px; color: var(--accent); text-decoration: none; }
-        .back-btn { color: #888; text-decoration: none; font-size: 12px; text-transform: uppercase; font-weight: bold; border: 1px solid #333; padding: 6px 12px; border-radius: 6px; }
-        
-        /* Tabla */
-        table.dataTable { width: 100% !important; margin-top: 15px !important; background: transparent !important; }
-        table.dataTable thead th { color: var(--accent) !important; background: #0a0a0a; font-size: 0.65rem; text-transform: uppercase; padding: 12px 8px !important; }
-        table.dataTable tbody td { border-bottom: 1px solid #222 !important; color: #ddd; padding: 10px 8px !important; }
+        .back-btn { color: #888; text-decoration: none; font-size: 12px; text-transform: uppercase; border: 1px solid #333; padding: 6px 12px; border-radius: 6px; }
         .rank-badge { font-weight: 800; background: #333; padding: 2px 6px; border-radius: 4px; min-width: 25px; display: inline-block; text-align: center; }
         .rank-gen { background: var(--accent); color: #000; }
+        /* Estilo para inputs de búsqueda de DataTables */
+        .dataTables_filter input { background: #000 !important; color: #fff !important; border: 1px solid #444 !important; border-radius: 4px; padding: 5px; }
     </style>
 </head>
 <body>
@@ -33,10 +31,9 @@
             <a href="../../cronometraje-deportivo.html" class="back-btn">← Volver</a>
         </header>
 
-        <span class="subtitle">Clasificación Oficial // Cochrane 2025</span>
-        <h1>Resultados Cochrane</h1>
+        <h1 style="margin-bottom: 20px;">Resultados Cochrane 2025</h1>
 
-        <div style="display:flex; gap:10px; margin-bottom:20px; background:#1a1a1a; padding:15px; border-radius:8px;">
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; background: #1a1a1a; padding: 15px; border-radius: 8px;">
             <select id="filtroDistancia" style="background:#000; color:#fff; padding:8px;"><option value="">Distancia</option></select>
             <select id="filtroSexo" style="background:#000; color:#fff; padding:8px;"><option value="">Sexo</option><option value="M">M</option><option value="F">F</option></select>
         </div>
@@ -49,46 +46,44 @@
         </table>
     </div>
 
-    <script src="../../assets/lib/jquery-3.7.0.min.js"></script>
-    <script src="../../assets/lib/jquery.dataTables.min.js"></script>
-    <script src="../../assets/lib/dataTables.responsive.min.js"></script>
+    <script src="../../assets/jquery-3.7.0.min.js"></script>
+    <script src="../../assets/jquery.dataTables.min.js"></script> <script src="../../assets/dataTables.responsive.min.js"></script>
 
     <script>
-        // Datos integrados
-        const rawData = [["1", "54", "Leonardo Macaya", "17K", "50 a 59", "1:36:34.5"], ["2", "31", "Luis Ferrero", "17K", "50 a 59", "1:42:08.4"], ["3", "1", "Hugo Aceituno Pinto", "17K", "30 a 39", "1:45:17.9"]]; // ... (Pega aquí tu array completo de 202)
+        const rawData = [["1", "54", "Leonardo Macaya", "17K", "50 a 59", "1:36:34.5"], ["2", "31", "Luis Ferrero", "17K", "50 a 59", "1:42:08.4"], ["3", "1", "Hugo Aceituno Pinto", "17K", "30 a 39", "1:45:17.9"]]; // Pega aquí los 202
 
         $(document).ready(function() {
-            console.log("Motor de resultados iniciado.");
-            
-            try {
-                let processedData = rawData.map(row => ({
-                    posGral: row[0],
-                    bib: row[1],
-                    nombre: row[2],
-                    dist: row[3],
-                    sexo: row[4].includes(' F') ? 'F' : 'M',
-                    originalCat: row[4],
-                    tiempo: row[5]
-                }));
+            let processedData = rawData.map(row => ({
+                posGral: row[0], bib: row[1], nombre: row[2], dist: row[3],
+                sexo: row[4].includes(' F') ? 'F' : 'M',
+                originalCat: row[4], tiempo: row[5]
+            }));
 
-                $('#tablaResultados').DataTable({
-                    data: processedData,
-                    columns: [
-                        { data: 'posGral', render: d => `<span class="rank-badge rank-gen">${d}</span>` },
-                        { data: null, render: d => d.sexo },
-                        { data: 'posGral' }, // Placeholder
-                        { data: 'bib' },
-                        { data: 'nombre' },
-                        { data: 'dist' },
-                        { data: 'originalCat' },
-                        { data: 'tiempo' }
-                    ],
-                    responsive: true,
-                    pageLength: 25
-                });
-            } catch (e) {
-                console.error("Error cargando datos:", e);
-            }
+            var table = $('#tablaResultados').DataTable({
+                data: processedData,
+                columns: [
+                    { data: 'posGral', render: d => `<span class="rank-badge rank-gen">${d}</span>` },
+                    { data: null, render: d => d.sexo },
+                    { data: 'posGral' },
+                    { data: 'bib' },
+                    { data: 'nombre' },
+                    { data: 'dist' },
+                    { data: 'originalCat' },
+                    { data: 'tiempo' }
+                ],
+                responsive: true,
+                language: { search: "Buscar:", lengthMenu: "Ver _MENU_", info: "_TOTAL_ atletas" },
+                initComplete: function() {
+                    let dists = [...new Set(processedData.map(r => r.dist))];
+                    dists.forEach(d => $('#filtroDistancia').append(`<option value="${d}">${d}</option>`));
+                }
+            });
+
+            $('#filtroDistancia, #filtroSexo').on('change', function() {
+                table.column(5).search($('#filtroDistancia').val());
+                table.column(1).search($('#filtroSexo').val());
+                table.draw();
+            });
         });
     </script>
 </body>
