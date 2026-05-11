@@ -16,56 +16,60 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
 
-        /* FONDO DINÁMICO DE IMPACTO (MOSAICO) */
+        /* FONDO DINÁMICO DE IMPACTO */
         .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); z-index: 1; opacity: 0.15; pointer-events: none; filter: grayscale(100%) contrast(120%); }
         .tile { width: 100%; height: 100%; background-size: cover; background-position: center; animation: fadeIn 2s forwards; }
 
         /* CONTENIDO CENTRAL */
-        .content { position: relative; z-index: 10; text-align: center; padding: 20px; max-width: 800px; }
+        .content { position: relative; z-index: 10; text-align: center; padding: 20px; max-width: 900px; }
         
         .logo-box { display: inline-block; font-weight: 900; font-size: 2.5rem; color: var(--accent); border: 4px solid var(--accent); padding: 5px 20px; border-radius: 12px; margin-bottom: 40px; }
         
-        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: -4px; line-height: 0.85; margin-bottom: 20px; text-transform: uppercase; }
-        p { font-size: 1.2rem; font-weight: 300; color: #ccc; margin-bottom: 10px; letter-spacing: 1px; line-height: 1.5; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: -4px; line-height: 0.85; margin-bottom: 25px; text-transform: uppercase; }
+        p { font-size: 1.1rem; font-weight: 300; color: #bbb; letter-spacing: 1.5px; line-height: 1.5; max-width: 650px; margin: 0 auto; }
         
-        /* BOTÓN CV CON MAYOR ESPACIADO */
-        .cv-container { margin-top: 50px; margin-bottom: 50px; }
+        /* CONTENEDOR CV CON ESPACIADO AUMENTADO */
+        .cv-container { margin-top: 70px; margin-bottom: 70px; }
         .cv-btn { 
             display: inline-flex; align-items: center; gap: 15px; 
             color: #000; background: var(--accent); 
             text-decoration: none; font-weight: 900; font-size: 0.85rem; 
-            text-transform: uppercase; letter-spacing: 2px; 
-            padding: 20px 50px; border-radius: 50px; 
+            text-transform: uppercase; letter-spacing: 3px; 
+            padding: 22px 55px; border-radius: 50px; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(143, 188, 143, 0.3);
+            box-shadow: 0 10px 40px rgba(143, 188, 143, 0.4);
         }
-        .cv-btn:hover { transform: scale(1.05) translateY(-5px); background: #fff; }
+        .cv-btn:hover { transform: scale(1.08) translateY(-5px); background: #fff; box-shadow: 0 15px 50px rgba(255,255,255,0.2); }
 
-        /* CONTACTO RESALTADO */
-        .social-box { margin-top: 80px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        /* CONTACTO MAXIMIZADO */
+        .social-box { margin-top: 40px; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
         .social-link { 
             color: var(--accent); 
             text-decoration: none; 
-            font-weight: 900; 
-            font-size: 1.1rem; /* TAMAÑO AUMENTADO */
+            font-weight: 950; /* MÁXIMO RESALTE */
+            font-size: 1.3rem; /* TAMAÑO AGRESIVO */
             text-transform: uppercase; 
-            letter-spacing: 4px; 
+            letter-spacing: 6px; 
             transition: 0.3s; 
-            opacity: 0.9; /* RESALTE INICIAL */
-            border-bottom: 2px solid transparent;
-            padding-bottom: 5px;
+            opacity: 1; 
+            padding: 10px 15px;
+            text-shadow: 0 0 20px rgba(143, 188, 143, 0.3);
         }
         .social-link:hover { 
-            opacity: 1; 
             color: #fff;
-            border-bottom: 2px solid var(--accent);
-            transform: translateY(-3px); 
+            text-shadow: 0 0 30px rgba(143, 188, 143, 0.8);
+            transform: scale(1.1);
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* LINEA DE ESTADO */
-        .status-bar { position: fixed; bottom: 40px; width: 100%; text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #444; text-transform: uppercase; font-weight: 900; }
+        /* LÍNEA DE ESTADO */
+        .status-bar { position: fixed; bottom: 40px; width: 100%; text-align: center; font-size: 0.7rem; letter-spacing: 6px; color: #555; text-transform: uppercase; font-weight: 900; }
+
+        @media (max-width: 600px) {
+            .social-box { gap: 20px; }
+            .social-link { font-size: 1rem; letter-spacing: 3px; }
+        }
     </style>
 </head>
 <body>
@@ -102,10 +106,10 @@
         function init() {
             if(!grid) return;
             grid.innerHTML = '';
-            for(let i=0; i<12; i++) {
+            for(let i=0; i<15; i++) {
                 const t = document.createElement('div');
                 t.className = 'tile';
-                t.style.backgroundImage = `url(${imgs[i%3]}?q=60&w=1000&auto=format&fit=crop)`;
+                t.style.backgroundImage = `url(${imgs[i%3]}?q=60&w=1200&auto=format&fit=crop)`;
                 t.style.animationDelay = `${Math.random() * 2}s`;
                 grid.appendChild(t);
             }
