@@ -16,12 +16,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
 
-        /* FONDO DINÁMICO BLINDADO */
+        /* FONDO DINÁMICO BLINDADO - V3.11 */
         .bg-carrusel { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 1; opacity: 0.22; pointer-events: none; 
             background-color: #000;
-            background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=40&w=1000&auto=format&fit=crop');
+            /* IMAGEN DE SEGURIDAD (ATACAMA NUEVA) */
+            background-image: url('https://images.unsplash.com/photo-1469521669194-bdf95999c5ad?q=40&w=1000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -34,12 +35,18 @@
             animation: infiniteCrossFade 30s infinite;
         }
 
-        /* CICLO TERRITORIAL CHILE */
-        .carrusel-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=60&w=1400&auto=format&fit=crop'); animation-delay: 0s; } 
-        .carrusel-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1590059530537-b3713098553f?q=60&w=1400&auto=format&fit=crop'); animation-delay: 5s; }
+        /* CICLO TERRITORIAL CHILE ACTUALIZADO */
+        /* 1. NORTE - ATACAMA (NUEVA) */
+        .carrusel-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1469521669194-bdf95999c5ad?q=60&w=1400&auto=format&fit=crop'); animation-delay: 0s; } 
+        /* 2. CENTRO - SANTIAGO URBANO (NUEVA) */
+        .carrusel-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1589909202802-8f4aadce1849?q=60&w=1400&auto=format&fit=crop'); animation-delay: 5s; }
+        /* 3. SUR - ARAUCANÍA */
         .carrusel-item:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1571216239102-1405106509f6?q=60&w=1400&auto=format&fit=crop'); animation-delay: 10s; }
+        /* 4. SUR - VOLCANES */
         .carrusel-item:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1549410143-69022e374d6c?q=60&w=1400&auto=format&fit=crop'); animation-delay: 15s; }
+        /* 5. PATAGONIA */
         .carrusel-item:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=60&w=1400&auto=format&fit=crop'); animation-delay: 20s; }
+        /* 6. CORDILLERA - ANDES */
         .carrusel-item:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 25s; }
         
         @keyframes infiniteCrossFade {
@@ -53,7 +60,6 @@
         .content { position: relative; z-index: 10; text-align: center; padding: 20px; max-width: 900px; }
         .logo-box { display: inline-block; font-weight: 900; font-size: 2.5rem; color: var(--accent); border: 4px solid var(--accent); padding: 5px 20px; border-radius: 12px; margin-bottom: 25px; }
         
-        /* NUEVA FIRMA SUTIL */
         .name-label { 
             font-size: 0.75rem; 
             font-weight: 800; 
@@ -131,7 +137,7 @@
     </div>
 
     <div class="status-bar">
-        SANTIAGO - TEMUCO // CHILE // 2026 // V3.10
+        SANTIAGO - TEMUCO // CHILE // 2026 // V3.11
     </div>
 
 </body>
