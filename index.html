@@ -1,203 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FG9R1TWNW9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FG9R1TWNW9');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Juan Pablo Díaz | Ingeniería & Gestión Outdoor</title>
-    
+    <title>Jotappe | Engineering // Media // Nature</title>
     <style>
-        :root { --accent: #8fbc8f; --bg-dark: #050505; --text-main: #ffffff; --text-muted: #bbbbbb; }
+        :root { --accent: #8fbc8f; --bg: #050505; --card: rgba(15,15,15,0.8); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { background: var(--bg-dark); font-family: 'Inter', system-ui, sans-serif; color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: #fff; line-height: 1.5; overflow-x: hidden; }
 
-        /* FONDO DINÁMICO (Vuelve el alma de la web) */
-        .collage-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); z-index: 0; opacity: 0.18; pointer-events: none; filter: grayscale(100%) contrast(115%); }
-        .tile { width: 100%; height: 100%; background-color: #111; background-size: cover; background-position: center; opacity: 0; animation: tile-fade-in 1.5s forwards; }
+        /* FONDO DINÁMICO SUBTIL */
+        .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); z-index: 0; opacity: 0.15; pointer-events: none; }
+        .tile { width: 100%; height: 100%; background-size: cover; background-position: center; filter: grayscale(100%); animation: fade 2s forwards; }
 
-        .main-wrapper { position: relative; z-index: 10; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background: radial-gradient(circle, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.85) 70%, rgba(5,5,5,0.95) 100%); padding: 40px 20px; }
+        .wrapper { position: relative; z-index: 10; width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; flex-direction: column; min-height: 100vh; }
 
-        header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
-        .logo-box { width: 65px; height: 65px; background: #111; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 38px; color: var(--accent); border: 1px solid rgba(143, 188, 143, 0.4); box-shadow: 0 0 20px rgba(143, 188, 143, 0.1); }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10vh; }
+        .logo { font-weight: 900; font-size: 2rem; color: var(--accent); border: 2px solid var(--accent); padding: 5px 15px; border-radius: 8px; }
+        .tagline { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 800; }
 
-        .hero { text-align: center; max-width: 950px; margin-bottom: 60px; padding: 40px 0; }
-        h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 900; margin-bottom: 10px; letter-spacing: -4px; line-height: 0.9; }
-        .subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--accent); margin-bottom: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; }
-        .intro-text { font-size: 1.3rem; color: #f0f0f0; max-width: 800px; margin: 0 auto; font-weight: 300; line-height: 1.4; }
+        .hero { margin-bottom: 10vh; }
+        h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; letter-spacing: -4px; line-height: 0.85; margin-bottom: 20px; }
+        .hero p { font-size: 1.4rem; font-weight: 300; color: #ccc; max-width: 600px; }
 
-        .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 7px; color: #ffffff; margin: 120px 0 60px; text-align: center; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; gap: 30px; font-weight: 900; opacity: 0.6; }
-        .section-label::before, .section-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); }
+        /* GRID TÉCNICO */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; }
+        .card { background: var(--card); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 4px; backdrop-filter: blur(10px); transition: 0.3s; }
+        .card:hover { border-color: var(--accent); }
+        .card h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 15px; }
+        .card p { font-size: 1rem; color: #999; }
 
-        /* EXPERIENCIA PROFESIONAL (Narrativa de Ingeniería) */
-        .roles-container { width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 80px; }
-        .role-entry { display: grid; grid-template-columns: 220px 1fr; gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 60px; }
-        .role-year { color: var(--accent); font-weight: 900; font-size: 0.9rem; letter-spacing: 2px; }
-        .role-info h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; color: #fff; }
-        .role-info h4 { font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .role-info p { font-size: 1.1rem; color: #bbb; margin-bottom: 20px; font-weight: 300; }
-        .tag-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        .tag { font-size: 0.65rem; background: rgba(143, 188, 143, 0.08); color: var(--accent); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(143, 188, 143, 0.2); font-weight: 700; text-transform: uppercase; }
+        /* SECCIÓN EXPERIENCIA MÍNIMA */
+        .timeline { margin-top: 10vh; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
+        .time-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+        .time-item span:first-child { font-weight: 800; color: var(--accent); }
 
-        /* BOTÓN FLOTANTE "CONVERSEMOS" (Rediseño de Impacto) */
-        .fab-wrapper { position: fixed; bottom: 40px; right: 40px; z-index: 1000; display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 20px; }
-        .fab-pill { background: var(--accent); color: #000; padding: 16px 32px; border-radius: 60px; display: flex; align-items: center; gap: 15px; cursor: pointer; box-shadow: 0 15px 45px rgba(0,0,0,0.6); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none; text-decoration: none; }
-        .fab-pill span { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; }
-        .fab-pill svg { transition: 0.4s; width: 24px; height: 24px; }
-        .fab-pill:hover { transform: scale(1.05) translateY(-5px); background: #aaddaa; }
-        
-        .fab-options { display: flex; flex-direction: column; gap: 15px; opacity: 0; pointer-events: none; transform: translateY(20px); transition: 0.4s; }
-        .fab-wrapper:hover .fab-options { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        .fab-option { width: 60px; height: 60px; background: #111; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(143, 188, 143, 0.3); transition: 0.3s; position: relative; }
-        .fab-option:hover { background: var(--accent); color: #000; transform: scale(1.1); }
-        .fab-option svg { width: 28px; height: 28px; fill: currentColor; }
-        .fab-option::after { content: attr(data-label); position: absolute; right: 80px; background: #111; color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 900; white-space: nowrap; opacity: 0; transition: 0.3s; border: 1px solid rgba(143, 188, 143, 0.2); text-transform: uppercase; }
-        .fab-option:hover::after { opacity: 1; }
-
-        .cv-btn { margin-top: 40px; display: inline-flex; align-items: center; gap: 15px; color: var(--accent); text-decoration: none; border: 2px solid var(--accent); padding: 18px 45px; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .cv-btn:hover { background: var(--accent); color: #000; }
-
-        .marquee-section { width: 100vw; overflow: hidden; background: rgba(255,255,255,0.02); padding: 50px 0; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .marquee-track { display: flex; width: max-content; gap: 120px; animation: scroll 60s linear infinite; }
-        .marquee-item { font-weight: 900; color: #444; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 4px; }
-
-        @keyframes tile-fade-in { to { opacity: 1; } }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        @media (max-width: 850px) {
-            .role-entry { grid-template-columns: 1fr; gap: 10px; padding-bottom: 40px; }
-            .fab-pill span { display: none; }
-            .fab-pill { padding: 20px; }
+        /* BOTÓN FLOTANTE "CONVERSEMOS" */
+        .cta-pill { 
+            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+            background: var(--accent); color: #000; padding: 15px 30px; 
+            border-radius: 50px; text-decoration: none; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
         }
+        .cta-pill:hover { transform: scale(1.05) translateY(-5px); }
+        
+        .social-drawer { 
+            position: fixed; bottom: 90px; right: 35px; z-index: 999;
+            display: flex; flex-direction: column; gap: 10px; 
+            opacity: 0; transform: translateY(20px); transition: 0.3s; pointer-events: none;
+        }
+        .cta-group:hover .social-drawer { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .s-btn { background: #111; color: #fff; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 1px solid var(--accent); }
+
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+        @media (max-width: 768px) { h1 { letter-spacing: -2px; } }
     </style>
 </head>
 <body>
 
-    <div class="collage-container" id="gridContainer"></div>
+    <div class="bg-grid" id="bgGrid"></div>
 
-    <div class="fab-wrapper">
-        <div class="fab-pill">
-            <span>Conversemos</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        </div>
-        <div class="fab-options">
-            <a href="https://wa.me/56950005651" class="fab-option" data-label="WhatsApp Directo">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28-.25-.13-1.47-.72-1.7-.8-.23-.09-.39-.13-.56.13-.17.25-.64.8-.78.96-.14.17-.28.19-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.51-.41-.43-.56-.44l-.48-.01z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/jotappecom" class="fab-option" data-label="LinkedIn Perfil">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/jotappe.io/" class="fab-option" data-label="Instagram Media">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
-            </a>
-        </div>
-    </div>
-
-    <div class="main-wrapper">
+    <div class="wrapper">
         <header>
-            <div class="logo-box">J</div>
-            <div style="text-align: right;">
-                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 900; letter-spacing: 3px;">STRATEGY & OPS</div>
-            </div>
+            <div class="logo">J</div>
+            <div class="tagline">Engineering // Media // Nature</div>
         </header>
 
         <section class="hero">
-            <h1>Juan Pablo Díaz</h1>
-            <div class="subtitle">Ingeniería de Operaciones Críticas Outdoor</div>
-            <p class="intro-text">
-                Especialista en la optimización de procesos donde la precisión tecnológica potencia la capacidad humana en entornos territoriales de alta complejidad.
-            </p>
-            <a href="assets/CV_Juan_Pablo_Diaz.pdf" class="cv-btn" target="_blank">Descargar Portfolio / CV</a>
+            <h1 id="mainTitle">STRATEGY<br>OUTDOOR</h1>
+            <p>Optimización de procesos técnicos para territorios de alta complejidad.</p>
+            <a href="assets/CV_Juan_Pablo_Diaz.pdf" style="color:var(--accent); font-weight:800; text-decoration:none; font-size:0.8rem; margin-top:20px; display:inline-block; border-bottom: 1px solid var(--accent);">DOWNLOAD TRACK RECORD [PDF]</a>
         </section>
 
-        <span class="section-label">Trayectoria Estratégica</span>
-
-        <div class="roles-container">
-            <article class="role-entry">
-                <div class="role-year">2013 — PRESENTE</div>
-                <div class="role-info">
-                    <h3>Universidad San Sebastián</h3>
-                    <h4>Liderazgo en Terreno & Gestión Académica</h4>
-                    <p>Dirección técnica para la Facultad de Ingeniería y Tecnología. Responsable de la arquitectura logística y seguridad de expediciones masivas en la carrera de Ingeniería en Expediciones y Ecoturismo.</p>
-                    <div class="tag-group">
-                        <span class="tag">Risk Management</span>
-                        <span class="tag">Field Ops</span>
-                        <span class="tag">Academic Logistics</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="role-entry">
-                <div class="role-year">2023 — 2024</div>
-                <div class="role-info">
-                    <h3>Outlife (Santuario Yerba Loca)</h3>
-                    <h4>Jefatura de Operaciones y Activos</h4>
-                    <p>Diseño y ejecución de la estrategia operativa de montaña. Optimización de protocolos de emergencia, control de activos territoriales y flujo masivo de visitantes en alta montaña.</p>
-                    <div class="tag-group">
-                        <span class="tag">Mountain Safety</span>
-                        <span class="tag">Asset Optimization</span>
-                        <span class="tag">SOP Design</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="role-entry">
-                <div class="role-year">ESPECIALIDAD</div>
-                <div class="role-info">
-                    <h3>Ingeniería de Datos Deportivos</h3>
-                    <h4>CDT Timing / Cronometraje de Élite</h4>
-                    <p>Implementación de flujos de datos en tiempo real para eventos internacionales. Consultoría técnica en integración Wiclax / Webscorer para competencias de alto rendimiento.</p>
-                    <div class="tag-group">
-                        <span class="tag">Wiclax Tech</span>
-                        <span class="tag">Real-time Data</span>
-                        <span class="tag">Performance Timing</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="marquee-section">
-            <div class="marquee-track">
-                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
-                <span class="marquee-item">HUELLA SPORTS</span>
-                <span class="marquee-item">OUTLIFE</span>
-                <span class="marquee-item">CDT TIMING</span>
-                <span class="marquee-item">UNIVERSIDAD SAN SEBASTIAN</span>
-                <span class="marquee-item">PARQUE YERBA LOCA</span>
-                <span class="marquee-item">LATITUD SUR EXPEDITION</span>
+        <div class="grid">
+            <div class="card">
+                <h3>Logística</h3>
+                <p>Diseño de operaciones críticas y seguridad en montaña.</p>
+            </div>
+            <div class="card">
+                <h3>Timing</h3>
+                <p>Arquitectura de datos para cronometraje de élite (Wiclax).</p>
+            </div>
+            <div class="card">
+                <h3>Engineering</h3>
+                <p>Modernización de estructuras operativas outdoor.</p>
             </div>
         </div>
 
-        <footer style="padding: 100px 0 40px; color: #444; font-size: 0.8rem; text-align: center;">
-            ©2026 Jotappe // Ingeniería aplicada al territorio
+        <section class="timeline">
+            <div class="time-item"><span>USS</span><span>Soporte Operativo & Logística</span></div>
+            <div class="time-item"><span>OUTLIFE</span><span>Jefatura de Operaciones Yerba Loca</span></div>
+            <div class="time-item"><span>CDT TIMING</span><span>Dirección Técnica de Datos</span></div>
+        </section>
+
+        <footer style="margin-top: auto; padding-top: 50px; font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 2px;">
+            ©2026 // Plan 40 // Santiago - Temuco
         </footer>
     </div>
 
+    <div class="cta-group">
+        <div class="social-drawer">
+            <a href="https://wa.me/56950005651" class="s-btn">W</a>
+            <a href="https://www.linkedin.com/in/jotappecom" class="s-btn">L</a>
+            <a href="https://www.instagram.com/jotappe.io/" class="s-btn">I</a>
+        </div>
+        <a href="#" class="cta-pill">Conversemos</a>
+    </div>
+
     <script>
-        const container = document.getElementById('gridContainer');
-        const rawImages = [
+        const grid = document.getElementById('bgGrid');
+        const imgs = [
             'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
             'https://images.unsplash.com/photo-1454496522488-7a8e488e8606',
             'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'
         ];
-        function createGrid() {
-            container.innerHTML = '';
-            for (let i = 0; i < 12; i++) {
-                const tile = document.createElement('div');
-                tile.className = 'tile';
-                const randomImg = rawImages[Math.floor(Math.random() * rawImages.length)];
-                tile.style.backgroundImage = `url('${randomImg}?q=60&w=1000&auto=format&fit=crop')`;
-                tile.style.animationDelay = `${Math.random() * 2}s`;
-                container.appendChild(tile);
-            }
+        for(let i=0; i<12; i++) {
+            const t = document.createElement('div');
+            t.className = 'tile';
+            t.style.backgroundImage = `url(${imgs[i%3]}?q=60&w=800)`;
+            grid.appendChild(t);
         }
-        window.onload = createGrid;
     </script>
 </body>
 </html>
