@@ -10,21 +10,31 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- OPTIMIZACIÓN DE TÍTULO: Posicionamiento directo en tu nicho senior -->
     <title>Juan Pablo Díaz | Gestión de Terreno & Proyectos Outdoor</title>
     <style>
         :root { --accent: #8fbc8f; --bg: #050505; --text: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        
+        /* CORRECCIÓN CRÍTICA: Cambiamos a min-height y activamos flujo vertical elástico */
+        body { 
+            background: var(--bg); 
+            font-family: 'Inter', system-ui, sans-serif; 
+            color: var(--text); 
+            min-height: 100vh; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 30px 20px;
+        }
 
-        /* DETALLE TÉCNICO: Capa de contraste radial para asegurar legibilidad absoluta del texto */
         .bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 100%);
             z-index: 2; pointer-events: none;
         }
 
-        /* TERMINAL DE FONDO DINÁMICO */
         .bg-carrusel { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 1; opacity: 0.18; pointer-events: none; 
@@ -41,7 +51,6 @@
             animation: infiniteCrossFade 36s infinite;
         }
 
-        /* CICLO TERRITORIAL */
         .carrusel-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=60&w=1400&auto=format&fit=crop'); animation-delay: 0s; } 
         .carrusel-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1590059530537-b3713098553f?q=60&w=1400&auto=format&fit=crop'); animation-delay: 6s; }
         .carrusel-item:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1545652985-5ebb365b52c5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 12s; }
@@ -57,23 +66,12 @@
             100% { opacity: 0; }
         }
 
-        .content { position: relative; z-index: 10; text-align: center; padding: 20px; max-width: 900px; }
+        /* CORRECCIÓN: margin: auto 0 fuerza el centrado vertical perfecto sin colapsos */
+        .content { position: relative; z-index: 10; text-align: center; padding: 20px 0; max-width: 900px; margin: auto 0; }
         .logo-box { display: inline-block; font-weight: 900; font-size: 2.2rem; color: var(--accent); border: 3px solid var(--accent); padding: 5px 18px; border-radius: 12px; margin-bottom: 25px; user-select: none; }
         
-        .name-label { 
-            font-size: 0.8rem; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 7px; 
-            color: var(--accent); 
-            opacity: 0.9; 
-            margin-bottom: 20px; 
-            display: block;
-        }
-
+        .name-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 7px; color: var(--accent); opacity: 0.9; margin-bottom: 20px; display: block; }
         h1 { font-size: clamp(2.2rem, 7.5vw, 5rem); font-weight: 900; letter-spacing: -3px; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase; }
-        
-        /* OPTIMIZACIÓN: Tagline profesional continuo en lugar de texto pasivo */
         .tagline { font-size: clamp(0.9rem, 2vw, 1.15rem); font-weight: 400; color: #ccc; letter-spacing: 2px; line-height: 1.6; max-width: 700px; margin: 0 auto 10px auto; text-transform: uppercase; }
         .status-tag { font-size: 0.75rem; font-weight: 300; color: #777; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 15px; }
         
@@ -90,29 +88,24 @@
         .cv-btn:hover { transform: scale(1.05) translateY(-3px); background: #fff; box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2); }
 
         .social-box { margin-top: 35px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .social-link { 
-            color: #aaa; 
-            text-decoration: none; 
-            font-weight: 800; 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            transition: 0.3s; 
-        }
+        .social-link { color: #aaa; text-decoration: none; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; transition: 0.3s; }
         .social-link:hover { color: var(--accent); transform: translateY(-2px); text-shadow: 0 0 15px rgba(143, 188, 143, 0.5); }
 
-        .status-bar { position: fixed; bottom: 30px; width: 100%; text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #444; text-transform: uppercase; font-weight: 900; z-index: 10; }
+        /* CORRECCIÓN: Eliminamos position: fixed para evitar solapamiento artificial */
+        .status-bar { width: 100%; text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #444; text-transform: uppercase; font-weight: 900; z-index: 10; margin-top: 30px; }
 
         @media (max-width: 600px) {
             .social-box { gap: 20px; }
             .social-link { font-size: 0.8rem; letter-spacing: 2px; }
             .name-label { letter-spacing: 4px; font-size: 0.7rem; }
-            .status-bar { bottom: 20px; letter-spacing: 3px; }
+            .status-bar { letter-spacing: 3px; margin-top: 20px; }
+            body { padding: 20px 15px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- El carrusel de fondo se mantiene fixed e independiente -->
     <div class="bg-carrusel">
         <div class="carrusel-item"></div>
         <div class="carrusel-item"></div>
@@ -122,20 +115,18 @@
         <div class="carrusel-item"></div>
     </div>
     
-    <!-- Capa técnica protectora de contraste -->
     <div class="bg-overlay"></div>
 
+    <!-- Contenedor central con resorte dinámico -->
     <div class="content">
         <div class="logo-box">J</div>
         <span class="name-label">Juan Pablo Díaz</span>
         <h1>Rediseñando<br>el camino a la Cumbre</h1>
         
-        <!-- Cambios estratégicos de texto: Identidad corporativa activa -->
         <p class="tagline">Logística de Terreno • Dirección de Proyectos • Ecoturismo</p>
         <span class="status-tag">Estructura Digital en Optimización</span>
         
         <div class="cv-container">
-            <!-- Asegúrate de subir tu nuevo archivo PDF de 2 páginas con este nombre exacto a tu hosting -->
             <a href="assets/CV_Juan_Pablo_Diaz.pdf" class="cv-btn" target="_blank">Descargar CV</a>
         </div>
 
@@ -146,6 +137,7 @@
         </div>
     </div>
 
+    <!-- Pie de página integrado fluidamente en la base -->
     <div class="status-bar">
         CHILE // 2026
     </div>
