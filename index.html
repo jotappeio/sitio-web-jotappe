@@ -10,21 +10,27 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Juan Pablo Díaz | Ingeniería de Procesos</title>
+    <!-- OPTIMIZACIÓN DE TÍTULO: Posicionamiento directo en tu nicho senior -->
+    <title>Juan Pablo Díaz | Gestión de Terreno & Proyectos Outdoor</title>
     <style>
         :root { --accent: #8fbc8f; --bg: #050505; --text: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
 
-        /* TERMINAL DE FONDO DINÁMICO - MOVILIDAD TOTAL */
+        /* DETALLE TÉCNICO: Capa de contraste radial para asegurar legibilidad absoluta del texto */
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 100%);
+            z-index: 2; pointer-events: none;
+        }
+
+        /* TERMINAL DE FONDO DINÁMICO */
         .bg-carrusel { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            z-index: 1; opacity: 0.22; pointer-events: none; 
+            z-index: 1; opacity: 0.18; pointer-events: none; 
             background-color: #000;
-            /* IMAGEN DE SEGURIDAD: DESIERTO CHILE */
             background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=40&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background-size: cover; background-position: center;
         }
         
         .carrusel-item { 
@@ -32,81 +38,76 @@
             background-size: cover; background-position: center; 
             opacity: 0; 
             filter: grayscale(100%) contrast(120%);
-            animation: infiniteCrossFade 36s infinite; /* 6 imgs x 6s */
+            animation: infiniteCrossFade 36s infinite;
         }
 
-        /* CICLO TERRITORIAL: ADAPTABILIDAD Y MOVILIDAD */
-        
-        /* 1. NORTE - ATACAMA, CHILE */
+        /* CICLO TERRITORIAL */
         .carrusel-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=60&w=1400&auto=format&fit=crop'); animation-delay: 0s; } 
-        /* 2. CENTRO - SANTIAGO URBANO */
         .carrusel-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1590059530537-b3713098553f?q=60&w=1400&auto=format&fit=crop'); animation-delay: 6s; }
-        /* 3. INTERNACIONAL - OBELISCO, BUENOS AIRES (Movilidad) */
         .carrusel-item:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1545652985-5ebb365b52c5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 12s; }
-        /* 4. SUR - ARAUCANÍA (Bosques) */
         .carrusel-item:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1571216239102-1405106509f6?q=60&w=1400&auto=format&fit=crop'); animation-delay: 18s; }
-        /* 5. CORDILLERA - ALTA MONTAÑA (Andes) */
         .carrusel-item:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 24s; }
-        /* 6. EXTREMO SUR - PATAGONIA (Hielo) */
         .carrusel-item:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=60&w=1400&auto=format&fit=crop'); animation-delay: 30s; }
         
-        /* MATEMÁTICA DE CROSS-FADE (CERO NEGRO) */
         @keyframes infiniteCrossFade {
             0% { opacity: 0; }
-            5% { opacity: 1; }   /* Entrada */
-            20% { opacity: 1; }  /* Estabilidad */
-            25% { opacity: 0; }  /* Salida */
+            5% { opacity: 1; }
+            20% { opacity: 1; }
+            25% { opacity: 0; }
             100% { opacity: 0; }
         }
 
         .content { position: relative; z-index: 10; text-align: center; padding: 20px; max-width: 900px; }
-        .logo-box { display: inline-block; font-weight: 900; font-size: 2.5rem; color: var(--accent); border: 4px solid var(--accent); padding: 5px 20px; border-radius: 12px; margin-bottom: 25px; }
+        .logo-box { display: inline-block; font-weight: 900; font-size: 2.2rem; color: var(--accent); border: 3px solid var(--accent); padding: 5px 18px; border-radius: 12px; margin-bottom: 25px; user-select: none; }
         
         .name-label { 
-            font-size: 0.75rem; 
+            font-size: 0.8rem; 
             font-weight: 800; 
             text-transform: uppercase; 
-            letter-spacing: 6px; 
+            letter-spacing: 7px; 
             color: var(--accent); 
-            opacity: 0.8; 
-            margin-bottom: 15px; 
+            opacity: 0.9; 
+            margin-bottom: 20px; 
             display: block;
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: -4px; line-height: 0.85; margin-bottom: 25px; text-transform: uppercase; }
-        p { font-size: 1.1rem; font-weight: 300; color: #bbb; letter-spacing: 1.5px; line-height: 1.5; max-width: 650px; margin: 0 auto; }
+        h1 { font-size: clamp(2.2rem, 7.5vw, 5rem); font-weight: 900; letter-spacing: -3px; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase; }
         
-        .cv-container { margin-top: 60px; margin-bottom: 60px; }
+        /* OPTIMIZACIÓN: Tagline profesional continuo en lugar de texto pasivo */
+        .tagline { font-size: clamp(0.9rem, 2vw, 1.15rem); font-weight: 400; color: #ccc; letter-spacing: 2px; line-height: 1.6; max-width: 700px; margin: 0 auto 10px auto; text-transform: uppercase; }
+        .status-tag { font-size: 0.75rem; font-weight: 300; color: #777; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 15px; }
+        
+        .cv-container { margin-top: 45px; margin-bottom: 45px; }
         .cv-btn { 
             display: inline-flex; align-items: center; gap: 15px; 
             color: #000; background: var(--accent); 
-            text-decoration: none; font-weight: 950; font-size: 0.85rem; 
+            text-decoration: none; font-weight: 900; font-size: 0.85rem; 
             text-transform: uppercase; letter-spacing: 3px; 
-            padding: 22px 55px; border-radius: 50px; 
+            padding: 20px 50px; border-radius: 50px; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(143, 188, 143, 0.4);
+            box-shadow: 0 10px 30px rgba(143, 188, 143, 0.3);
         }
-        .cv-btn:hover { transform: scale(1.08) translateY(-5px); background: #fff; }
+        .cv-btn:hover { transform: scale(1.05) translateY(-3px); background: #fff; box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2); }
 
-        .social-box { margin-top: 40px; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .social-box { margin-top: 35px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .social-link { 
-            color: var(--accent); 
+            color: #aaa; 
             text-decoration: none; 
-            font-weight: 950; 
-            font-size: 1.3rem; 
+            font-weight: 800; 
+            font-size: 0.9rem; 
             text-transform: uppercase; 
-            letter-spacing: 6px; 
+            letter-spacing: 4px; 
             transition: 0.3s; 
-            text-shadow: 0 0 20px rgba(143, 188, 143, 0.3);
         }
-        .social-link:hover { color: #fff; transform: scale(1.1); }
+        .social-link:hover { color: var(--accent); transform: translateY(-2px); text-shadow: 0 0 15px rgba(143, 188, 143, 0.5); }
 
-        .status-bar { position: fixed; bottom: 40px; width: 100%; text-align: center; font-size: 0.7rem; letter-spacing: 6px; color: #555; text-transform: uppercase; font-weight: 900; }
+        .status-bar { position: fixed; bottom: 30px; width: 100%; text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #444; text-transform: uppercase; font-weight: 900; z-index: 10; }
 
         @media (max-width: 600px) {
             .social-box { gap: 20px; }
-            .social-link { font-size: 1rem; letter-spacing: 3px; }
-            .name-label { letter-spacing: 4px; font-size: 0.65rem; }
+            .social-link { font-size: 0.8rem; letter-spacing: 2px; }
+            .name-label { letter-spacing: 4px; font-size: 0.7rem; }
+            .status-bar { bottom: 20px; letter-spacing: 3px; }
         }
     </style>
 </head>
@@ -120,21 +121,28 @@
         <div class="carrusel-item"></div>
         <div class="carrusel-item"></div>
     </div>
+    
+    <!-- Capa técnica protectora de contraste -->
+    <div class="bg-overlay"></div>
 
     <div class="content">
         <div class="logo-box">J</div>
         <span class="name-label">Juan Pablo Díaz</span>
         <h1>Rediseñando<br>el camino a la Cumbre</h1>
-        <p>Sitio web en construcción.</p>
+        
+        <!-- Cambios estratégicos de texto: Identidad corporativa activa -->
+        <p class="tagline">Logística de Terreno • Dirección de Proyectos • Ecoturismo</p>
+        <span class="status-tag">Estructura Digital en Optimización</span>
         
         <div class="cv-container">
+            <!-- Asegúrate de subir tu nuevo archivo PDF de 2 páginas con este nombre exacto a tu hosting -->
             <a href="assets/CV_Juan_Pablo_Diaz.pdf" class="cv-btn" target="_blank">Descargar CV</a>
         </div>
 
         <div class="social-box">
-            <a href="https://wa.me/56950005651" class="social-link">WhatsApp</a>
-            <a href="https://www.linkedin.com/in/jotappecom" class="social-link">LinkedIn</a>
-            <a href="https://www.instagram.com/jotappe.io/" class="social-link">Instagram</a>
+            <a href="https://wa.me/56950005651" class="social-link" target="_blank">WhatsApp</a>
+            <a href="https://www.linkedin.com/in/jotappecom" class="social-link" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/jotappe.io/" class="social-link" target="_blank">Instagram</a>
         </div>
     </div>
 
