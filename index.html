@@ -34,12 +34,12 @@
             z-index: 2; pointer-events: none;
         }
 
-        /* FONDO FIJO CON TU FOTO ESPECÍFICA DE LIGHTROOM */
+        /* FONDO FIJO LOCAL EN ALTA RESOLUCIÓN */
         .bg-fixed { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 1; opacity: 0.25; pointer-events: none; 
             background-color: #000;
-            background-image: url('https://lightroom.adobe.com/v2c/spaces/95e85373e0d84fb59a4bf10bad1d22ce/assets/b874406ec2374f778625b8c9ca8c023d/revisions/a6874af7621d406db5ecdde0b6028ae2/renditions/bfca1cd2a1987c6e877dd4c9ea87e4df');
+            background-image: url('assets/hero-bg.jpg');
             background-size: cover; background-position: center;
             filter: grayscale(100%) contrast(120%);
         }
@@ -107,7 +107,7 @@
 </head>
 <body>
 
-    <!-- Imagen fija de fondo -->
+    <!-- Fondo con tu imagen local -->
     <div class="bg-fixed"></div>
     
     <div class="bg-overlay"></div>
