@@ -10,7 +10,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Juan Pablo Díaz | Gestión de proyectos | Logistica Outdoor | Profesional independiente </title>
+    <title>Juan Pablo Díaz | Gestión de proyectos | Logística Outdoor | Profesional independiente</title>
     <style>
         :root { --accent: #8fbc8f; --bg: #050505; --text: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -34,35 +34,14 @@
             z-index: 2; pointer-events: none;
         }
 
-        .bg-carrusel { 
+        /* FONDO FIJO CON TU FOTO DE LIGHTROOM */
+        .bg-fixed { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            z-index: 1; opacity: 0.18; pointer-events: none; 
+            z-index: 1; opacity: 0.25; pointer-events: none; 
             background-color: #000;
-            background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=40&w=1000&auto=format&fit=crop');
+            background-image: url('https://lightroom.adobe.com/v2c/spaces/95e85373e0d84fb59a4bf10bad1d22ce/assets/5cc237551e6088595217732b9d20b7a4/revisions/7c0f0cfa16e54150b518dc216a4b2f06/renditions/7404836e869e62afb8ad28b2ad05c6f3');
             background-size: cover; background-position: center;
-        }
-        
-        .carrusel-item { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background-size: cover; background-position: center; 
-            opacity: 0; 
             filter: grayscale(100%) contrast(120%);
-            animation: infiniteCrossFade 36s infinite;
-        }
-
-        .carrusel-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=60&w=1400&auto=format&fit=crop'); animation-delay: 0s; } 
-        .carrusel-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1590059530537-b3713098553f?q=60&w=1400&auto=format&fit=crop'); animation-delay: 6s; }
-        .carrusel-item:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1545652985-5ebb365b52c5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 12s; }
-        .carrusel-item:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1571216239102-1405106509f6?q=60&w=1400&auto=format&fit=crop'); animation-delay: 18s; }
-        .carrusel-item:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=60&w=1400&auto=format&fit=crop'); animation-delay: 24s; }
-        .carrusel-item:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=60&w=1400&auto=format&fit=crop'); animation-delay: 30s; }
-        
-        @keyframes infiniteCrossFade {
-            0% { opacity: 0; }
-            5% { opacity: 1; }
-            20% { opacity: 1; }
-            25% { opacity: 0; }
-            100% { opacity: 0; }
         }
 
         .content { position: relative; z-index: 10; text-align: center; padding: 20px 0; max-width: 900px; margin: auto 0; }
@@ -128,14 +107,8 @@
 </head>
 <body>
 
-    <div class="bg-carrusel">
-        <div class="carrusel-item"></div>
-        <div class="carrusel-item"></div>
-        <div class="carrusel-item"></div>
-        <div class="carrusel-item"></div>
-        <div class="carrusel-item"></div>
-        <div class="carrusel-item"></div>
-    </div>
+    <!-- Imagen fija de fondo -->
+    <div class="bg-fixed"></div>
     
     <div class="bg-overlay"></div>
 
@@ -144,7 +117,7 @@
         <span class="name-label">Juan Pablo Díaz</span>
         <h1>Rediseñando<br>el camino a la Cumbre</h1>
         
-        <p class="tagline">Gestión de proyectos | Logistica Outdoor</p>
+        <p class="tagline">Gestión de proyectos | Logística Outdoor</p>
         <span class="status-tag">Estructura Digital en Optimización</span>
         
         <div class="cta-container">
