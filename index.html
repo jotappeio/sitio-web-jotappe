@@ -81,7 +81,7 @@
         .btn-icon { width: 18px; height: 18px; fill: currentColor; transition: transform 0.3s ease; }
         .portfolio-btn:hover { transform: scale(1.05) translateY(-3px); background: var(--accent); color: #000; box-shadow: 0 15px 40px rgba(143, 188, 143, 0.4); }
 
-        /* MÓDULO VISUAL DESTACADO (2 FOTOS) */
+        /* MÓDULO VISUAL DESTACADO (2 FOTOS LIMPIAS) */
         .preview-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -110,21 +110,6 @@
         .preview-item:hover img {
             filter: grayscale(20%) contrast(100%);
             transform: scale(1.05);
-        }
-
-        .preview-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 8px 12px;
-            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ddd;
-            text-align: left;
         }
 
         .social-box { margin-top: 35px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
@@ -170,15 +155,13 @@
             </div>
         </div>
 
-        <!-- REGISTRO DE CAMPO (2 FOTOS DESTACADAS) -->
+        <!-- REGISTRO DE CAMPO (2 FOTOS DESTACADAS LIMPIAS) -->
         <div class="preview-grid">
             <div class="preview-item">
                 <img src="assets/operaciones_web.jpeg" alt="Centro de Control y Operaciones">
-                <div class="preview-caption">01 // Control Operativo</div>
             </div>
             <div class="preview-item">
                 <img src="assets/audiovisual_web.jpeg" alt="Logística en Terreno Nieve">
-                <div class="preview-caption">02 // Logística de Campo</div>
             </div>
         </div>
 
