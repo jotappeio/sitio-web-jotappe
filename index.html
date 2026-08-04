@@ -35,7 +35,6 @@
             z-index: 2; pointer-events: none;
         }
 
-        /* FONDO FIJO LOCAL EN ALTA RESOLUCIÓN */
         .bg-fixed { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 1; opacity: 0.25; pointer-events: none; 
@@ -52,8 +51,8 @@
         h1 { font-size: clamp(2.2rem, 7.5vw, 5rem); font-weight: 900; letter-spacing: -3px; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase; }
         .tagline { font-size: clamp(0.9rem, 2vw, 1.15rem); font-weight: 400; color: #ccc; letter-spacing: 2px; line-height: 1.6; max-width: 700px; margin: 0 auto; text-transform: uppercase; }
         
-        /* CONTENEDOR Y BOTONES CTA */
-        .cta-container { margin-top: 45px; margin-bottom: 45px; }
+        /* BOTONES CTA */
+        .cta-container { margin-top: 40px; margin-bottom: 35px; }
         .cta-group { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
         
         .btn-base { 
@@ -61,7 +60,7 @@
             gap: 12px;
             text-decoration: none; font-weight: 900; font-size: 0.85rem; 
             text-transform: uppercase; letter-spacing: 3px; 
-            padding: 20px 40px; border-radius: 50px; 
+            padding: 18px 36px; border-radius: 50px; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -78,15 +77,54 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .btn-icon {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            transition: transform 0.3s ease;
+        .btn-icon { width: 18px; height: 18px; fill: currentColor; transition: transform 0.3s ease; }
+        .portfolio-btn:hover { transform: scale(1.05) translateY(-3px); background: var(--accent); color: #000; box-shadow: 0 15px 40px rgba(143, 188, 143, 0.4); }
+
+        /* MÓDULO VISUAL DESTACADO (2 FOTOS) */
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0 10px 0;
+            width: 100%;
         }
 
-        .portfolio-btn:hover { transform: scale(1.05) translateY(-3px); background: var(--accent); color: #000; box-shadow: 0 15px 40px rgba(143, 188, 143, 0.4); }
-        .portfolio-btn:hover .btn-icon { transform: scale(1.1); }
+        .preview-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #111;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(110%);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .preview-item:hover img {
+            filter: grayscale(20%) contrast(100%);
+            transform: scale(1.05);
+        }
+
+        .preview-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px 12px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ddd;
+            text-align: left;
+        }
 
         .social-box { margin-top: 35px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .social-link { color: #aaa; text-decoration: none; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; transition: 0.3s; }
@@ -94,7 +132,9 @@
 
         .status-bar { width: 100%; text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #444; text-transform: uppercase; font-weight: 900; z-index: 10; margin-top: 30px; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+            .preview-grid { grid-template-columns: 1fr; gap: 12px; }
+            .preview-item { aspect-ratio: 16 / 9; }
             .cta-group { flex-direction: column; gap: 15px; }
             .btn-base { width: 100%; max-width: 320px; padding: 18px 25px; }
             .social-box { gap: 20px; }
@@ -107,9 +147,7 @@
 </head>
 <body>
 
-    <!-- Fondo con tu imagen local -->
     <div class="bg-fixed"></div>
-    
     <div class="bg-overlay"></div>
 
     <div class="content">
@@ -128,6 +166,18 @@
                     </svg>
                     Book Fotográfico
                 </a>
+            </div>
+        </div>
+
+        <!-- REGISTRO DE CAMPO (2 FOTOS DESTACADAS) -->
+        <div class="preview-grid">
+            <div class="preview-item">
+                <img src="assets/operaciones.jpg" alt="Centro de Control y Operaciones">
+                <div class="preview-caption">01 // Control Operativo</div>
+            </div>
+            <div class="preview-item">
+                <img src="assets/logistica.jpg" alt="Logística en Terreno Nieve">
+                <div class="preview-caption">02 // Logística de Campo</div>
             </div>
         </div>
 
